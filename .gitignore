@@ -1,0 +1,11 @@
+node_modules/
+.wrangler/
+.env
+
+infra/.terraform/
+*.tfstate
+*.tfstate.*
+*.tfplan
+crash.log
+*.auto.tfvars
+terraform.tfvars

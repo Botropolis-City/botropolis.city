@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Botropolis</title>
+<meta name="description" content="Every Claude Code session on your machine, drawn as an isometric city you can read at a glance and drive from the map.">
+<meta property="og:title" content="Botropolis">
+<meta property="og:description" content="Every Claude Code session on your machine, drawn as a city.">
+<meta property="og:url" content="https://botropolis.city/">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://botropolis.city/">
+<style>
+  :root {
+    --bg: #11131a;
+    --panel: #1a1d27;
+    --ink: #d8dbe4;
+    --muted: #8a90a2;
+    --rule: #2a2e3b;
+    --amber: #f0b54a;
+    --blue: #5b9cf0;
+    --teal: #4cc4b4;
+    --violet: #a585f0;
+    --slate: #7c8597;
+  }
+  @media (prefers-color-scheme: light) {
+    :root {
+      --bg: #f4f2ec;
+      --panel: #ffffff;
+      --ink: #1d2030;
+      --muted: #5c6274;
+      --rule: #dcd8cc;
+      --amber: #b9780f;
+      --blue: #2a68c4;
+      --teal: #17877a;
+      --violet: #6c4cc4;
+      --slate: #5b6475;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 1.05rem/1.65 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main { max-width: 46rem; margin: 0 auto; padding: 4rem 1rem 5rem; }
+  h1 { font-size: clamp(2.4rem, 8vw, 3.6rem); line-height: 1.05; margin: 0 0 1rem; letter-spacing: -0.02em; }
+  h2 { font-size: 1.15rem; margin: 3rem 0 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
+  p { margin: 0 0 1rem; }
+  a { color: var(--amber); }
+  .lede { font-size: 1.25rem; color: var(--ink); }
+  .beacons { display: flex; gap: 0.5rem; margin: 0 0 2rem; }
+  .beacons span { width: 0.9rem; height: 0.9rem; border-radius: 50%; display: block; }
+  ul.legend { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.4rem; }
+  ul.legend li { display: flex; gap: 0.6rem; align-items: baseline; }
+  ul.legend b { color: var(--ink); min-width: 9rem; display: inline-block; }
+  pre { background: var(--panel); border: 1px solid var(--rule); border-radius: 6px; padding: 0.9rem 1rem; overflow-x: auto; font: 0.9rem/1.55 ui-monospace, "JetBrains Mono", monospace; margin: 0 0 1rem; }
+  code { font-family: ui-monospace, "JetBrains Mono", monospace; font-size: 0.92em; }
+  .cta { display: inline-block; margin-top: 0.5rem; padding: 0.6rem 1.1rem; border: 1px solid var(--amber); border-radius: 6px; text-decoration: none; font-weight: 600; }
+  footer { margin-top: 4rem; padding-top: 1.5rem; border-top: 1px solid var(--rule); color: var(--muted); font-size: 0.9rem; }
+</style>
+</head>
+<body>
+<main>
+  <div class="beacons" aria-hidden="true">
+    <span style="background: var(--amber)"></span>
+    <span style="background: var(--blue)"></span>
+    <span style="background: var(--teal)"></span>
+    <span style="background: var(--violet)"></span>
+    <span style="background: var(--slate)"></span>
+  </div>
+
+  <h1>Botropolis</h1>
+  <p class="lede">Every Claude Code session on your machine, drawn as a city.</p>
+  <p>Districts are projects, buildings are sessions, and everything on the map means one thing you can read by hovering it.
+  A building's height is the context it has used and its beacon is its state: needs-you amber, working blue, waiting teal, unattended violet, parked slate.</p>
+  <p>It is also how you drive them. Every session becomes a background job you can close, reopen, park and wake from the map, and the terminal is only ever a view of it.</p>
+  <a class="cta" href="https://github.com/auroq/botropolis">Source on GitHub</a>
+
+  <h2>What you see</h2>
+  <ul class="legend">
+    <li><b>The power plant</b> the API, with spend by model, project and session</li>
+    <li><b>Radio towers</b> MCP servers</li>
+    <li><b>The library</b> skills, ranked by use</li>
+    <li><b>Drones</b> subagents in flight</li>
+    <li><b>Flags</b> pull requests, green once merged</li>
+    <li><b>The storage yard</b> parked sessions</li>
+    <li><b>The freight loop</b> the day's tokens, one train per model</li>
+  </ul>
+
+  <h2>Install</h2>
+  <p>Arch, from the AUR:</p>
+  <pre><code>paru -S botropolis        # or botropolis-bin</code></pre>
+  <p>Debian, Ubuntu, Fedora and openSUSE packages, for amd64 and arm64, are on the <a href="https://github.com/auroq/botropolis/releases/latest">latest release</a>:</p>
+  <pre><code>sudo dpkg -i botropolis_0.1.4_amd64.deb
+sudo rpm -i botropolis-0.1.4-1.x86_64.rpm</code></pre>
+
+  <h2>Start</h2>
+  <pre><code>systemctl --user enable --now botropolisd
+botropolis install-hooks
+botropolis doctor
+botropolis</code></pre>
+  <p>Then add one line to <code>~/.bashrc</code>:</p>
+  <pre><code>source /usr/share/botropolis/botropolis.bash</code></pre>
+
+  <footer>
+    Botropolis is not affiliated with Anthropic. <a href="https://github.com/auroq/botropolis">GitHub</a>
+  </footer>
+</main>
+</body>
+</html>
