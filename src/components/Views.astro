@@ -1,0 +1,160 @@
+---
+import { Picture } from "astro:assets";
+import { image, media } from "../data/catalog.ts";
+import AppWindow from "./AppWindow.astro";
+import Keycap from "./Keycap.astro";
+
+const views = media.views;
+const first = views[0];
+---
+
+<section class="band" id="views" aria-labelledby="views-title">
+  <div class="wrap">
+    <p class="eyebrow"><span class="dot" style="--tone:var(--unattended)"></span> views</p>
+    <h2 id="views-title">Nine ways to read the city</h2>
+    <p class="lead">
+      The same map recoloured to answer one question at a time. In the app it is <Keycap k="v" /> and a number; here, <Keycap k="v" /> steps through
+      them too.
+    </p>
+
+    <div class="viewer" data-views>
+      <div class="tabs" role="group" aria-label="Views">
+        {
+          views.map((v, i) => (
+            <button type="button" aria-pressed={i === 0 ? "true" : "false"} data-view={i}>
+              <span class="n">{v.name === "night" ? "n" : i + 1}</span>
+              {v.name}
+            </button>
+          ))
+        }
+        <span class="cycle">
+          <button type="button" data-step="-1" data-key="V" aria-label="Previous view"><Keycap k="⇧v" /></button>
+          <button type="button" data-step="1" data-key="v" aria-label="Next view"><Keycap k="v" /></button>
+        </span>
+      </div>
+
+      <AppWindow title="botropolis — layers">
+        <div class="stack">
+          {
+            views.map((v, i) => (
+              <Picture
+                src={image(v.image)}
+                formats={["avif"]} fallbackFormat="webp"
+                widths={[640, 960, 1280, 1920]}
+                sizes="(max-width: 1240px) 100vw, 1240px"
+                alt={`The city in the ${v.name} view: ${v.question}.`}
+                loading="lazy"
+                class:list={[i === 0 && "on"]}
+              />
+            ))
+          }
+        </div>
+      </AppWindow>
+      <p class="caption" aria-live="polite">
+        <b data-testid="view-current">{first.name}</b> — <span data-question>{first.question}</span>
+      </p>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { step } from "../scripts/cycle.ts";
+
+  const root = document.querySelector<HTMLElement>("[data-views]")!;
+  const tabs = [...root.querySelectorAll<HTMLButtonElement>("[data-view]")];
+  const pictures = [...root.querySelectorAll<HTMLImageElement>(".stack img")];
+  const name = root.querySelector<HTMLElement>("[data-testid=view-current]")!;
+  const question = root.querySelector<HTMLElement>("[data-question]")!;
+  let current = 0;
+
+  function show(i: number) {
+    current = i;
+    tabs.forEach((t, j) => t.setAttribute("aria-pressed", String(j === i)));
+    pictures.forEach((p, j) => p.classList.toggle("on", j === i));
+    const alt = pictures[i].alt.match(/^The city in the (.+) view: (.+)\.$/);
+    name.textContent = alt?.[1] ?? "";
+    question.textContent = alt?.[2] ?? "";
+  }
+
+  tabs.forEach((t, i) => t.addEventListener("click", () => show(i)));
+  root.querySelectorAll<HTMLButtonElement>("[data-step]").forEach((b) =>
+    b.addEventListener("click", () => show(step(current, Number(b.dataset.step), tabs.length))),
+  );
+</script>
+
+<style>
+  .tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 0 0 16px;
+  }
+  .tabs > button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 10px 6px 6px;
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius);
+    background: transparent;
+    color: var(--dim);
+    font: 500 13px/1 var(--font);
+    cursor: pointer;
+  }
+  .tabs > button:hover {
+    color: var(--text);
+  }
+  .tabs > button[aria-pressed="true"] {
+    color: var(--accent);
+    border-color: rgb(232 160 60 / 0.6);
+    background: rgb(232 160 60 / 0.07);
+  }
+  .n {
+    display: inline-grid;
+    place-items: center;
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    background: #30333b;
+    color: var(--text);
+    font: 500 11px/1 var(--mono);
+  }
+  .cycle {
+    display: flex;
+    gap: 6px;
+    margin-left: auto;
+    align-items: center;
+  }
+  .cycle button {
+    padding: 0;
+    border: 0;
+    background: none;
+    cursor: pointer;
+  }
+  .stack {
+    display: grid;
+  }
+  .stack :global(picture) {
+    grid-area: 1 / 1;
+  }
+  .stack :global(img) {
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+  .stack :global(img.on) {
+    opacity: 1;
+  }
+  .caption {
+    margin: 14px 2px 0;
+    color: var(--dim);
+  }
+  .caption b {
+    color: var(--text);
+    font-weight: 600;
+  }
+  @media (max-width: 600px) {
+    .cycle {
+      display: none;
+    }
+  }
+</style>

@@ -1,0 +1,103 @@
+---
+import { Picture } from "astro:assets";
+import { image, still } from "../data/catalog.ts";
+import AppWindow from "./AppWindow.astro";
+import Keycap from "./Keycap.astro";
+
+const needs = still("workshop/needs-you");
+const power = still("workshop/power");
+const actions = ["attach", "stop", "summary", "new session here", "reveal folder", "copy path", "hide project", "star"];
+---
+
+<section class="band" id="drive" aria-labelledby="drive-title">
+  <div class="wrap">
+    <p class="eyebrow"><span class="dot" style="--tone:var(--needs-you)"></span> drive</p>
+    <h2 id="drive-title">Then drive it from the map</h2>
+    <p class="lead">
+      Sessions live in Claude Code's own background daemon. Botropolis starts them, opens them in a terminal, parks them and wakes them, and never
+      writes to <code>~/.claude</code> itself.
+    </p>
+
+    <div class="row">
+      <AppWindow title="botropolis — workshop">
+        <Picture src={image(needs.image)} formats={["avif"]} fallbackFormat="webp" widths={[640, 960, 1280, 1920]} sizes="(max-width: 960px) 100vw, 760px" alt={needs.description} loading="lazy" />
+      </AppWindow>
+      <div class="text">
+        <h3>{needs.title}</h3>
+        <p><Keycap k="tab" /> jumps to the next session waiting on an answer and opens its card. <Keycap k="enter" /> attaches it.</p>
+        <ul class="chips" aria-label="Card actions">
+          {actions.map((a) => <li>{a}</li>)}
+        </ul>
+        <p class="note">
+          A card's summary shows the recap Claude Code writes when a session is left waiting. Asking for a fresh one is the only thing on the map that
+          spends tokens, and only when you press it.
+        </p>
+      </div>
+    </div>
+
+    <div class="row flip">
+      <AppWindow title="botropolis — power plant">
+        <Picture src={image(power.image)} formats={["avif"]} fallbackFormat="webp" widths={[640, 960, 1280, 1920]} sizes="(max-width: 960px) 100vw, 760px" alt={power.description} loading="lazy" />
+      </AppWindow>
+      <div class="text">
+        <h3>{power.title}</h3>
+        <p>Click the power plant for the breakdown by model, project and session over an hour, a day or a week. Its wires carry each session's live token rate.</p>
+        <p class="note">Costs are estimates, which is why they carry a ~.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  code {
+    font: 0.92em var(--mono);
+  }
+  .row {
+    display: grid;
+    grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr);
+    gap: 40px;
+    align-items: center;
+  }
+  .row + .row {
+    margin-top: 72px;
+  }
+  .flip > :first-child {
+    order: 2;
+  }
+  h3 {
+    margin: 0 0 12px;
+    font-size: 1.3rem;
+    letter-spacing: -0.02em;
+  }
+  .text p {
+    margin: 0 0 16px;
+  }
+  .note {
+    color: var(--dim);
+    font-size: 15px;
+  }
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 0 0 18px;
+    padding: 0;
+    list-style: none;
+  }
+  .chips li {
+    padding: 5px 9px;
+    border-radius: 4px;
+    background: #2a2d34;
+    color: var(--accent);
+    font: 500 13px/1 var(--font);
+  }
+  @media (max-width: 960px) {
+    .row {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 24px;
+    }
+    .flip > :first-child {
+      order: 0;
+    }
+  }
+</style>
