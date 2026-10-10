@@ -32,6 +32,6 @@ variable "github_org" {
 
 variable "github_verification_code" {
   type        = string
-  description = "From the org's Settings > Verified domains. Empty until the domain is added there."
+  description = "From the org's Settings > Verified domains. Public once published, so set it here rather than in the workspace."
   default     = ""
 }

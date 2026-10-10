@@ -37,47 +37,60 @@ make site-deploy     # only needed before CI is wired up
 ## Secrets
 
 Nothing secret is stored in this repo or in a `.env`.
-Both Cloudflare tokens are resolved by reference through `secret-run` at the moment a command runs.
-The defaults are in the `Makefile` and can be overridden in `.env`:
 
-| variable | default | permissions |
+| token | lives in | used by |
 | --- | --- | --- |
-| `CF_INFRA_TOKEN_REF` | `op:Botropolis/Cloudflare infra token/credential` | see below |
-| `CF_DEPLOY_TOKEN_REF` | `op:Botropolis/Cloudflare deploy token/credential` | Account → Workers Scripts → Edit |
+| infra | the HCP workspace, as the sensitive env var `CLOUDFLARE_API_TOKEN` | Terraform runs on HCP |
+| deploy | the repo secret `CLOUDFLARE_API_TOKEN`, and 1Password for `make site-deploy` | `wrangler deploy` |
 
-The infra token is scoped to the two zones only, so it cannot touch anything else in the account.
+The account also holds other zones, so the infra token names these two zones explicitly rather than "all zones".
+
+**Infra token** (Zone Resources: `botropolis.city`, `botropolis.dev`; Account Resources: the account holding them)
 
 - Zone → Zone → Read
 - Zone → DNS → Edit
 - Zone → Zone Settings → Edit
 - Zone → Single Redirect → Edit
 - Zone → Email Routing Rules → Edit
+- Zone → Workers Routes → Edit
 - Account → Workers Scripts → Edit
 - Account → Email Routing Addresses → Edit
 
-CI uses the deploy token as the repository secret `CLOUDFLARE_API_TOKEN`, with `CLOUDFLARE_ACCOUNT_ID` as a repository variable.
+**Deploy token**
+
+- Account → Workers Scripts → Edit
+
+## How changes reach the edge
+
+The HCP workspace `Botropolis-City/botropolis-city` is connected to this repo, with working directory `infra/` and trigger pattern `infra/**`.
+
+- A pull request touching `infra/` gets a speculative plan, posted as a check.
+- A merge to `main` plans and applies.
+- `make infra-plan` runs the same speculative plan from a working tree, on HCP, with the workspace's token.
+  There is no local apply; HCP refuses one for a VCS-driven workspace.
 
 ## Bootstrap
 
-This happens once, and is recorded here so it can be repeated for another domain.
+Done once, and recorded so it can be repeated.
 
 1. In Cloudflare, add both sites on the Free plan.
    Delete every record Cloudflare imports from Namecheap, because Terraform owns them all.
-2. Create both tokens and store them in 1Password under the refs above.
-3. In HCP Terraform, create the org `Botropolis-City` and a CLI-driven workspace `botropolis-city`.
-   **Set its execution mode to Local before the first `terraform init`.**
-   Otherwise `init` creates the workspace in Remote mode, where the runs have no token.
-4. Put the Cloudflare nameserver pair on both domains in the `namecheap` repo, apply it, and wait for both zones to show Active.
-5. `make site-deploy`, then `make infra-plan` and `make infra-apply`.
-6. Click the verification link Cloudflare sends to the forwarding address.
-   Mail does not forward until then.
-7. Add `botropolis.city` under the GitHub org's Verified domains.
-   Set `github_verification_code` in `infra/terraform.auto.tfvars` and apply again.
-8. Wire CI to deploy:
+2. Point both domains at the Cloudflare nameservers (`namecheap` repo) and wait for both zones to show Active.
+3. Create both tokens with the permissions above.
+4. In HCP Terraform, create the org `Botropolis-City`, connect GitHub (the `Botropolis-City` org), and create a **version-control** workspace `botropolis-city` on this repo:
+   working directory `infra`, trigger patterns `infra/**`, apply method manual for the first run.
+   Add the infra token as a sensitive **environment** variable `CLOUDFLARE_API_TOKEN`.
+5. Wire CI and deploy the Worker first, because a custom domain cannot bind to a Worker that does not exist (error 10092):
 
    ```
    secret-run --stdin "op:Botropolis/Cloudflare deploy token/credential" -- gh secret set CLOUDFLARE_API_TOKEN -R Botropolis-City/botropolis.city
-   gh variable set CLOUDFLARE_ACCOUNT_ID -R Botropolis-City/botropolis.city --body "$(terraform -chdir=infra output -raw account_id)"
+   gh variable set CLOUDFLARE_ACCOUNT_ID -R Botropolis-City/botropolis.city --body <account id>
+   git push github main
    ```
 
+   The push starts both the deploy job and an HCP run.
+   Confirm the HCP run only once the deploy job is green.
+6. Click the verification link Cloudflare sends to the forwarding address; mail does not forward until then.
+7. Add `botropolis.city` under the GitHub org's Verified domains and set `github_verification_code` in `infra/variables.tf`.
+8. Switch the workspace's apply method to auto.
 9. `make verify` until every check is green.

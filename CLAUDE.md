@@ -10,9 +10,9 @@ Run it before and after any change in `infra/`.
 ## Rules
 
 - **Never put a token value on a command line or in a file.**
-  The Makefile resolves both Cloudflare tokens through `secret-run` by reference.
-- **`infra/` is applied locally** (HCP workspace `Botropolis-City/botropolis-city`, Local execution).
-  Nothing applies on push; CI only checks formatting and deploys the Worker.
+  The infra token lives only in the HCP workspace; the Makefile resolves the deploy token through `secret-run` by reference.
+- **`infra/` is VCS-driven** (HCP workspace `Botropolis-City/botropolis-city`): a merge to `main` that touches `infra/` applies.
+  Change it through a pull request and read the speculative plan before merging; `make infra-plan` runs the same plan from a working tree.
 - **The Worker must exist before a custom domain can bind to it.**
   On a fresh account, deploy first and apply second, or the apply fails with error 10092.
 - **Every DNS record in both zones is Terraform's.**

@@ -8,10 +8,8 @@ LOG := @sh -c '\
 
 -include .env
 
-CF_INFRA_TOKEN_REF ?= op:Botropolis/Cloudflare infra token/credential
 CF_DEPLOY_TOKEN_REF ?= op:Botropolis/Cloudflare deploy token/credential
 TF := terraform -chdir=infra
-WITH_INFRA_TOKEN := secret-run --env "CLOUDFLARE_API_TOKEN=${CF_INFRA_TOKEN_REF}" --
 WITH_DEPLOY_TOKEN := secret-run --env "CLOUDFLARE_API_TOKEN=${CF_DEPLOY_TOKEN_REF}" --
 
 targets ::
@@ -51,12 +49,8 @@ infra-validate :: infra-init
 	@$(TF) validate
 
 infra-plan :: infra-init
-	$(LOG) "Planning"
-	@$(WITH_INFRA_TOKEN) $(TF) plan
-
-infra-apply :: infra-init
-	$(LOG) "Applying"
-	@$(WITH_INFRA_TOKEN) $(TF) apply
+	$(LOG) "Speculative plan on HCP Terraform (applies happen on merge to main)"
+	@$(TF) plan
 
 name-servers :: infra-init
 	$(LOG) "Cloudflare name servers, for the namecheap repo"
