@@ -83,8 +83,8 @@ Done once, and recorded so it can be repeated.
 5. Wire CI and deploy the Worker first, because a custom domain cannot bind to a Worker that does not exist (error 10092):
 
    ```
-   secret-run --stdin "op:Botropolis/Cloudflare deploy token/credential" -- gh secret set CLOUDFLARE_API_TOKEN -R Botropolis-City/botropolis.city
-   gh variable set CLOUDFLARE_ACCOUNT_ID -R Botropolis-City/botropolis.city --body <account id>
+   secret-run --stdin "op:Botropolis/Cloudflare - Botropolis Deploy Token/credential" -- gh secret set CLOUDFLARE_API_TOKEN -R Botropolis-City/botropolis.city
+   gh variable set CLOUDFLARE_ACCOUNT_ID -R Botropolis-City/botropolis.city --body "$(op read "op://Botropolis/Cloudflare - Botropolis Deploy Token/Account ID")"
    git push github main
    ```
 

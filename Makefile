@@ -8,7 +8,7 @@ LOG := @sh -c '\
 
 -include .env
 
-CF_DEPLOY_TOKEN_REF ?= op:Botropolis/Cloudflare deploy token/credential
+CF_DEPLOY_TOKEN_REF ?= op:Botropolis/Cloudflare - Botropolis Deploy Token/credential
 TF := terraform -chdir=infra
 WITH_DEPLOY_TOKEN := secret-run --env "CLOUDFLARE_API_TOKEN=${CF_DEPLOY_TOKEN_REF}" --
 
