@@ -8,7 +8,7 @@ import { distros, shell, start } from "../data/install.ts";
     <h2 id="install-title">Move in</h2>
     <p class="lead">
       Linux, amd64 or arm64. Every package carries the three binaries, the systemd user units, the desktop entry and the shell integration. Checksums
-      are on <a href="https://github.com/auroq/botropolis/releases/latest">the release</a>.
+      are on <a href="https://github.com/Botropolis-City/botropolis/releases/latest">the release</a>.
     </p>
 
     <div class="term" data-install>
@@ -24,6 +24,16 @@ import { distros, shell, start } from "../data/install.ts";
       {
         distros.map((d, i) => (
           <div class="panel" role="tabpanel" id={`panel-${d.id}`} aria-labelledby={`tab-${d.id}`} hidden={i !== 0}>
+            {d.links && (
+              <p class="links">
+                On the AUR: {d.links.map((l, j) => (
+                  <>
+                    {j > 0 && " and "}
+                    <a href={l.href}>{l.label}</a>
+                  </>
+                ))}
+              </p>
+            )}
             <pre><code>{d.command}</code></pre>
             <div class="foot">
               <span>{d.note}</span>
@@ -119,6 +129,15 @@ import { distros, shell, start } from "../data/install.ts";
   [role="tab"][aria-selected="true"] {
     color: var(--text);
     border-bottom-color: var(--accent);
+  }
+  .links {
+    margin: 0;
+    padding: 14px 20px 0;
+    font-size: 14px;
+    color: var(--dim);
+  }
+  .links a {
+    color: var(--accent);
   }
   pre {
     margin: 0;

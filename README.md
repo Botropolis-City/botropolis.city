@@ -1,6 +1,6 @@
 # botropolis.city
 
-The website for [Botropolis](https://github.com/auroq/botropolis), and the infrastructure that serves it.
+The website for [Botropolis](https://github.com/Botropolis-City/botropolis), and the infrastructure that serves it.
 
 | path | what |
 | --- | --- |

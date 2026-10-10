@@ -17,7 +17,7 @@ test.describe("when the page loads", () => {
   });
 
   test("it should link to the source on GitHub", async ({ page }) => {
-    await expect(page.getByRole("link", { name: /github/i }).first()).toHaveAttribute("href", /github\.com\/auroq\/botropolis/);
+    await expect(page.getByRole("link", { name: /github/i }).first()).toHaveAttribute("href", /github\.com\/Botropolis-City\/botropolis/);
   });
 
   test("it should offer a control that pauses the title screen", async ({ page }) => {

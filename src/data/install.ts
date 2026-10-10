@@ -1,17 +1,32 @@
-import media from "./media.json" with { type: "json" };
+export const version = "0.1.5";
 
-const v = media.version;
-const release = `https://github.com/auroq/botropolis/releases/download/v${v}`;
+const v = version;
+const release = `https://github.com/Botropolis-City/botropolis/releases/download/v${v}`;
+
+export interface Link {
+  label: string;
+  href: string;
+}
 
 export interface Distro {
   id: string;
   label: string;
   note: string;
+  links?: Link[];
   command: string;
 }
 
 export const distros: Distro[] = [
-  { id: "arch", label: "Arch", note: "From the AUR; botropolis-bin skips the build.", command: "paru -S botropolis" },
+  {
+    id: "arch",
+    label: "Arch",
+    note: "Or with your AUR helper, e.g. paru -S botropolis or yay -S botropolis. botropolis-bin installs the release binaries instead of building.",
+    links: [
+      { label: "botropolis", href: "https://aur.archlinux.org/packages/botropolis" },
+      { label: "botropolis-bin", href: "https://aur.archlinux.org/packages/botropolis-bin" },
+    ],
+    command: "git clone https://aur.archlinux.org/botropolis.git\ncd botropolis && makepkg -si",
+  },
   {
     id: "debian",
     label: "Debian / Ubuntu",

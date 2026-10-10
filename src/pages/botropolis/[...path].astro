@@ -1,0 +1,45 @@
+---
+import { modulePath, packages, repo } from "../../data/module.ts";
+
+export function getStaticPaths() {
+  return packages.map((p) => ({ params: { path: p || undefined } }));
+}
+
+const { path } = Astro.params;
+const importPath = path ? `${modulePath}/${path}` : modulePath;
+const source = path ? `${repo}/tree/main/${path}` : repo;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="go-import" content={`${modulePath} git ${repo}.git`} />
+    <meta name="go-source" content={`${modulePath} ${repo} ${repo}/tree/main{/dir} ${repo}/blob/main{/dir}/{file}#L{line}`} />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>{importPath}</title>
+    <style>
+      body {
+        margin: 0;
+        min-height: 100svh;
+        display: grid;
+        place-content: center;
+        background: #12141a;
+        color: #e6e9ef;
+        font: 16px/1.6 system-ui, sans-serif;
+        text-align: center;
+      }
+      code {
+        font: 15px ui-monospace, monospace;
+      }
+      a {
+        color: #e8a03c;
+      }
+    </style>
+  </head>
+  <body>
+    <p><code>{importPath}</code> is the Go module for <a href="/">Botropolis</a>.</p>
+    <p>Source: <a href={source}>{source.replace("https://", "")}</a></p>
+  </body>
+</html>
