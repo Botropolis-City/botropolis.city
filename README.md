@@ -93,6 +93,7 @@ Done once, and recorded so it can be repeated.
 6. Click the verification link Cloudflare sends to the forwarding address.
    Until then the API refuses the forwarding rules (`2054 Destination address is not verified`), so the first apply always fails on them.
    Click it, then start a new run.
+   Test from an address other than the forwarding target: Gmail files a forwarded copy of your own message under Sent only, so a self-test looks like a failure.
 7. Add `botropolis.city` under the GitHub org's Verified domains and set `github_verification_code` in `infra/variables.tf`.
 8. Switch the workspace's apply method to auto.
 9. `make verify` until every check is green.
