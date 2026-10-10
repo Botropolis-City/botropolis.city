@@ -7,6 +7,7 @@ export default defineConfig({
   testDir: "testing/acceptance/site",
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
+  retries: live ? 2 : 0,
   reporter: process.env.CI ? "github" : "list",
   use: {
     baseURL: live ?? `http://127.0.0.1:${port}`,
