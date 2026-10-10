@@ -14,3 +14,7 @@ output "account_id" {
 output "site_hostnames" {
   value = [for d in cloudflare_workers_custom_domain.site : d.hostname]
 }
+
+output "media_hostname" {
+  value = cloudflare_r2_custom_domain.media.domain
+}

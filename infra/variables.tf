@@ -35,3 +35,9 @@ variable "github_verification_code" {
   description = "From the org's Settings > Verified domains. Public once published, so set it here rather than in the workspace."
   default     = "ff828a50b7"
 }
+
+variable "media_bucket" {
+  type        = string
+  description = "R2 bucket for video; must match MEDIA_BUCKET in ../Makefile."
+  default     = "botropolis-media"
+}
