@@ -45,6 +45,8 @@ check() {
 status() { curl -s -o /dev/null -w '%{http_code}' --max-time 10 "$1"; }
 location() { curl -s -o /dev/null -w '%{redirect_url}' --max-time 10 "$1"; }
 txt() { dig +short TXT "$1"; }
+body() { curl -s --max-time 10 "$1"; }
+headers() { curl -sI --max-time 10 "$1"; }
 
 nameservers_are_cloudflare() {
   local ns
@@ -53,7 +55,7 @@ nameservers_are_cloudflare() {
 }
 
 serves_site() {
-  [[ $(status "https://$1/") == 200 ]] && curl -s --max-time 10 "https://$1/" | grep -q Botropolis
+  [[ $(status "https://$1/") == 200 ]] && [[ $(body "https://$1/") == *Botropolis* ]]
 }
 
 served_or_redirects_to() {
@@ -77,11 +79,15 @@ mx_is_cloudflare_routing() {
 }
 
 first_video_url() {
-  curl -s --max-time 10 "https://$PRIMARY/" | grep -o "https://${MEDIA//./\\.}/[^\"' ]*\.mp4" | head -n1
+  local page
+  page=$(body "https://$PRIMARY/")
+  grep -o -m1 "https://${MEDIA//./\\.}/[^\"' ]*\.mp4" <<<"$page" | head -n1
 }
 
 csp_allows_media() {
-  curl -sI --max-time 10 "https://$1/" | grep -i '^content-security-policy:' | grep -q "media-src[^;]*https://$2"
+  local h
+  h=$(headers "https://$1/")
+  grep -i '^content-security-policy:' <<<"$h" | grep -q "media-src[^;]*https://$2"
 }
 
 site_references_video() { [[ -n $(first_video_url) ]]; }
