@@ -1,0 +1,1 @@
+var e=document.querySelector(`[data-hero]`),t=e.querySelector(`[data-pause]`);t.addEventListener(`click`,()=>{let n=e.classList.toggle(`paused`);t.setAttribute(`aria-pressed`,String(n))});

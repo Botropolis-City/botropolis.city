@@ -1,0 +1,1 @@
+var e=(e,t,n)=>((e+t)%n+n)%n;export{e as t};
