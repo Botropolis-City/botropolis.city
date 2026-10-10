@@ -51,6 +51,7 @@ The account also holds other zones, so the infra token names these two zones exp
 - Zone → Zone → Read
 - Zone → DNS → Edit
 - Zone → Zone Settings → Edit
+- Zone → Bot Management → Edit
 - Zone → Single Redirect → Edit
 - Zone → Email Routing Rules → Edit
 - Zone → Workers Routes → Edit
@@ -79,6 +80,10 @@ It lives in R2 behind `media.botropolis.city`, because R2 answers byte-range req
 Each file is named by a hash of its content and cached as immutable, so an upload never changes what an already-deployed page points at.
 
 R2 has to be switched on for the account once, in the dashboard under R2, before Terraform can create the bucket.
+
+Bot Fight Mode is off for `botropolis.city`, in `infra/bots.tf`.
+It answered GitHub's runners with a challenge instead of the video, and a challenge on a `<video>` request cannot be solved, so anyone it took for a bot got a player that never loads.
+On the Free plan it cannot be scoped to a hostname or skipped by a rule; it is the whole zone or nothing.
 
 ## Bootstrap
 
