@@ -1,0 +1,59 @@
+---
+import Keycap from "./Keycap.astro";
+---
+
+<footer>
+  <div class="bar" aria-label="Keys">
+    <a href="https://github.com/auroq/botropolis" data-key="g"><Keycap k="g" /> github</a>
+    <a href="#watch" data-key="w"><Keycap k="w" /> watch</a>
+    <a href="#views" data-key="e"><Keycap k="e" /> views</a>
+    <a href="#install" data-key="i"><Keycap k="i" /> install</a>
+    <button type="button" data-keys-open><Keycap k="?" /> keys</button>
+  </div>
+  <div class="small">
+    <span>Botropolis is not affiliated with Anthropic.</span>
+    <a href="mailto:hello@botropolis.city">hello@botropolis.city</a>
+  </div>
+</footer>
+
+<style>
+  footer {
+    border-top: 1px solid var(--hairline);
+    background: var(--bar);
+  }
+  .bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 22px;
+    padding: 14px var(--gutter);
+    font-size: 13px;
+    color: var(--dim);
+  }
+  .bar a,
+  .bar button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: inherit;
+    font: inherit;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .bar a:hover,
+  .bar button:hover {
+    color: var(--text);
+  }
+  .small {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 8px 24px;
+    padding: 12px var(--gutter) 20px;
+    border-top: 1px solid var(--hairline);
+    color: var(--dim);
+    font-size: 13px;
+  }
+</style>

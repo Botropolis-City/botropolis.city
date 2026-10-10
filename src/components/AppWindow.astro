@@ -1,0 +1,63 @@
+---
+interface Props {
+  title: string;
+  titleId?: string;
+  class?: string;
+}
+const { title, titleId, class: extra } = Astro.props;
+---
+
+<div class:list={["window", extra]}>
+  <div class="titlebar">
+    <img src="/favicon.svg" alt="" width="14" height="14" />
+    <span class="title" data-testid={titleId}>{title}</span>
+    <span class="controls" aria-hidden="true"><i></i><i></i><i></i></span>
+  </div>
+  <div class="body"><slot /></div>
+</div>
+
+<style>
+  .window {
+    border: 1px solid var(--hairline);
+    border-radius: 10px;
+    background: var(--panel-solid);
+    overflow: hidden;
+    box-shadow:
+      0 1px 0 rgb(255 255 255 / 0.04) inset,
+      0 40px 80px -40px rgb(0 0 0 / 0.9);
+  }
+  .titlebar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    height: 32px;
+    padding: 0 12px;
+    border-bottom: 1px solid var(--hairline);
+    background: var(--bar);
+    font: 500 12px/1 var(--font);
+    color: var(--dim);
+  }
+  .title {
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .controls {
+    display: flex;
+    gap: 6px;
+  }
+  .controls i {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #2a2e38;
+  }
+  .body :global(img),
+  .body :global(video) {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    background: var(--bg);
+  }
+</style>

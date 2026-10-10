@@ -1,0 +1,366 @@
+{
+  "version": "0.1.4",
+  "generated": "2026-10-10T12:13:03.848919742Z",
+  "stills": [
+    {
+      "id": "hamlet/overview",
+      "scenario": "hamlet",
+      "shot": "overview",
+      "title": "A quiet hamlet",
+      "description": "Two projects late at night, one session working and one waiting on an answer.",
+      "width": 1920,
+      "height": 1080,
+      "image": "hamlet-overview"
+    },
+    {
+      "id": "hamlet/hero",
+      "scenario": "hamlet",
+      "shot": "hero",
+      "title": "The hamlet, without the chrome",
+      "description": "The same night with the interface hidden.",
+      "width": 1920,
+      "height": 1080,
+      "image": "hamlet-hero"
+    },
+    {
+      "id": "layers/pressure",
+      "scenario": "layers",
+      "shot": "pressure",
+      "title": "Context pressure",
+      "description": "The city coloured by how full each session's context is.",
+      "width": 1920,
+      "height": 1080,
+      "image": "layers-pressure"
+    },
+    {
+      "id": "layers/spend",
+      "scenario": "layers",
+      "shot": "spend",
+      "title": "Spend",
+      "description": "The city coloured by what each session has cost.",
+      "width": 1920,
+      "height": 1080,
+      "image": "layers-spend"
+    },
+    {
+      "id": "layers/night",
+      "scenario": "layers",
+      "shot": "night",
+      "title": "The same city at night",
+      "description": "Lit windows mark the sessions that are awake.",
+      "width": 1920,
+      "height": 1080,
+      "image": "layers-night"
+    },
+    {
+      "id": "metropolis/overview",
+      "scenario": "metropolis",
+      "shot": "overview",
+      "title": "A busy metropolis",
+      "description": "Twelve districts in the early evening, a team camp, trains for every model, and a full storage yard.",
+      "width": 1920,
+      "height": 1080,
+      "image": "metropolis-overview"
+    },
+    {
+      "id": "metropolis/hero",
+      "scenario": "metropolis",
+      "shot": "hero",
+      "title": "The metropolis, without the chrome",
+      "description": "A dozen districts, interface hidden.",
+      "width": 1920,
+      "height": 1080,
+      "image": "metropolis-hero"
+    },
+    {
+      "id": "metropolis/plain",
+      "scenario": "metropolis",
+      "shot": "plain",
+      "title": "The metropolis, plain",
+      "description": "The same city with the scenery dropped, for reading at a glance.",
+      "width": 1920,
+      "height": 1080,
+      "image": "metropolis-plain"
+    },
+    {
+      "id": "metropolis/sidebar",
+      "scenario": "metropolis",
+      "shot": "sidebar",
+      "title": "Every session in a list",
+      "description": "The sidebar lists every session by district and state.",
+      "width": 1920,
+      "height": 1080,
+      "image": "metropolis-sidebar"
+    },
+    {
+      "id": "timelapse/start",
+      "scenario": "timelapse",
+      "shot": "start",
+      "title": "Before the day begins",
+      "description": "Two projects with yesterday's sessions parked in the storage yard.",
+      "width": 1920,
+      "height": 1080,
+      "image": "timelapse-start"
+    },
+    {
+      "id": "workday/start",
+      "scenario": "workday",
+      "shot": "start",
+      "title": "The start of the morning",
+      "description": "Three sessions at work before the others arrive.",
+      "width": 1920,
+      "height": 1080,
+      "image": "workday-start"
+    },
+    {
+      "id": "workshop/overview",
+      "scenario": "workshop",
+      "shot": "overview",
+      "title": "A working afternoon",
+      "description": "Four projects; sessions working, waiting, running unattended and parked, with the plan's usage on the river.",
+      "width": 1920,
+      "height": 1080,
+      "image": "workshop-overview"
+    },
+    {
+      "id": "workshop/needs-you",
+      "scenario": "workshop",
+      "shot": "needs-you",
+      "title": "The session that needs you",
+      "description": "Tab jumps to the next session waiting on an answer and opens its card.",
+      "width": 1920,
+      "height": 1080,
+      "image": "workshop-needs-you"
+    },
+    {
+      "id": "workshop/power",
+      "scenario": "workshop",
+      "shot": "power",
+      "title": "Where the tokens go",
+      "description": "The power plant's breakdown of the last day's tokens and spend.",
+      "width": 1920,
+      "height": 1080,
+      "image": "workshop-power"
+    },
+    {
+      "id": "workshop/flat",
+      "scenario": "workshop",
+      "shot": "flat",
+      "title": "The workshop from above",
+      "description": "The same city in the top-down projection.",
+      "width": 1920,
+      "height": 1080,
+      "image": "workshop-flat"
+    }
+  ],
+  "clips": [
+    {
+      "id": "hamlet/drift",
+      "scenario": "hamlet",
+      "shot": "drift",
+      "title": "Looking in on the hamlet",
+      "description": "Zoom in on the session that is working, turn the camera, then find the one waiting on an answer.",
+      "width": 1920,
+      "height": 1080,
+      "seconds": 14,
+      "poster": "hamlet-drift",
+      "posterFile": "hamlet/drift.png",
+      "sources": [
+        {
+          "type": "video/webm",
+          "url": "https://media.botropolis.city/b72686bfca40d4e7.webm",
+          "file": "hamlet/drift.webm",
+          "name": "b72686bfca40d4e7.webm"
+        },
+        {
+          "type": "video/mp4",
+          "url": "https://media.botropolis.city/d4af1d9ac5b27df2.mp4",
+          "file": "hamlet/drift.mp4",
+          "name": "d4af1d9ac5b27df2.mp4"
+        }
+      ]
+    },
+    {
+      "id": "layers/views",
+      "scenario": "layers",
+      "shot": "views",
+      "title": "Nine ways to read the city",
+      "description": "The view key, then each view in turn -- attention, spend, context pressure, staleness, servers, traffic, models, fan-out and health -- then night and day.",
+      "width": 1920,
+      "height": 1080,
+      "seconds": 32,
+      "poster": "layers-views",
+      "posterFile": "layers/views.png",
+      "sources": [
+        {
+          "type": "video/webm",
+          "url": "https://media.botropolis.city/16b95406b31322b9.webm",
+          "file": "layers/views.webm",
+          "name": "16b95406b31322b9.webm"
+        },
+        {
+          "type": "video/mp4",
+          "url": "https://media.botropolis.city/5858aed9ed545ffe.mp4",
+          "file": "layers/views.mp4",
+          "name": "5858aed9ed545ffe.mp4"
+        }
+      ]
+    },
+    {
+      "id": "metropolis/flyover",
+      "scenario": "metropolis",
+      "shot": "flyover",
+      "title": "Flying over the metropolis",
+      "description": "Zoom into the team camp and open a card, glide across the districts, turn, and pull back out.",
+      "width": 1920,
+      "height": 1080,
+      "seconds": 22,
+      "poster": "metropolis-flyover",
+      "posterFile": "metropolis/flyover.png",
+      "sources": [
+        {
+          "type": "video/webm",
+          "url": "https://media.botropolis.city/f8ad476261951756.webm",
+          "file": "metropolis/flyover.webm",
+          "name": "f8ad476261951756.webm"
+        },
+        {
+          "type": "video/mp4",
+          "url": "https://media.botropolis.city/802efcebf6954696.mp4",
+          "file": "metropolis/flyover.mp4",
+          "name": "802efcebf6954696.mp4"
+        }
+      ]
+    },
+    {
+      "id": "timelapse/day",
+      "scenario": "timelapse",
+      "shot": "day",
+      "title": "A day on two projects",
+      "description": "Sessions arrive by boat, their buildings rise as they work, pull requests merge, and finished sessions leave for the storage yard.",
+      "width": 1920,
+      "height": 1080,
+      "seconds": 54,
+      "poster": "timelapse-day",
+      "posterFile": "timelapse/day.png",
+      "sources": [
+        {
+          "type": "video/webm",
+          "url": "https://media.botropolis.city/44d44a98420e2133.webm",
+          "file": "timelapse/day.webm",
+          "name": "44d44a98420e2133.webm"
+        },
+        {
+          "type": "video/mp4",
+          "url": "https://media.botropolis.city/9e6f3a72e66f6107.mp4",
+          "file": "timelapse/day.mp4",
+          "name": "9e6f3a72e66f6107.mp4"
+        }
+      ]
+    },
+    {
+      "id": "workday/morning",
+      "scenario": "workday",
+      "shot": "morning",
+      "title": "A morning in forty seconds",
+      "description": "Sessions arrive by boat, wait on answers, merge pull requests and leave for the storage yard.",
+      "width": 1920,
+      "height": 1080,
+      "seconds": 40,
+      "poster": "workday-morning",
+      "posterFile": "workday/morning.png",
+      "sources": [
+        {
+          "type": "video/webm",
+          "url": "https://media.botropolis.city/229b0f706a3fe2f7.webm",
+          "file": "workday/morning.webm",
+          "name": "229b0f706a3fe2f7.webm"
+        },
+        {
+          "type": "video/mp4",
+          "url": "https://media.botropolis.city/ce69ab5eb6db37a3.mp4",
+          "file": "workday/morning.mp4",
+          "name": "ce69ab5eb6db37a3.mp4"
+        }
+      ]
+    },
+    {
+      "id": "workshop/tour",
+      "scenario": "workshop",
+      "shot": "tour",
+      "title": "A tour of the workshop",
+      "description": "Point at the busiest building and open its card, read its summary, open the power plant, then the sidebar.",
+      "width": 1920,
+      "height": 1080,
+      "seconds": 26,
+      "poster": "workshop-tour",
+      "posterFile": "workshop/tour.png",
+      "sources": [
+        {
+          "type": "video/webm",
+          "url": "https://media.botropolis.city/e7c724f7e6a7d6e6.webm",
+          "file": "workshop/tour.webm",
+          "name": "e7c724f7e6a7d6e6.webm"
+        },
+        {
+          "type": "video/mp4",
+          "url": "https://media.botropolis.city/56f6a4e28e47aae4.mp4",
+          "file": "workshop/tour.mp4",
+          "name": "56f6a4e28e47aae4.mp4"
+        }
+      ]
+    }
+  ],
+  "views": [
+    {
+      "name": "attention",
+      "question": "who wants me",
+      "image": "views-attention"
+    },
+    {
+      "name": "spend",
+      "question": "where the money went",
+      "image": "views-spend"
+    },
+    {
+      "name": "pressure",
+      "question": "who is about to compact",
+      "image": "views-pressure"
+    },
+    {
+      "name": "staleness",
+      "question": "what has gone quiet",
+      "image": "views-staleness"
+    },
+    {
+      "name": "servers",
+      "question": "what breaks if a server goes down",
+      "image": "views-servers"
+    },
+    {
+      "name": "traffic",
+      "question": "which repos talk to each other",
+      "image": "views-traffic"
+    },
+    {
+      "name": "models",
+      "question": "where the models are",
+      "image": "views-models"
+    },
+    {
+      "name": "fan-out",
+      "question": "which sessions spawn armies",
+      "image": "views-fan-out"
+    },
+    {
+      "name": "health",
+      "question": "what is broken, what shipped",
+      "image": "views-health"
+    },
+    {
+      "name": "night",
+      "question": "lit windows are the sessions that are awake",
+      "image": "views-night"
+    }
+  ]
+}

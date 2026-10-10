@@ -4,8 +4,12 @@ The website for [Botropolis](https://github.com/auroq/botropolis), and the infra
 
 | path | what |
 | --- | --- |
-| `site/` | the static site, served as-is |
-| `wrangler.jsonc` | the `botropolis-city` Worker: static assets only, no code |
+| `src/` | the site: Astro pages and components, with TypeScript for the few interactive parts |
+| `src/data/media.json` | every still, clip and view the page shows, written by `make media-import` |
+| `src/assets/media/` | stills as WebP; Astro resizes them into AVIF `srcset`s at build |
+| `public/` | copied as-is: `_headers`, icons |
+| `tools/` | the media importer and uploader |
+| `wrangler.jsonc` | the `botropolis-city` Worker: serves `dist/`, static assets only, no code |
 | `infra/` | Terraform for both Cloudflare zones: custom domains, the `.dev` redirect, email, DNS |
 | `testing/acceptance/verify.sh` | asserts the live end state of both domains |
 
@@ -31,9 +35,36 @@ a custom domain can only bind to a Worker that already exists, so the first depl
 ## Working on the site
 
 ```
-make site-dev        # http://localhost:8787
-make site-deploy     # only needed before CI is wired up
+make site-dev        # astro dev, live reload, http://localhost:4321
+make site-preview    # dist/ exactly as the Worker serves it, headers included
+make test            # vitest, then Playwright against site-preview
+make lint            # astro check, terraform fmt, script syntax
 ```
+
+Playwright uses pacman's `/usr/bin/chromium` locally (`CHROMIUM=` to point elsewhere) and the runner's Chrome in CI; it never downloads a browser.
+`BASE_URL=https://botropolis.city make test-acceptance` runs the same suite against production.
+
+The page is dark only.
+Every frame of the city is filmed on `#12141a`, the app's own background, so the page uses exactly that and the city sits on it without a box.
+The palette, radius and grid are copied from `pkg/ui/theme.go` in the app.
+
+Single-key shortcuts (`?` lists them) are ignored while typing or holding a modifier, and the `?` dialog switches them off for good, as WCAG 2.1.4 requires.
+
+## Media
+
+The media is filmed in the botropolis repo by `make demo-media`, from demo sessions rather than anyone's real ones.
+
+```
+make media-import    # DEMO_DIR=../botropolis/dist/demo by default
+make media-upload    # clips to R2; already-uploaded ones are skipped
+```
+
+The import writes stills to `src/assets/media/` and clips to `.media/` (gitignored) under content-hashed names, and describes all of it in `src/data/media.json`.
+Upload before pushing a `media.json` that names new clips: CI checks every clip it names is served, and fails otherwise.
+GIFs are not imported; they are for the app's README.
+
+Until the city films a still per view, the nine views are frames of `layers/views.mp4` at the seconds `tools/import-media.ts` names.
+Refilming that clip can move them, so look at the views section after an import.
 
 ## Secrets
 

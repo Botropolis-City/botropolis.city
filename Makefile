@@ -9,6 +9,9 @@ LOG := @sh -c '\
 -include .env
 
 CF_DEPLOY_TOKEN_REF ?= op:Botropolis/Cloudflare - Botropolis Deploy Token/credential
+MEDIA_BUCKET ?= botropolis-media
+MEDIA_HOST ?= https://media.botropolis.city
+DEMO_DIR ?= ../botropolis/dist/demo
 TF := terraform -chdir=infra
 WITH_DEPLOY_TOKEN := secret-run --env "CLOUDFLARE_API_TOKEN=${CF_DEPLOY_TOKEN_REF}" --
 
@@ -25,16 +28,42 @@ targets ::
 	}' $(MAKEFILE_LIST)
 
 node_modules :: package.json package-lock.json
-	$(LOG) "Installing wrangler"
+	$(LOG) "Installing dependencies"
 	@npm ci
 
 site-dev :: node_modules
-	$(LOG) "Serving site/ locally"
+	$(LOG) "Serving the site with live reload on http://localhost:4321"
+	@npx astro dev
+
+site-build :: node_modules
+	$(LOG) "Building the site into dist/"
+	@npx astro build
+
+site-preview :: site-build
+	$(LOG) "Serving dist/ as the Worker would, headers included, on http://localhost:8787"
 	@npx wrangler dev
 
-site-deploy :: node_modules
-	$(LOG) "Deploying site/ to the botropolis-city Worker"
+site-deploy :: site-build
+	$(LOG) "Deploying dist/ to the botropolis-city Worker"
 	@$(WITH_DEPLOY_TOKEN) npx wrangler deploy
+
+media-import :: node_modules
+	$(LOG) "Importing media from ${DEMO_DIR}"
+	@DEMO_DIR=${DEMO_DIR} MEDIA_BASE=${MEDIA_HOST} node tools/import-media.ts
+
+media-upload :: node_modules
+	$(LOG) "Uploading clips in .media/ to R2 bucket ${MEDIA_BUCKET}"
+	@MEDIA_BUCKET=${MEDIA_BUCKET} MEDIA_HOST=${MEDIA_HOST} $(WITH_DEPLOY_TOKEN) tools/upload-media.sh
+
+test-unit :: node_modules
+	$(LOG) "Unit tests"
+	@npx vitest run
+
+test-acceptance :: site-build
+	$(LOG) "Acceptance tests against $${BASE_URL:-a local wrangler dev}"
+	@npx playwright test
+
+test :: test-unit test-acceptance
 
 infra-fmt ::
 	$(LOG) "Formatting Terraform"
@@ -60,7 +89,8 @@ verify ::
 	$(LOG) "Checking the live domains"
 	@testing/acceptance/verify.sh
 
-lint ::
+lint :: node_modules
 	$(LOG) "Linting"
+	@npx astro check
 	@$(TF) fmt -check -recursive
-	@bash -n testing/acceptance/verify.sh
+	@for f in testing/acceptance/verify.sh tools/upload-media.sh; do bash -n "$$f" || exit 1; done

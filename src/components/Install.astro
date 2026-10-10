@@ -1,0 +1,157 @@
+---
+import { distros, shell, start } from "../data/install.ts";
+---
+
+<section class="band" id="install" aria-labelledby="install-title">
+  <div class="wrap">
+    <p class="eyebrow"><span class="dot" style="--tone:var(--merged)"></span> install</p>
+    <h2 id="install-title">Move in</h2>
+    <p class="lead">
+      Linux, amd64 or arm64. Every package carries the three binaries, the systemd user units, the desktop entry and the shell integration. Checksums
+      are on <a href="https://github.com/auroq/botropolis/releases/latest">the release</a>.
+    </p>
+
+    <div class="term" data-install>
+      <div class="tabs" role="tablist" aria-label="Distribution">
+        {
+          distros.map((d, i) => (
+            <button type="button" role="tab" id={`tab-${d.id}`} aria-controls={`panel-${d.id}`} aria-selected={i === 0 ? "true" : "false"} tabindex={i === 0 ? 0 : -1}>
+              {d.label}
+            </button>
+          ))
+        }
+      </div>
+      {
+        distros.map((d, i) => (
+          <div class="panel" role="tabpanel" id={`panel-${d.id}`} aria-labelledby={`tab-${d.id}`} hidden={i !== 0}>
+            <pre><code>{d.command}</code></pre>
+            <div class="foot">
+              <span>{d.note}</span>
+              <button type="button" class="copy" data-copy={d.command}>Copy</button>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    <h3>Then start it</h3>
+    <div class="term">
+      <pre><code>{start}</code></pre>
+      <div class="foot">
+        <span>The daemon, the hooks, a check that everything is wired, and the city.</span>
+        <button type="button" class="copy" data-copy={start}>Copy</button>
+      </div>
+    </div>
+    <p class="after">And one line in <code>~/.bashrc</code>, so sessions you start by hand show up too:</p>
+    <div class="term">
+      <pre><code>{shell}</code></pre>
+      <div class="foot"><span></span><button type="button" class="copy" data-copy={shell}>Copy</button></div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const root = document.querySelector<HTMLElement>("[data-install]")!;
+  const tabs = [...root.querySelectorAll<HTMLButtonElement>("[role=tab]")];
+
+  function select(i: number) {
+    tabs.forEach((t, j) => {
+      const on = i === j;
+      t.setAttribute("aria-selected", String(on));
+      t.tabIndex = on ? 0 : -1;
+      document.getElementById(t.getAttribute("aria-controls")!)!.hidden = !on;
+    });
+  }
+
+  tabs.forEach((t, i) => {
+    t.addEventListener("click", () => select(i));
+    t.addEventListener("keydown", (e) => {
+      const by = e.key === "ArrowRight" ? 1 : e.key === "ArrowLeft" ? -1 : 0;
+      if (!by) return;
+      const next = (i + by + tabs.length) % tabs.length;
+      select(next);
+      tabs[next].focus();
+    });
+  });
+
+  document.querySelectorAll<HTMLButtonElement>("[data-copy]").forEach((b) =>
+    b.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(b.dataset.copy!);
+        b.textContent = "Copied";
+      } catch {
+        b.textContent = "Select and copy";
+      }
+      setTimeout(() => (b.textContent = "Copy"), 1600);
+    }),
+  );
+</script>
+
+<style>
+  .lead a,
+  .after code,
+  code {
+    color: var(--text);
+  }
+  .term {
+    border: 1px solid var(--hairline);
+    border-radius: 10px;
+    background: var(--panel-solid);
+    overflow: hidden;
+    max-width: 52rem;
+  }
+  .tabs {
+    display: flex;
+    overflow-x: auto;
+    border-bottom: 1px solid var(--hairline);
+    background: var(--bar);
+  }
+  [role="tab"] {
+    padding: 10px 16px;
+    border: 0;
+    border-bottom: 2px solid transparent;
+    background: none;
+    color: var(--dim);
+    font: 500 14px/1 var(--font);
+    white-space: nowrap;
+    cursor: pointer;
+  }
+  [role="tab"][aria-selected="true"] {
+    color: var(--text);
+    border-bottom-color: var(--accent);
+  }
+  pre {
+    margin: 0;
+    padding: 18px 20px;
+    overflow-x: auto;
+    font: 14px/1.7 var(--mono);
+  }
+  .foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 8px 12px 8px 20px;
+    border-top: 1px solid var(--hairline);
+    color: var(--dim);
+    font-size: 13px;
+  }
+  .copy {
+    padding: 6px 12px;
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius);
+    background: #2a2d34;
+    color: var(--accent);
+    font: 500 13px/1 var(--font);
+    cursor: pointer;
+    flex: none;
+  }
+  h3 {
+    margin: 40px 0 14px;
+    font-size: 1.2rem;
+  }
+  .after {
+    margin: 20px 0 14px;
+    color: var(--dim);
+  }
+</style>

@@ -1,0 +1,29 @@
+---
+import Drive from "../components/Drive.astro";
+import Footer from "../components/Footer.astro";
+import Glance from "../components/Glance.astro";
+import Hero from "../components/Hero.astro";
+import HudBar from "../components/HudBar.astro";
+import Install from "../components/Install.astro";
+import KeysOverlay from "../components/KeysOverlay.astro";
+import Theater from "../components/Theater.astro";
+import Views from "../components/Views.astro";
+import Base from "../layouts/Base.astro";
+---
+
+<Base
+  title="Botropolis: every Claude Code session, drawn as a city"
+  description="Every Claude Code session on your machine, drawn as an isometric city you can read at a glance and drive from the map."
+>
+  <HudBar />
+  <main>
+    <Hero />
+    <Theater />
+    <Glance />
+    <Views />
+    <Drive />
+    <Install />
+  </main>
+  <Footer />
+  <KeysOverlay />
+</Base>

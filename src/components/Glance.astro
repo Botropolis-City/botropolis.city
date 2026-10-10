@@ -1,0 +1,235 @@
+---
+import { Picture } from "astro:assets";
+import { image } from "../data/catalog.ts";
+import { glossary, hotspots, states } from "../data/glance.ts";
+---
+
+<section class="band" id="glance" aria-labelledby="glance-title">
+  <div class="wrap">
+    <p class="eyebrow"><span class="dot" style="--tone:var(--waiting)"></span> read it</p>
+    <h2 id="glance-title">Everything on the map means one thing</h2>
+    <p class="lead">One district per project, one building per session. Hover or tab through the city to read it, the way you would in the app.</p>
+
+    <div class="map">
+      <Picture
+        src={image("metropolis-hero")}
+        formats={["avif"]} fallbackFormat="webp"
+        widths={[640, 960, 1280, 1920]}
+        sizes="(max-width: 1240px) 100vw, 1240px"
+        alt="The metropolis without its interface, for reading by hotspot."
+        loading="lazy"
+      />
+      {
+        hotspots.map((h) => (
+          <button type="button" class:list={["spot", h.x > 60 && "east", h.x < 35 && "west"]} style={`left:${h.x}%;top:${h.y}%;--tone:${h.tone}`} aria-label={`${h.title}: ${h.line}`}>
+            <span class="ring" />
+            <span class="card" aria-hidden="true">
+              <b>{h.title}</b>
+              <span>{h.line}</span>
+            </span>
+          </button>
+        ))
+      }
+    </div>
+
+    <div class="keys">
+      <div>
+        <h3>Beacons</h3>
+        <ul class="states">
+          {
+            states.map((s) => (
+              <li>
+                <span class="dot" style={`--tone:${s.tone}`} />
+                <b>{s.name}</b>
+                <span>{s.line}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+      <div>
+        <h3>And the rest</h3>
+        <dl>
+          {
+            glossary.map(([term, def]) => (
+              <>
+                <dt>{term}</dt>
+                <dd>{def}</dd>
+              </>
+            ))
+          }
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .map {
+    position: relative;
+  }
+  .map :global(img) {
+    width: 100%;
+  }
+  .spot {
+    position: absolute;
+    width: 28px;
+    height: 28px;
+    margin: -14px 0 0 -14px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: none;
+    cursor: help;
+  }
+  .ring {
+    position: absolute;
+    inset: 7px;
+    border-radius: 50%;
+    background: var(--tone);
+    box-shadow: 0 0 0 3px rgb(18 20 26 / 0.8);
+  }
+  .ring::after {
+    content: "";
+    position: absolute;
+    inset: -6px;
+    border-radius: 50%;
+    border: 2px solid var(--tone);
+    opacity: 0;
+    animation: ping 2.4s ease-out infinite;
+  }
+  @keyframes ping {
+    0% {
+      transform: scale(0.6);
+      opacity: 0.9;
+    }
+    100% {
+      transform: scale(1.6);
+      opacity: 0;
+    }
+  }
+  .card {
+    position: absolute;
+    left: 50%;
+    bottom: calc(100% + 10px);
+    translate: -50% 4px;
+    width: max-content;
+    max-width: min(280px, 70vw);
+    display: grid;
+    gap: 2px;
+    padding: 10px 14px;
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius);
+    background: var(--panel);
+    backdrop-filter: blur(6px);
+    color: var(--dim);
+    font: 400 13px/1.4 var(--font);
+    text-align: left;
+    pointer-events: none;
+    opacity: 0;
+    transition:
+      opacity 0.15s ease,
+      translate 0.15s ease;
+    z-index: 2;
+  }
+  .card b {
+    color: var(--text);
+    font-weight: 500;
+    font-size: 14px;
+  }
+  .spot:hover .card,
+  .spot:focus-visible .card {
+    opacity: 1;
+    translate: -50% 0;
+  }
+  .east .card {
+    left: auto;
+    right: -6px;
+    translate: 0 4px;
+  }
+  .west .card {
+    left: -6px;
+    translate: 0 4px;
+  }
+  .east:hover .card,
+  .east:focus-visible .card,
+  .west:hover .card,
+  .west:focus-visible .card {
+    translate: 0 0;
+  }
+  .keys {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+    gap: 48px;
+    margin-top: 48px;
+  }
+  h3 {
+    margin: 0 0 14px;
+    font: 500 12px/1 var(--mono);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--dim);
+  }
+  .states {
+    display: grid;
+    gap: 10px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .states li {
+    display: grid;
+    grid-template-columns: 8px 92px 1fr;
+    gap: 12px;
+    align-items: baseline;
+    font-size: 15px;
+  }
+  .states b {
+    font-weight: 550;
+  }
+  .states span:last-child {
+    color: var(--dim);
+  }
+  dl {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: 10px 20px;
+    margin: 0;
+    font-size: 15px;
+  }
+  dt {
+    font-weight: 550;
+  }
+  dd {
+    margin: 0;
+    color: var(--dim);
+  }
+  @media (max-width: 860px) {
+    .keys {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 32px;
+    }
+    dl {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 2px;
+    }
+    dd {
+      margin-bottom: 10px;
+    }
+  }
+  @media (max-width: 600px) {
+    .spot {
+      width: 22px;
+      height: 22px;
+      margin: -11px 0 0 -11px;
+    }
+    .ring {
+      inset: 6px;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .ring::after {
+      animation: none;
+    }
+  }
+</style>
