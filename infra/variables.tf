@@ -27,11 +27,11 @@ variable "public_addresses" {
 
 variable "github_org" {
   type    = string
-  default = "botropolis-city"
+  default = "Botropolis-City"
 }
 
 variable "github_verification_code" {
   type        = string
   description = "From the org's Settings > Verified domains. Public once published, so set it here rather than in the workspace."
-  default     = ""
+  default     = "ff828a50b7"
 }
