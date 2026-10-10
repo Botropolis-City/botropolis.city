@@ -20,7 +20,7 @@ jobs:
       - uses: actions/checkout@v7
       - uses: hashicorp/setup-terraform@v4
         with:
-          terraform_version: 1.15.6
+          terraform_version: 1.16.5
       - run: terraform -chdir=infra fmt -check -recursive
       - run: bash -n testing/acceptance/verify.sh
       - uses: actions/setup-node@v7

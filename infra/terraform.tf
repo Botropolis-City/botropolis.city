@@ -1,5 +1,5 @@
 terraform {
-  required_version = "1.15.6"
+  required_version = "1.16.5"
 
   cloud {
     organization = "Botropolis-City"
