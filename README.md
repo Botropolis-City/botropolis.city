@@ -23,6 +23,7 @@ a custom domain can only bind to a Worker that already exists, so the first depl
 | --- | --- |
 | `botropolis.city`, `www.botropolis.city` | the site |
 | `botropolis.dev`, `www.botropolis.dev` | 301 to the same path on `botropolis.city` |
+| `media.botropolis.city` | the R2 bucket `botropolis-media`: video, under content-hashed names |
 | `hello@`, `security@botropolis.city` | forward to the maintainer |
 
 `botropolis.dev` sends and receives no mail, and says so: null MX, `v=spf1 -all`, DMARC `p=reject`.
@@ -54,11 +55,13 @@ The account also holds other zones, so the infra token names these two zones exp
 - Zone → Email Routing Rules → Edit
 - Zone → Workers Routes → Edit
 - Account → Workers Scripts → Edit
+- Account → Workers R2 Storage → Edit
 - Account → Email Routing Addresses → Edit
 
 **Deploy token**
 
 - Account → Workers Scripts → Edit
+- Account → Workers R2 Storage → Edit, for uploading video
 
 ## How changes reach the edge
 
@@ -68,6 +71,14 @@ The HCP workspace `Botropolis-City/botropolis-city` is connected to this repo, w
 - A merge to `main` plans and applies.
 - `make infra-plan` runs the same speculative plan from a working tree, on HCP, with the workspace's token.
   There is no local apply; HCP refuses one for a VCS-driven workspace.
+
+## Video
+
+Video is not a Worker asset.
+It lives in R2 behind `media.botropolis.city`, because R2 answers byte-range requests, and Safari will not play an MP4 from a server that does not.
+Each file is named by a hash of its content and cached as immutable, so an upload never changes what an already-deployed page points at.
+
+R2 has to be switched on for the account once, in the dashboard under R2, before Terraform can create the bucket.
 
 ## Bootstrap
 

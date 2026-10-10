@@ -2,6 +2,7 @@
 set -uo pipefail
 
 PRIMARY="${PRIMARY:-botropolis.city}"
+MEDIA="${MEDIA:-media.${PRIMARY}}"
 BACKUP="${BACKUP:-botropolis.dev}"
 
 usage() {
@@ -10,13 +11,15 @@ Usage: $(basename "$0") [--help]
 
 Asserts the live end state of ${PRIMARY} and ${BACKUP}:
 DNS delegated to Cloudflare, the site served, the backup domain redirecting,
-email routing on the primary and a non-sending lockdown on the backup.
+email routing on the primary, a non-sending lockdown on the backup,
+and video served from the media host with byte ranges.
 
 Each check is one assertion. Exits non-zero if any check fails.
 
 Environment:
   PRIMARY   primary domain (default: botropolis.city)
   BACKUP    backup domain  (default: botropolis.dev)
+  MEDIA     media host     (default: media.\$PRIMARY)
 EOF
 }
 
@@ -73,6 +76,22 @@ mx_is_cloudflare_routing() {
   [[ -n $mx ]] && ! grep -qv 'route[0-9]*\.mx\.cloudflare\.net\.$' <<<"$mx"
 }
 
+first_video_url() {
+  curl -s --max-time 10 "https://$PRIMARY/" | grep -o "https://${MEDIA//./\\.}/[^\"' ]*\.mp4" | head -n1
+}
+
+csp_allows_media() {
+  curl -sI --max-time 10 "https://$1/" | grep -i '^content-security-policy:' | grep -q "media-src[^;]*https://$2"
+}
+
+site_references_video() { [[ -n $(first_video_url) ]]; }
+
+video_serves_ranges() {
+  local url
+  url=$(first_video_url)
+  [[ -n $url ]] && [[ $(curl -s -o /dev/null -w '%{http_code}' --max-time 10 -r 0-1 "$url") == 206 ]]
+}
+
 mx_is_null() { [[ $(dig +short MX "$1") == "0 ." ]]; }
 has_cloudflare_spf() { txt "$1" | grep -q 'include:_spf.mx.cloudflare.net'; }
 spf_rejects_all() { txt "$1" | grep -qx '"v=spf1 -all"'; }
@@ -100,6 +119,11 @@ check "${PRIMARY} publishes DMARC" has_dmarc "$PRIMARY"
 check "${BACKUP} has a null MX" mx_is_null "$BACKUP"
 check "${BACKUP} SPF rejects all senders" spf_rejects_all "$BACKUP"
 check "${BACKUP} DMARC rejects" dmarc_rejects "$BACKUP"
+
+echo "media"
+check "https://${PRIMARY} allows video from ${MEDIA}" csp_allows_media "$PRIMARY" "$MEDIA"
+check "https://${PRIMARY} references a video on ${MEDIA}" site_references_video
+check "that video answers a byte range with 206" video_serves_ranges
 
 echo
 if ((failures)); then

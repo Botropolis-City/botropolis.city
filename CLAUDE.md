@@ -17,5 +17,6 @@ Run it before and after any change in `infra/`.
   On a fresh account, deploy first and apply second, or the apply fails with error 10092.
 - **Every DNS record in both zones is Terraform's.**
   A record added in the dashboard is drift, and the next apply will not know about it.
-- Files over 25 MiB cannot be Worker assets.
-  Large video goes in an R2 bucket on `media.botropolis.city`, which does not exist yet.
+- **Video goes in R2 at `media.botropolis.city`, never in the Worker's assets.**
+  Workers assets did not answer a byte-range request with 206 when tested, and Safari needs that to play MP4.
+  Names are content hashes and cached as immutable: upload before the deploy that references them, and never overwrite one.
