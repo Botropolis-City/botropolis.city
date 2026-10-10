@@ -1,5 +1,6 @@
 resource "cloudflare_email_routing_settings" "primary" {
-  zone_id = local.zones.primary
+  zone_id            = local.zones.primary
+  support_subaddress = false
 }
 
 resource "cloudflare_email_routing_dns" "primary" {

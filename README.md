@@ -90,7 +90,9 @@ Done once, and recorded so it can be repeated.
 
    The push starts both the deploy job and an HCP run.
    Confirm the HCP run only once the deploy job is green.
-6. Click the verification link Cloudflare sends to the forwarding address; mail does not forward until then.
+6. Click the verification link Cloudflare sends to the forwarding address.
+   Until then the API refuses the forwarding rules (`2054 Destination address is not verified`), so the first apply always fails on them.
+   Click it, then start a new run.
 7. Add `botropolis.city` under the GitHub org's Verified domains and set `github_verification_code` in `infra/variables.tf`.
 8. Switch the workspace's apply method to auto.
 9. `make verify` until every check is green.
