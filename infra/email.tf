@@ -3,13 +3,6 @@ resource "cloudflare_email_routing_settings" "primary" {
   support_subaddress = false
 }
 
-resource "cloudflare_email_routing_dns" "primary" {
-  zone_id = local.zones.primary
-  name    = var.primary_domain
-
-  depends_on = [cloudflare_email_routing_settings.primary]
-}
-
 resource "cloudflare_email_routing_address" "forward_to" {
   account_id = local.account_id
   email      = var.forward_to
