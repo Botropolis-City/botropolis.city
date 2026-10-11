@@ -1,0 +1,5 @@
+# make infra-plan uploads this tree to HCP; only infra/ matters there.
+*
+!infra/
+!infra/**
+infra/.terraform/

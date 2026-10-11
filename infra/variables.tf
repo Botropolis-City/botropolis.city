@@ -41,3 +41,9 @@ variable "media_bucket" {
   description = "R2 bucket for video; must match MEDIA_BUCKET in ../Makefile."
   default     = "botropolis-media"
 }
+
+variable "packages_bucket" {
+  type        = string
+  description = "R2 bucket for the APT and RPM repositories; must match PACKAGES_BUCKET in ../.github/workflows/packages.yml."
+  default     = "botropolis-packages"
+}

@@ -18,3 +18,7 @@ output "site_hostnames" {
 output "media_hostname" {
   value = cloudflare_r2_custom_domain.media.domain
 }
+
+output "packages_hostname" {
+  value = cloudflare_r2_custom_domain.packages.domain
+}

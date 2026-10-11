@@ -3,6 +3,7 @@ set -uo pipefail
 
 PRIMARY="${PRIMARY:-botropolis.city}"
 MEDIA="${MEDIA:-media.${PRIMARY}}"
+PKG="${PKG:-pkg.${PRIMARY}}"
 BACKUP="${BACKUP:-botropolis.dev}"
 
 usage() {
@@ -12,7 +13,8 @@ Usage: $(basename "$0") [--help]
 Asserts the live end state of ${PRIMARY} and ${BACKUP}:
 DNS delegated to Cloudflare, the site served, the backup domain redirecting,
 email routing on the primary, a non-sending lockdown on the backup,
-and video served from the media host with byte ranges.
+video served from the media host with byte ranges, and the package
+repositories on the pkg host signed by the key they publish.
 
 Each check is one assertion. Exits non-zero if any check fails.
 
@@ -20,6 +22,7 @@ Environment:
   PRIMARY   primary domain (default: botropolis.city)
   BACKUP    backup domain  (default: botropolis.dev)
   MEDIA     media host     (default: media.\$PRIMARY)
+  PKG       package host   (default: pkg.\$PRIMARY)
 EOF
 }
 
@@ -98,6 +101,22 @@ video_serves_ranges() {
   [[ -n $url ]] && [[ $(curl -s -o /dev/null -w '%{http_code}' --max-time 10 -r 0-1 "$url") == 206 ]]
 }
 
+signed_by_published_key() {
+  local tmp ok=1
+  tmp=$(mktemp -d)
+  if curl -fsS --max-time 10 "https://$PKG/botropolis.asc" | gpg --dearmor > "$tmp/key.gpg" 2>/dev/null \
+    && curl -fsS --max-time 10 -o "$tmp/signed" "https://$PKG/$1" \
+    && { [[ -z ${2:-} ]] || curl -fsS --max-time 10 -o "$tmp/data" "https://$PKG/$2"; }; then
+    if [[ -n ${2:-} ]]; then
+      gpgv --keyring "$tmp/key.gpg" "$tmp/signed" "$tmp/data" && ok=0
+    else
+      gpgv --keyring "$tmp/key.gpg" "$tmp/signed" && ok=0
+    fi
+  fi
+  rm -rf "$tmp"
+  return $ok
+}
+
 mx_is_null() { [[ $(dig +short MX "$1") == "0 ." ]]; }
 has_cloudflare_spf() { txt "$1" | grep -q 'include:_spf.mx.cloudflare.net'; }
 spf_rejects_all() { txt "$1" | grep -qx '"v=spf1 -all"'; }
@@ -130,6 +149,10 @@ echo "media"
 check "https://${PRIMARY} allows video from ${MEDIA}" csp_allows_media "$PRIMARY" "$MEDIA"
 check "https://${PRIMARY} references a video on ${MEDIA}" site_references_video
 check "that video answers a byte range with 206" video_serves_ranges
+
+echo "packages"
+check "https://${PKG}/deb InRelease is signed by the published key" signed_by_published_key deb/dists/stable/InRelease
+check "https://${PKG}/rpm repomd.xml is signed by the published key" signed_by_published_key rpm/repodata/repomd.xml.asc rpm/repodata/repomd.xml
 
 echo
 if ((failures)); then
