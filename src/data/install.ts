@@ -1,7 +1,4 @@
-export const version = "0.1.5";
-
-const v = version;
-const release = `https://github.com/Botropolis-City/botropolis/releases/download/v${v}`;
+const latest = "https://github.com/Botropolis-City/botropolis/releases/latest/download";
 
 export interface Link {
   label: string;
@@ -30,14 +27,14 @@ export const distros: Distro[] = [
   {
     id: "debian",
     label: "Debian / Ubuntu",
-    note: "amd64 shown; arm64 is beside it on the release.",
-    command: `curl -LO ${release}/botropolis_${v}_amd64.deb\nsudo apt install ./botropolis_${v}_amd64.deb`,
+    note: "Always the latest release. On arm64, botropolis_arm64.deb.",
+    command: `curl -LO ${latest}/botropolis_amd64.deb\nsudo apt install ./botropolis_amd64.deb`,
   },
   {
     id: "fedora",
     label: "Fedora / openSUSE",
-    note: "x86_64 shown; aarch64 is beside it on the release.",
-    command: `sudo dnf install ${release}/botropolis-${v}-1.x86_64.rpm`,
+    note: "Always the latest release. On aarch64, botropolis.aarch64.rpm.",
+    command: `sudo dnf install ${latest}/botropolis.x86_64.rpm`,
   },
 ];
 

@@ -21,3 +21,11 @@ test.describe("every package the install tabs download", () => {
     });
   }
 });
+
+test.describe("every download the install tabs give", () => {
+  for (const url of distros.flatMap((d) => d.command.match(/https:\/\/github\.com\/\S+/g) ?? [])) {
+    test(`${url} should follow the latest release, not name a version`, async () => {
+      expect(url).toMatch(/^https:\/\/github\.com\/[^/]+\/[^/]+\/releases\/latest\/download\/(?!.*\d+\.\d+\.\d+)[^/]+$/);
+    });
+  }
+});
