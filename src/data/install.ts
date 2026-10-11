@@ -1,4 +1,5 @@
 const latest = "https://github.com/Botropolis-City/botropolis/releases/latest/download";
+const pkg = "https://pkg.botropolis.city";
 
 export interface Link {
   label: string;
@@ -27,14 +28,22 @@ export const distros: Distro[] = [
   {
     id: "debian",
     label: "Debian / Ubuntu",
-    note: "Always the latest release. On arm64, botropolis_arm64.deb.",
-    command: `curl -LO ${latest}/botropolis_amd64.deb\nsudo apt install ./botropolis_amd64.deb`,
+    note: `Adds the signed repository once; apt upgrade brings every release after. To install just once instead: ${latest}/botropolis_amd64.deb (or _arm64).`,
+    command: [
+      "sudo install -d /etc/apt/keyrings",
+      `sudo curl -fsSLo /etc/apt/keyrings/botropolis.asc ${pkg}/botropolis.asc`,
+      `sudo curl -fsSLo /etc/apt/sources.list.d/botropolis.sources ${pkg}/botropolis.sources`,
+      "sudo apt update && sudo apt install botropolis",
+    ].join("\n"),
   },
   {
     id: "fedora",
     label: "Fedora / openSUSE",
-    note: "Always the latest release. On aarch64, botropolis.aarch64.rpm.",
-    command: `sudo dnf install ${latest}/botropolis.x86_64.rpm`,
+    note: `Adds the signed repository once; dnf upgrade brings every release after. On openSUSE, put the file in /etc/zypp/repos.d/ and use zypper. To install just once instead: ${latest}/botropolis.x86_64.rpm (or .aarch64).`,
+    command: [
+      `sudo curl -fsSLo /etc/yum.repos.d/botropolis.repo ${pkg}/botropolis.repo`,
+      "sudo dnf install botropolis",
+    ].join("\n"),
   },
 ];
 

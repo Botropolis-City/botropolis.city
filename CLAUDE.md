@@ -24,3 +24,6 @@ Run it before and after any change in `infra/`.
 - **Video goes in R2 at `media.botropolis.city`, never in the Worker's assets.**
   Workers assets did not answer a byte-range request with 206 when tested, and Safari needs that to play MP4.
   Names are content hashes and cached as immutable: upload before the deploy that references them, and never overwrite one.
+- **`pkg.botropolis.city` is published only by the botropolis repo's `packages` workflow**, after every release or by hand there.
+  This repo owns its bucket and domain (`infra/packages.tf`) and nothing in it; never upload to it from here.
+  `make verify` checks both indexes are signed by the key the host publishes.
