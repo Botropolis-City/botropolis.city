@@ -1,7 +1,8 @@
 # botropolis.city
 
 The Botropolis website, an Astro site served by a static-assets-only Cloudflare Worker, with the Terraform for its two zones.
-The application itself is a separate repo at `~/workspaces/github/botropolis`.
+The application itself is a separate repo, checked out beside this one at `../botropolis`.
+Both are children of the Botropolis-City meta repository at `~/workspaces/github/botropolis-city`, which holds the roadmap; its `CLAUDE.md` applies here too.
 The registrar records live in `~/workspaces/gitlab/namecheap`.
 
 `make verify` is the acceptance test, and it runs against the live domains.
