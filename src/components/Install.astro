@@ -1,5 +1,5 @@
 ---
-import { distros, shell, start } from "../data/install.ts";
+import { distros, shells, start } from "../data/install.ts";
 ---
 
 <section class="band" id="install" aria-labelledby="install-title">
@@ -7,7 +7,7 @@ import { distros, shell, start } from "../data/install.ts";
     <p class="eyebrow"><span class="dot" style="--tone:var(--merged)"></span> install</p>
     <h2 id="install-title">Move in</h2>
     <p class="lead">
-      Linux, amd64 or arm64. Every package carries the three binaries, the systemd user units, the desktop entry and the shell integration. Checksums
+      Linux, amd64 or arm64, and macOS on Apple silicon or Intel. Every Linux package carries the three binaries, the systemd user units, the desktop entry and the shell integration. Checksums
       are on <a href="https://github.com/Botropolis-City/botropolis/releases/latest">the release</a>.
     </p>
 
@@ -52,11 +52,18 @@ import { distros, shell, start } from "../data/install.ts";
         <button type="button" class="copy" data-copy={start}>Copy</button>
       </div>
     </div>
-    <p class="after">And one line in <code>~/.bashrc</code>, so sessions you start by hand show up too:</p>
-    <div class="term">
-      <pre><code>{shell}</code></pre>
-      <div class="foot"><span></span><button type="button" class="copy" data-copy={shell}>Copy</button></div>
-    </div>
+    <p class="after">And one line in your shell's startup file, so sessions you start by hand show up too. It names no install path, so it is the same line on Linux and macOS (where zsh is the default):</p>
+    {
+      shells.map((sh) => (
+        <div class="term" data-shell={sh.name}>
+          <pre><code>{sh.line}</code></pre>
+          <div class="foot">
+            <span>{sh.name} · {sh.file}</span>
+            <button type="button" class="copy" data-copy={sh.line}>Copy</button>
+          </div>
+        </div>
+      ))
+    }
   </div>
 </section>
 

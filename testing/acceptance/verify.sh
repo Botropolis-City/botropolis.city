@@ -14,7 +14,8 @@ Asserts the live end state of ${PRIMARY} and ${BACKUP}:
 DNS delegated to Cloudflare, the site served, the backup domain redirecting,
 email routing on the primary, a non-sending lockdown on the backup,
 video served from the media host with byte ranges, and the package
-repositories on the pkg host signed by the key they publish.
+repositories on the pkg host signed by the key they publish, and the
+Homebrew tap there naming the latest release.
 
 Each check is one assertion. Exits non-zero if any check fails.
 
@@ -151,8 +152,24 @@ check "https://${PRIMARY} references a video on ${MEDIA}" site_references_video
 check "that video answers a byte range with 206" video_serves_ranges
 
 echo "packages"
+# The tap is served over git's static protocol, which cannot clone shallow.
+tap_has_latest() {
+  local latest dir ok=1
+  latest=$(curl -fsS --max-time 10 -o /dev/null -w '%{redirect_url}' https://github.com/Botropolis-City/botropolis/releases/latest)
+  latest=${latest##*/v}
+  [[ -n $latest ]] || return 1
+  dir=$(mktemp -d)
+  if git clone -q "https://$PKG/brew" "$dir/tap" \
+    && grep -q "archive/refs/tags/v${latest}.tar.gz" "$dir/tap/Formula/botropolis.rb"; then
+    ok=0
+  fi
+  rm -rf "$dir"
+  return $ok
+}
+
 check "https://${PKG}/deb InRelease is signed by the published key" signed_by_published_key deb/dists/stable/InRelease
 check "https://${PKG}/rpm repomd.xml is signed by the published key" signed_by_published_key rpm/repodata/repomd.xml.asc rpm/repodata/repomd.xml
+check "https://${PKG}/brew is a tap whose formula installs the latest release" tap_has_latest
 
 echo
 if ((failures)); then

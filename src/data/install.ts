@@ -45,6 +45,16 @@ export const distros: Distro[] = [
       "sudo dnf install botropolis",
     ].join("\n"),
   },
+  {
+    id: "macos",
+    label: "macOS",
+    note: "Apple silicon or Intel. Adds the tap once; brew upgrade brings every release after. brew services runs the daemon, so skip the systemctl line below. Built from source, so nothing needs signing; nobody has looked at the window on a Mac yet, so tell us what you see.",
+    command: [
+      `brew tap botropolis-city/botropolis ${pkg}/brew`,
+      "brew install botropolis-city/botropolis/botropolis",
+      "brew services start botropolis",
+    ].join("\n"),
+  },
 ];
 
 export const start = `systemctl --user enable --now botropolisd
@@ -52,4 +62,14 @@ botropolis install-hooks
 botropolis doctor
 botropolis`;
 
-export const shell = "source /usr/share/botropolis/botropolis.bash";
+export interface Shell {
+  name: string;
+  file: string;
+  line: string;
+}
+
+export const shells: Shell[] = [
+  { name: "bash", file: "~/.bashrc", line: 'eval "$(botropolis shell-init bash)"' },
+  { name: "zsh", file: "~/.zshrc", line: 'eval "$(botropolis shell-init zsh)"' },
+  { name: "fish", file: "~/.config/fish/config.fish", line: "botropolis shell-init fish | source" },
+];

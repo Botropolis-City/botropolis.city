@@ -1,7 +1,7 @@
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
 import media from "../../../src/data/media.json" with { type: "json" };
-import { distros } from "../../../src/data/install.ts";
+import { distros, shells } from "../../../src/data/install.ts";
 
 test.describe("when the page loads", () => {
   test.beforeEach(async ({ page }) => {
@@ -122,6 +122,20 @@ test.describe("when an install tab is chosen", () => {
         await page.getByRole("tab", { name: d.label }).click();
         await page.getByRole("tabpanel").getByRole("button", { name: /copy/i }).click();
         expect(await page.evaluate(() => navigator.clipboard.readText())).toBe(d.command);
+      });
+    });
+  }
+});
+
+test.describe("when a shell's line is copied", () => {
+  test.use({ permissions: ["clipboard-read", "clipboard-write"] });
+
+  for (const sh of shells) {
+    test.describe(`and it is ${sh.name}`, () => {
+      test("it should copy that shell's line", async ({ page }) => {
+        await page.goto("/");
+        await page.locator(`[data-shell="${sh.name}"]`).getByRole("button", { name: /copy/i }).click();
+        expect(await page.evaluate(() => navigator.clipboard.readText())).toBe(sh.line);
       });
     });
   }

@@ -14,10 +14,21 @@ test.describe("every uploaded clip", () => {
   }
 });
 
+const taps = distros.flatMap((d) => [...d.command.matchAll(/brew tap \S+ (https:\/\/\S+)/g)].map((m) => m[1]));
+
 test.describe("every file the install tabs download", () => {
   for (const url of distros.flatMap((d) => `${d.command} ${d.note}`.match(/https:\/\/(github\.com|pkg\.botropolis\.city)\/[^\s)]+/g) ?? [])) {
+    if (taps.includes(url)) continue;
     test(`${url} should exist`, async ({ request }) => {
       expect((await request.head(url)).status()).toBe(200);
+    });
+  }
+});
+
+test.describe("every tap the install tabs add", () => {
+  for (const url of taps) {
+    test(`${url} should be a git repository git can read over plain HTTP`, async ({ request }) => {
+      expect((await request.get(`${url}/info/refs`)).status()).toBe(200);
     });
   }
 });
