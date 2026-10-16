@@ -14,3 +14,6 @@ infra/.terraform/
 crash.log
 *.auto.tfvars
 terraform.tfvars
+
+# Session worktrees: each is its own checkout, never part of this one.
+.claude/worktrees/
