@@ -60,4 +60,7 @@ const { title, titleId, class: extra } = Astro.props;
     object-fit: cover;
     background: var(--bg);
   }
+  .body :global(video) {
+    object-fit: contain;
+  }
 </style>

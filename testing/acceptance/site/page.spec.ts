@@ -77,6 +77,52 @@ test.describe("the theater's player", () => {
       expect(await page.getByTestId("player").evaluate((v, a) => v.hasAttribute(a), attr)).toBe(true);
     });
   }
+
+  test.describe("when it is inline", () => {
+    for (const width of [390, 768, 1280, 1920]) {
+      test.describe(`and the viewport is ${width} wide`, () => {
+        test.use({ viewport: { width, height: 900 } });
+
+        test("it should show the whole frame", async ({ page }) => {
+          expect(await page.getByTestId("player").evaluate((v) => getComputedStyle(v).objectFit)).toBe("contain");
+        });
+
+        test("it should keep the window's 16:9 shape", async ({ page }) => {
+          const box = (await page.getByTestId("player").boundingBox())!;
+          expect(Math.abs(box.height - (box.width * 9) / 16)).toBeLessThan(1);
+        });
+      });
+    }
+  });
+
+  test.describe("when it is put fullscreen", () => {
+    test.beforeEach(async ({ page }) => {
+      await page.getByTestId("player").evaluate((v) => v.requestFullscreen());
+      await expect.poll(() => page.evaluate(() => document.fullscreenElement?.tagName)).toBe("VIDEO");
+    });
+
+    test.afterEach(async ({ page }) => {
+      await page.evaluate(() => document.fullscreenElement && document.exitFullscreen());
+    });
+
+    test("it should show the whole frame", async ({ page }) => {
+      expect(await page.getByTestId("player").evaluate((v) => getComputedStyle(v).objectFit)).toBe("contain");
+    });
+
+    test("it should letterbox on the page's dark background", async ({ page }) => {
+      expect(await page.getByTestId("player").evaluate((v) => getComputedStyle(v).backgroundColor)).toBe("rgb(18, 20, 26)");
+    });
+  });
+});
+
+test.describe("every clip the theater offers", () => {
+  for (const id of theater) {
+    const c = media.clips.find((m) => m.id === id)!;
+
+    test(`${id} should be the window's 16:9 shape, so it fills the window with no bars`, async () => {
+      expect(Math.abs(c.height - (c.width * 9) / 16)).toBeLessThan(1);
+    });
+  }
 });
 
 test.describe("when a scene is chosen", () => {
