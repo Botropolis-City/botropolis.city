@@ -12,6 +12,8 @@ Run it before and after any change in `infra/`.
 
 - **Media comes from `make media-import`, never by hand.** It reads the botropolis repo's `dist/demo/manifest.json`; `src/data/media.json` is its output, committed, and the page's only source of what exists.
   Upload (`make media-upload`) before pushing a `media.json` that names new clips.
+- **Art comes from three places only** — a human artist, an openly licensed pack, or geometry built by hand in code — and never from a model whose output is a picture, texture or mesh; that covers the site, the logo, the icons and the demo frames.
+  The rule and its reasons are in botropolis's [`design/art-sources.md`](https://github.com/Botropolis-City/botropolis/blob/main/design/art-sources.md); read it before touching any image.
 - **Copy for the city comes from the app.** View names and questions are in `pkg/city/view.go`, hover cards in `pkg/city/plan.go`, colours in `pkg/ui/theme.go`, and what each object means in its README; quote them rather than paraphrase.
 
 - **Never put a token value on a command line or in a file.**
