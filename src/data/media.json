@@ -1,7 +1,17 @@
 {
-  "version": "0.1.4",
-  "generated": "2026-10-10T12:13:03.848919742Z",
+  "version": "0.2.0",
+  "generated": "2026-10-19T13:01:58.873749251Z",
   "stills": [
+    {
+      "id": "buildings/types",
+      "scenario": "buildings",
+      "shot": "types",
+      "title": "Four kinds of district",
+      "description": "Under the default, each district is given a type of its own, and its buildings are that type's kinds, one storey for each fifth of your sessions they have outgrown.",
+      "width": 1920,
+      "height": 1080,
+      "image": "buildings-types"
+    },
     {
       "id": "hamlet/overview",
       "scenario": "hamlet",
@@ -143,17 +153,121 @@
       "image": "workshop-power"
     },
     {
-      "id": "workshop/flat",
+      "id": "workshop/plan",
       "scenario": "workshop",
-      "shot": "flat",
-      "title": "The workshop from above",
-      "description": "The same city in the top-down projection.",
+      "shot": "plan",
+      "title": "The workshop as a plan",
+      "description": "One notch out past Skyline, the City Plan shows every district as a badge.",
       "width": 1920,
       "height": 1080,
-      "image": "workshop-flat"
+      "image": "workshop-plan"
     }
   ],
   "clips": [
+    {
+      "id": "buildings/residential",
+      "scenario": "buildings",
+      "shot": "residential",
+      "title": "A residential district grows",
+      "description": "Every district here is residential. Sessions arrive and their buildings climb from cottages toward apartment blocks as they work.",
+      "width": 1920,
+      "height": 1080,
+      "seconds": 16,
+      "poster": "buildings-residential",
+      "posterFile": "buildings/residential.png",
+      "sources": [
+        {
+          "type": "video/webm",
+          "url": "https://media.botropolis.city/3b05a6ad257a3edf.webm",
+          "file": "buildings/residential.webm",
+          "name": "3b05a6ad257a3edf.webm"
+        },
+        {
+          "type": "video/mp4",
+          "url": "https://media.botropolis.city/ec4c65696475742b.mp4",
+          "file": "buildings/residential.mp4",
+          "name": "ec4c65696475742b.mp4"
+        }
+      ]
+    },
+    {
+      "id": "buildings/shopping",
+      "scenario": "buildings",
+      "shot": "shopping",
+      "title": "A shopping district grows",
+      "description": "Every district here is for shopping. Corner shops become department stores and a shopping centre as their sessions work.",
+      "width": 1920,
+      "height": 1080,
+      "seconds": 16,
+      "poster": "buildings-shopping",
+      "posterFile": "buildings/shopping.png",
+      "sources": [
+        {
+          "type": "video/webm",
+          "url": "https://media.botropolis.city/267248e153b4c472.webm",
+          "file": "buildings/shopping.webm",
+          "name": "267248e153b4c472.webm"
+        },
+        {
+          "type": "video/mp4",
+          "url": "https://media.botropolis.city/aa7df50a80feee5d.mp4",
+          "file": "buildings/shopping.mp4",
+          "name": "aa7df50a80feee5d.mp4"
+        }
+      ]
+    },
+    {
+      "id": "buildings/office",
+      "scenario": "buildings",
+      "shot": "office",
+      "title": "An office district grows",
+      "description": "Every district here is offices. Glass office houses rise into towers as their sessions work.",
+      "width": 1920,
+      "height": 1080,
+      "seconds": 16,
+      "poster": "buildings-office",
+      "posterFile": "buildings/office.png",
+      "sources": [
+        {
+          "type": "video/webm",
+          "url": "https://media.botropolis.city/910996ab6fb57aa7.webm",
+          "file": "buildings/office.webm",
+          "name": "910996ab6fb57aa7.webm"
+        },
+        {
+          "type": "video/mp4",
+          "url": "https://media.botropolis.city/d829ebd5c83f8166.mp4",
+          "file": "buildings/office.mp4",
+          "name": "d829ebd5c83f8166.mp4"
+        }
+      ]
+    },
+    {
+      "id": "buildings/industrial",
+      "scenario": "buildings",
+      "shot": "industrial",
+      "title": "An industrial district grows",
+      "description": "Every district here is industrial. Workshops become warehouses, distribution centres and a works yard as their sessions work.",
+      "width": 1920,
+      "height": 1080,
+      "seconds": 16,
+      "poster": "buildings-industrial",
+      "posterFile": "buildings/industrial.png",
+      "sources": [
+        {
+          "type": "video/webm",
+          "url": "https://media.botropolis.city/cee25488906b65a8.webm",
+          "file": "buildings/industrial.webm",
+          "name": "cee25488906b65a8.webm"
+        },
+        {
+          "type": "video/mp4",
+          "url": "https://media.botropolis.city/79238953feb7a8d7.mp4",
+          "file": "buildings/industrial.mp4",
+          "name": "79238953feb7a8d7.mp4"
+        }
+      ]
+    },
     {
       "id": "hamlet/drift",
       "scenario": "hamlet",
@@ -168,15 +282,15 @@
       "sources": [
         {
           "type": "video/webm",
-          "url": "https://media.botropolis.city/b72686bfca40d4e7.webm",
+          "url": "https://media.botropolis.city/bc9ab58f5df8ff09.webm",
           "file": "hamlet/drift.webm",
-          "name": "b72686bfca40d4e7.webm"
+          "name": "bc9ab58f5df8ff09.webm"
         },
         {
           "type": "video/mp4",
-          "url": "https://media.botropolis.city/d4af1d9ac5b27df2.mp4",
+          "url": "https://media.botropolis.city/82f56f055865cb29.mp4",
           "file": "hamlet/drift.mp4",
-          "name": "d4af1d9ac5b27df2.mp4"
+          "name": "82f56f055865cb29.mp4"
         }
       ]
     },
@@ -194,15 +308,15 @@
       "sources": [
         {
           "type": "video/webm",
-          "url": "https://media.botropolis.city/16b95406b31322b9.webm",
+          "url": "https://media.botropolis.city/e5a88f279e4549fd.webm",
           "file": "layers/views.webm",
-          "name": "16b95406b31322b9.webm"
+          "name": "e5a88f279e4549fd.webm"
         },
         {
           "type": "video/mp4",
-          "url": "https://media.botropolis.city/5858aed9ed545ffe.mp4",
+          "url": "https://media.botropolis.city/09de30fbd297588e.mp4",
           "file": "layers/views.mp4",
-          "name": "5858aed9ed545ffe.mp4"
+          "name": "09de30fbd297588e.mp4"
         }
       ]
     },
@@ -220,15 +334,15 @@
       "sources": [
         {
           "type": "video/webm",
-          "url": "https://media.botropolis.city/f8ad476261951756.webm",
+          "url": "https://media.botropolis.city/722205b5cf5b6b9a.webm",
           "file": "metropolis/flyover.webm",
-          "name": "f8ad476261951756.webm"
+          "name": "722205b5cf5b6b9a.webm"
         },
         {
           "type": "video/mp4",
-          "url": "https://media.botropolis.city/802efcebf6954696.mp4",
+          "url": "https://media.botropolis.city/acea9b0a22ed18eb.mp4",
           "file": "metropolis/flyover.mp4",
-          "name": "802efcebf6954696.mp4"
+          "name": "acea9b0a22ed18eb.mp4"
         }
       ]
     },
@@ -246,15 +360,15 @@
       "sources": [
         {
           "type": "video/webm",
-          "url": "https://media.botropolis.city/44d44a98420e2133.webm",
+          "url": "https://media.botropolis.city/47d1d1ac3b92e00a.webm",
           "file": "timelapse/day.webm",
-          "name": "44d44a98420e2133.webm"
+          "name": "47d1d1ac3b92e00a.webm"
         },
         {
           "type": "video/mp4",
-          "url": "https://media.botropolis.city/9e6f3a72e66f6107.mp4",
+          "url": "https://media.botropolis.city/a2b73293dae83218.mp4",
           "file": "timelapse/day.mp4",
-          "name": "9e6f3a72e66f6107.mp4"
+          "name": "a2b73293dae83218.mp4"
         }
       ]
     },
@@ -272,15 +386,15 @@
       "sources": [
         {
           "type": "video/webm",
-          "url": "https://media.botropolis.city/229b0f706a3fe2f7.webm",
+          "url": "https://media.botropolis.city/e1374c311a27c9f0.webm",
           "file": "workday/morning.webm",
-          "name": "229b0f706a3fe2f7.webm"
+          "name": "e1374c311a27c9f0.webm"
         },
         {
           "type": "video/mp4",
-          "url": "https://media.botropolis.city/ce69ab5eb6db37a3.mp4",
+          "url": "https://media.botropolis.city/341bfca246f19b53.mp4",
           "file": "workday/morning.mp4",
-          "name": "ce69ab5eb6db37a3.mp4"
+          "name": "341bfca246f19b53.mp4"
         }
       ]
     },
@@ -298,15 +412,15 @@
       "sources": [
         {
           "type": "video/webm",
-          "url": "https://media.botropolis.city/e7c724f7e6a7d6e6.webm",
+          "url": "https://media.botropolis.city/49a641005362701d.webm",
           "file": "workshop/tour.webm",
-          "name": "e7c724f7e6a7d6e6.webm"
+          "name": "49a641005362701d.webm"
         },
         {
           "type": "video/mp4",
-          "url": "https://media.botropolis.city/56f6a4e28e47aae4.mp4",
+          "url": "https://media.botropolis.city/610b1910c40bd6fb.mp4",
           "file": "workshop/tour.mp4",
-          "name": "56f6a4e28e47aae4.mp4"
+          "name": "610b1910c40bd6fb.mp4"
         }
       ]
     }
