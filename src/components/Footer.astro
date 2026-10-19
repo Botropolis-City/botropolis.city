@@ -11,6 +11,11 @@ import Keycap from "./Keycap.astro";
     <button type="button" data-keys-open><Keycap k="?" /> keys</button>
   </div>
   <div class="small">
+    <p class="credits" data-testid="credits">
+      Roads, trees, vehicles, trains, boats and landmarks by <a href="https://kenney.nl">Kenney</a> (kenney.nl), CC0 — <a href="https://kenney.nl/donate">thank you</a>.
+      Session buildings, the drone, the fountain and the building sites are modelled for Botropolis.
+      Set in Inter by The Inter Project Authors and JetBrains Mono by The JetBrains Mono Project Authors (SIL OFL 1.1).
+    </p>
     <span>Botropolis is not affiliated with Anthropic.</span>
     <a href="mailto:hello@botropolis.city">hello@botropolis.city</a>
   </div>
@@ -55,5 +60,11 @@ import Keycap from "./Keycap.astro";
     border-top: 1px solid var(--hairline);
     color: var(--dim);
     font-size: 13px;
+  }
+  .credits {
+    flex-basis: 100%;
+    margin: 0;
+    max-width: 72ch;
+    line-height: 1.5;
   }
 </style>

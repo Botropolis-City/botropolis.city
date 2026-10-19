@@ -1,5 +1,5 @@
 import AxeBuilder from "@axe-core/playwright";
-import { expect, test } from "@playwright/test";
+import { expect, test, type Page } from "@playwright/test";
 import media from "../../../src/data/media.json" with { type: "json" };
 import { distros, shells } from "../../../src/data/install.ts";
 
@@ -27,6 +27,26 @@ test.describe("when the page loads", () => {
   test("it should have no accessibility violations", async ({ page }) => {
     const { violations } = await new AxeBuilder({ page }).analyze();
     expect(violations.map((v) => `${v.id}: ${v.nodes.map((n) => n.target).join(", ")}`)).toEqual([]);
+  });
+
+  test.describe("and the reader reaches the footer", () => {
+    const credit = (page: Page) => page.getByTestId("credits");
+
+    test("it should link Kenney to kenney.nl", async ({ page }) => {
+      await expect(credit(page).getByRole("link", { name: "Kenney", exact: true })).toHaveAttribute("href", "https://kenney.nl");
+    });
+
+    test("it should link to Kenney's donation page", async ({ page }) => {
+      await expect(credit(page).locator('a[href="https://kenney.nl/donate"]')).toHaveCount(1);
+    });
+
+    test("it should not show any image in the credit", async ({ page }) => {
+      expect(await credit(page).evaluate((el) => el.querySelectorAll("img, svg, picture").length)).toBe(0);
+    });
+
+    test("it should name the typefaces", async ({ page }) => {
+      await expect(credit(page)).toContainText("Set in Inter by The Inter Project Authors and JetBrains Mono by The JetBrains Mono Project Authors (SIL OFL 1.1).");
+    });
   });
 
   test.describe("and the viewport is a phone", () => {
