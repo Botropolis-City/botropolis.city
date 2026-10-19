@@ -2,6 +2,7 @@ import AxeBuilder from "@axe-core/playwright";
 import { expect, test, type Page } from "@playwright/test";
 import media from "../../../src/data/media.json" with { type: "json" };
 import { distros, shells } from "../../../src/data/install.ts";
+import { theater } from "../../../src/data/theater.ts";
 
 test.describe("when the page loads", () => {
   test.beforeEach(async ({ page }) => {
@@ -79,7 +80,7 @@ test.describe("the theater's player", () => {
 });
 
 test.describe("when a scene is chosen", () => {
-  for (const clip of media.clips) {
+  for (const clip of media.clips.filter((c) => theater.includes(c.id))) {
     test.describe(`and it is ${clip.id}`, () => {
       test.beforeEach(async ({ page }) => {
         await page.goto("/");

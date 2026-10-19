@@ -3,10 +3,10 @@ import { getImage, Picture } from "astro:assets";
 import { clip, duration, image } from "../data/catalog.ts";
 import AppWindow from "./AppWindow.astro";
 import Keycap from "./Keycap.astro";
+import { theater } from "../data/theater.ts";
 
-const order = ["workshop/tour", "workday/morning", "timelapse/day", "metropolis/flyover", "hamlet/drift", "layers/views"];
 const scenes = await Promise.all(
-  order.map(async (id) => {
+  theater.map(async (id) => {
     const c = clip(id);
     const poster = await getImage({ src: image(c.poster), width: 1280, format: "webp" });
     return { ...c, posterUrl: poster.src };
