@@ -10,18 +10,20 @@ import { glossary, hotspots, states } from "../data/glance.ts";
     <h2 id="glance-title">Everything on the map means one thing</h2>
     <p class="lead">One district per project, one building per session. Hover or tab through the city to read it, the way you would in the app.</p>
 
+    <p class="drag" aria-hidden="true">drag to see the city →</p>
+    <div class="frame" data-testid="map-frame">
     <div class="map">
       <Picture
         src={image("metropolis-hero")}
         formats={["avif"]} fallbackFormat="webp"
         widths={[640, 960, 1280, 1920]}
-        sizes="(max-width: 1240px) 100vw, 1240px"
+        sizes="(max-width: 860px) 900px, (max-width: 1240px) 100vw, 1240px"
         alt="The metropolis without its interface, for reading by hotspot."
         loading="lazy"
       />
       {
         hotspots.map((h) => (
-          <button type="button" class:list={["spot", h.x > 60 && "east", h.x < 35 && "west"]} style={`left:${h.x}%;top:${h.y}%;--tone:${h.tone}`} aria-label={`${h.title}: ${h.line}`}>
+          <button type="button" class:list={["spot", h.x > 60 && "east", h.x < 35 && "west", h.y < 25 && "south"]} style={`left:${h.x}%;top:${h.y}%;--tone:${h.tone}`} aria-label={`${h.title}: ${h.line}`}>
             <span class="ring" />
             <span class="card" aria-hidden="true">
               <b>{h.title}</b>
@@ -30,6 +32,7 @@ import { glossary, hotspots, states } from "../data/glance.ts";
           </button>
         ))
       }
+    </div>
     </div>
 
     <div class="keys">
@@ -65,8 +68,19 @@ import { glossary, hotspots, states } from "../data/glance.ts";
 </section>
 
 <style>
+  .frame {
+    position: relative;
+  }
   .map {
     position: relative;
+  }
+  .drag {
+    display: none;
+    margin: 0 0 8px;
+    font: 500 12px/1 var(--mono);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--dim);
   }
   .map :global(img) {
     width: 100%;
@@ -151,6 +165,10 @@ import { glossary, hotspots, states } from "../data/glance.ts";
     left: -6px;
     translate: 0 4px;
   }
+  .south .card {
+    top: calc(100% + 10px);
+    bottom: auto;
+  }
   .east:hover .card,
   .east:focus-visible .card,
   .west:hover .card,
@@ -217,11 +235,23 @@ import { glossary, hotspots, states } from "../data/glance.ts";
       margin-bottom: 10px;
     }
   }
-  @media (max-width: 600px) {
+  @media (max-width: 860px) {
+    .frame {
+      overflow-x: auto;
+      overscroll-behavior-x: contain;
+      margin: 0 calc(var(--gutter) * -1);
+      padding: 0 var(--gutter);
+    }
+    .map {
+      width: 900px;
+    }
+    .drag {
+      display: block;
+    }
     .spot {
-      width: 22px;
-      height: 22px;
-      margin: -11px 0 0 -11px;
+      width: 24px;
+      height: 24px;
+      margin: -12px 0 0 -12px;
     }
     .ring {
       inset: 6px;

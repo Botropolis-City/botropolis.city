@@ -270,6 +270,37 @@ test.describe("when the reader reaches the release's section", () => {
   }
 });
 
+test.describe("when the reader reaches the map", () => {
+  const spots = (page: Page) => page.locator("#glance .spot");
+
+  for (const width of [1440, 360]) {
+    test.describe(`and the viewport is ${width} wide`, () => {
+      test.use({ viewport: { width, height: 900 } });
+
+      test("it should overlap no two hotspots", async ({ page }) => {
+        await page.goto("/");
+        const boxes = await spots(page).evaluateAll((els) => els.map((el) => el.getBoundingClientRect()).map(({ left, top, right, bottom }) => ({ left, top, right, bottom })));
+        const overlapping = boxes.flatMap((a, i) => boxes.slice(i + 1).filter((b) => a.left < b.right && b.left < a.right && a.top < b.bottom && b.top < a.bottom).map((_, j) => [i, i + 1 + j]));
+        expect(overlapping).toEqual([]);
+      });
+    });
+  }
+
+  test.describe("and the viewport is 360 wide", () => {
+    test.use({ viewport: { width: 360, height: 780 } });
+
+    test("it should let the map scroll sideways inside its frame", async ({ page }) => {
+      await page.goto("/");
+      expect(await page.getByTestId("map-frame").evaluate((el) => el.scrollWidth > el.clientWidth)).toBe(true);
+    });
+
+    test('it should say "drag to see the city"', async ({ page }) => {
+      await page.goto("/");
+      await expect(page.getByText("drag to see the city")).toBeVisible();
+    });
+  });
+});
+
 test.describe("when the reader reaches the install section", () => {
   test("it should tell an upgrader to restart the daemon with botropolis setup", async ({ page }) => {
     await page.goto("/");
