@@ -11,12 +11,9 @@ export interface Hotspot {
   tone: string;
 }
 
-export const still = { file: "src/assets/media/metropolis-hero.webp", width: 1920, height: 1080, districts: 12 };
+export const still = { file: "src/assets/media/metropolis-hero.webp", width: 1920, height: 1080 };
 
 const kinds = "pkg/city/kinds.go";
-const district = (title: string, px: number, py: number) =>
-  spot({ title, line: "a directory where sessions run", source: kinds, on: "plate", px, py, tone: "var(--dim)" });
-
 function spot(s: { title: string; line: string; quote?: string; source: string; on: Ground; px: number; py: number; tone: string }): Hotspot {
   return {
     title: s.title,
@@ -75,18 +72,15 @@ export const hotspots: Hotspot[] = [
     py: 660,
     tone: "var(--plant)",
   }),
-  district("quillmark", 900, 225),
-  district("saltmarsh", 1030, 280),
-  district("beacon", 905, 340),
-  district("thistledown", 1270, 350),
-  district("ferrylight", 790, 390),
-  district("copperleaf", 1130, 430),
-  district("tidepool", 1460, 440),
-  district("lanternfish", 640, 480),
-  district("driftwood", 1230, 480),
-  district("millrace", 880, 580),
-  district("kiln", 1120, 600),
-  district("orchard", 1060, 650),
+  spot({
+    title: "district",
+    line: "Each district is a project: a directory on this machine. Its buildings are the sessions started there.",
+    source: kinds,
+    on: "plate",
+    px: 1270,
+    py: 350,
+    tone: "var(--dim)",
+  }),
 ];
 
 const references: [Ground, [number, number, number]][] = [

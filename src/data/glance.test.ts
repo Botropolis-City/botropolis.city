@@ -44,12 +44,14 @@ describe("when the hotspots are read", () => {
     });
   }
 
-  it("it should have one for each of the still's districts", () => {
-    expect(districts).toHaveLength(still.districts);
-  });
+  describe("and it is a district", () => {
+    it("it should have exactly one district hotspot", () => {
+      expect(districts).toHaveLength(1);
+    });
 
-  it("it should name each district once", () => {
-    expect(new Set(districts.map((d) => d.title)).size).toBe(districts.length);
+    it("its line should say a district is a directory, in the app's words", () => {
+      expect(districts[0]?.line).toContain("Each district is a project: a directory");
+    });
   });
 
   let pixels: Buffer;
