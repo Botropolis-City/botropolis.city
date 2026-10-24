@@ -360,15 +360,15 @@
       "sources": [
         {
           "type": "video/webm",
-          "url": "https://media.botropolis.city/c1e252a7c1413e11.webm",
+          "url": "https://media.botropolis.city/dc3166b5f78e9b0f.webm",
           "file": "timelapse/day.webm",
-          "name": "c1e252a7c1413e11.webm"
+          "name": "dc3166b5f78e9b0f.webm"
         },
         {
           "type": "video/mp4",
-          "url": "https://media.botropolis.city/e8a9c54762f1e1a3.mp4",
+          "url": "https://media.botropolis.city/3d4d527c04dac308.mp4",
           "file": "timelapse/day.mp4",
-          "name": "e8a9c54762f1e1a3.mp4"
+          "name": "3d4d527c04dac308.mp4"
         }
       ]
     },
