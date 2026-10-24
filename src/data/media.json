@@ -1,6 +1,6 @@
 {
-  "version": "0.2.0",
-  "generated": "2026-10-19T13:01:58.873749251Z",
+  "version": "0.3.0",
+  "generated": "2026-10-24T02:12:02.077502801Z",
   "stills": [
     {
       "id": "buildings/types",
@@ -33,24 +33,24 @@
       "image": "hamlet-hero"
     },
     {
-      "id": "layers/pressure",
+      "id": "layers/cost",
       "scenario": "layers",
-      "shot": "pressure",
-      "title": "Context pressure",
-      "description": "The city coloured by how full each session's context is.",
+      "shot": "cost",
+      "title": "Cost",
+      "description": "What each session has spent, and on which models.",
       "width": 1920,
       "height": 1080,
-      "image": "layers-pressure"
+      "image": "layers-cost"
     },
     {
-      "id": "layers/spend",
+      "id": "layers/capacity",
       "scenario": "layers",
-      "shot": "spend",
-      "title": "Spend",
-      "description": "The city coloured by what each session has cost.",
+      "shot": "capacity",
+      "title": "Capacity",
+      "description": "How full each session's context is, and how many subagents it has running.",
       "width": 1920,
       "height": 1080,
-      "image": "layers-spend"
+      "image": "layers-capacity"
     },
     {
       "id": "layers/night",
@@ -178,15 +178,15 @@
       "sources": [
         {
           "type": "video/webm",
-          "url": "https://media.botropolis.city/3b05a6ad257a3edf.webm",
+          "url": "https://media.botropolis.city/05eaeea6ee761829.webm",
           "file": "buildings/residential.webm",
-          "name": "3b05a6ad257a3edf.webm"
+          "name": "05eaeea6ee761829.webm"
         },
         {
           "type": "video/mp4",
-          "url": "https://media.botropolis.city/ec4c65696475742b.mp4",
+          "url": "https://media.botropolis.city/dd73c80b9241de68.mp4",
           "file": "buildings/residential.mp4",
-          "name": "ec4c65696475742b.mp4"
+          "name": "dd73c80b9241de68.mp4"
         }
       ]
     },
@@ -204,15 +204,15 @@
       "sources": [
         {
           "type": "video/webm",
-          "url": "https://media.botropolis.city/267248e153b4c472.webm",
+          "url": "https://media.botropolis.city/947c2462e0355f5b.webm",
           "file": "buildings/shopping.webm",
-          "name": "267248e153b4c472.webm"
+          "name": "947c2462e0355f5b.webm"
         },
         {
           "type": "video/mp4",
-          "url": "https://media.botropolis.city/aa7df50a80feee5d.mp4",
+          "url": "https://media.botropolis.city/81b16e558648cbe4.mp4",
           "file": "buildings/shopping.mp4",
-          "name": "aa7df50a80feee5d.mp4"
+          "name": "81b16e558648cbe4.mp4"
         }
       ]
     },
@@ -230,15 +230,15 @@
       "sources": [
         {
           "type": "video/webm",
-          "url": "https://media.botropolis.city/910996ab6fb57aa7.webm",
+          "url": "https://media.botropolis.city/21bf68ab8d3a78bd.webm",
           "file": "buildings/office.webm",
-          "name": "910996ab6fb57aa7.webm"
+          "name": "21bf68ab8d3a78bd.webm"
         },
         {
           "type": "video/mp4",
-          "url": "https://media.botropolis.city/d829ebd5c83f8166.mp4",
+          "url": "https://media.botropolis.city/6112294e66cee6b3.mp4",
           "file": "buildings/office.mp4",
-          "name": "d829ebd5c83f8166.mp4"
+          "name": "6112294e66cee6b3.mp4"
         }
       ]
     },
@@ -256,15 +256,15 @@
       "sources": [
         {
           "type": "video/webm",
-          "url": "https://media.botropolis.city/cee25488906b65a8.webm",
+          "url": "https://media.botropolis.city/e11e8b4b621a1de5.webm",
           "file": "buildings/industrial.webm",
-          "name": "cee25488906b65a8.webm"
+          "name": "e11e8b4b621a1de5.webm"
         },
         {
           "type": "video/mp4",
-          "url": "https://media.botropolis.city/79238953feb7a8d7.mp4",
+          "url": "https://media.botropolis.city/58b859c14b727e15.mp4",
           "file": "buildings/industrial.mp4",
-          "name": "79238953feb7a8d7.mp4"
+          "name": "58b859c14b727e15.mp4"
         }
       ]
     },
@@ -282,15 +282,15 @@
       "sources": [
         {
           "type": "video/webm",
-          "url": "https://media.botropolis.city/bc9ab58f5df8ff09.webm",
+          "url": "https://media.botropolis.city/76df510bc662ea25.webm",
           "file": "hamlet/drift.webm",
-          "name": "bc9ab58f5df8ff09.webm"
+          "name": "76df510bc662ea25.webm"
         },
         {
           "type": "video/mp4",
-          "url": "https://media.botropolis.city/82f56f055865cb29.mp4",
+          "url": "https://media.botropolis.city/a34eea53d53363d4.mp4",
           "file": "hamlet/drift.mp4",
-          "name": "82f56f055865cb29.mp4"
+          "name": "a34eea53d53363d4.mp4"
         }
       ]
     },
@@ -298,25 +298,25 @@
       "id": "layers/views",
       "scenario": "layers",
       "shot": "views",
-      "title": "Nine ways to read the city",
-      "description": "The view key, then each view in turn -- attention, spend, context pressure, staleness, servers, traffic, models, fan-out and health -- then night and day.",
+      "title": "Six ways to read the city",
+      "description": "The lens key, then each lens in turn -- attention, work, cost, capacity, health and connections -- then night and day.",
       "width": 1920,
       "height": 1080,
-      "seconds": 32,
+      "seconds": 24.5,
       "poster": "layers-views",
       "posterFile": "layers/views.png",
       "sources": [
         {
           "type": "video/webm",
-          "url": "https://media.botropolis.city/e5a88f279e4549fd.webm",
+          "url": "https://media.botropolis.city/3cb425cc80fda7ad.webm",
           "file": "layers/views.webm",
-          "name": "e5a88f279e4549fd.webm"
+          "name": "3cb425cc80fda7ad.webm"
         },
         {
           "type": "video/mp4",
-          "url": "https://media.botropolis.city/09de30fbd297588e.mp4",
+          "url": "https://media.botropolis.city/b44609b9ec9be207.mp4",
           "file": "layers/views.mp4",
-          "name": "09de30fbd297588e.mp4"
+          "name": "b44609b9ec9be207.mp4"
         }
       ]
     },
@@ -334,15 +334,15 @@
       "sources": [
         {
           "type": "video/webm",
-          "url": "https://media.botropolis.city/722205b5cf5b6b9a.webm",
+          "url": "https://media.botropolis.city/5b933060ea3bc84f.webm",
           "file": "metropolis/flyover.webm",
-          "name": "722205b5cf5b6b9a.webm"
+          "name": "5b933060ea3bc84f.webm"
         },
         {
           "type": "video/mp4",
-          "url": "https://media.botropolis.city/acea9b0a22ed18eb.mp4",
+          "url": "https://media.botropolis.city/99c773218463ff09.mp4",
           "file": "metropolis/flyover.mp4",
-          "name": "acea9b0a22ed18eb.mp4"
+          "name": "99c773218463ff09.mp4"
         }
       ]
     },
@@ -360,15 +360,15 @@
       "sources": [
         {
           "type": "video/webm",
-          "url": "https://media.botropolis.city/47d1d1ac3b92e00a.webm",
+          "url": "https://media.botropolis.city/c1e252a7c1413e11.webm",
           "file": "timelapse/day.webm",
-          "name": "47d1d1ac3b92e00a.webm"
+          "name": "c1e252a7c1413e11.webm"
         },
         {
           "type": "video/mp4",
-          "url": "https://media.botropolis.city/a2b73293dae83218.mp4",
+          "url": "https://media.botropolis.city/e8a9c54762f1e1a3.mp4",
           "file": "timelapse/day.mp4",
-          "name": "a2b73293dae83218.mp4"
+          "name": "e8a9c54762f1e1a3.mp4"
         }
       ]
     },
@@ -386,15 +386,15 @@
       "sources": [
         {
           "type": "video/webm",
-          "url": "https://media.botropolis.city/e1374c311a27c9f0.webm",
+          "url": "https://media.botropolis.city/c9d32f8125fdf4f8.webm",
           "file": "workday/morning.webm",
-          "name": "e1374c311a27c9f0.webm"
+          "name": "c9d32f8125fdf4f8.webm"
         },
         {
           "type": "video/mp4",
-          "url": "https://media.botropolis.city/341bfca246f19b53.mp4",
+          "url": "https://media.botropolis.city/df24cee95aafcf62.mp4",
           "file": "workday/morning.mp4",
-          "name": "341bfca246f19b53.mp4"
+          "name": "df24cee95aafcf62.mp4"
         }
       ]
     },
@@ -412,69 +412,64 @@
       "sources": [
         {
           "type": "video/webm",
-          "url": "https://media.botropolis.city/49a641005362701d.webm",
+          "url": "https://media.botropolis.city/482297cdc251dc11.webm",
           "file": "workshop/tour.webm",
-          "name": "49a641005362701d.webm"
+          "name": "482297cdc251dc11.webm"
         },
         {
           "type": "video/mp4",
-          "url": "https://media.botropolis.city/610b1910c40bd6fb.mp4",
+          "url": "https://media.botropolis.city/e22f8593f6114330.mp4",
           "file": "workshop/tour.mp4",
-          "name": "610b1910c40bd6fb.mp4"
+          "name": "e22f8593f6114330.mp4"
         }
       ]
     }
   ],
-  "views": [
-    {
-      "name": "attention",
-      "question": "who wants me",
-      "image": "views-attention"
-    },
-    {
-      "name": "spend",
-      "question": "where the money went",
-      "image": "views-spend"
-    },
-    {
-      "name": "pressure",
-      "question": "who is about to compact",
-      "image": "views-pressure"
-    },
-    {
-      "name": "staleness",
-      "question": "what has gone quiet",
-      "image": "views-staleness"
-    },
-    {
-      "name": "servers",
-      "question": "what breaks if a server goes down",
-      "image": "views-servers"
-    },
-    {
-      "name": "traffic",
-      "question": "which repos talk to each other",
-      "image": "views-traffic"
-    },
-    {
-      "name": "models",
-      "question": "where the models are",
-      "image": "views-models"
-    },
-    {
-      "name": "fan-out",
-      "question": "which sessions spawn armies",
-      "image": "views-fan-out"
-    },
-    {
-      "name": "health",
-      "question": "what is broken, what shipped",
-      "image": "views-health"
-    },
-    {
-      "name": "night",
-      "question": "lit windows are the sessions that are awake",
-      "image": "views-night"
-    }
-  ]
+  "views": {
+    "title": "Six ways to read the city",
+    "frames": [
+      {
+        "name": "Attention",
+        "key": "1",
+        "question": "Which sessions are waiting for you, and which are working.",
+        "image": "views-attention"
+      },
+      {
+        "name": "Work",
+        "key": "2",
+        "question": "Each piece of work and whose move it is: yours, the agents', or someone else's.",
+        "image": "views-work"
+      },
+      {
+        "name": "Cost",
+        "key": "3",
+        "question": "What each session has spent, and on which models.",
+        "image": "views-cost"
+      },
+      {
+        "name": "Capacity",
+        "key": "4",
+        "question": "How full each session's context is, and how many subagents it has running.",
+        "image": "views-capacity"
+      },
+      {
+        "name": "Health",
+        "key": "5",
+        "question": "Errors, pull requests, and sessions that have gone quiet.",
+        "image": "views-health"
+      },
+      {
+        "name": "Connections",
+        "key": "6",
+        "question": "Which MCP servers each session calls, and which projects talk to each other.",
+        "image": "views-connections"
+      },
+      {
+        "name": "Night",
+        "key": "n",
+        "question": "Lit windows mark the sessions that are awake.",
+        "image": "views-night"
+      }
+    ]
+  }
 }

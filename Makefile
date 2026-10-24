@@ -11,7 +11,8 @@ LOG := @sh -c '\
 CF_DEPLOY_TOKEN_REF ?= op:Botropolis/Cloudflare - Botropolis Deploy Token/credential
 MEDIA_BUCKET ?= botropolis-media
 MEDIA_HOST ?= https://media.botropolis.city
-DEMO_DIR ?= ../botropolis/dist/demo
+BOTROPOLIS_DIR ?= ../botropolis
+DEMO_DIR ?= ${BOTROPOLIS_DIR}/dist/demo
 TF := terraform -chdir=infra
 WITH_DEPLOY_TOKEN := secret-run --env "CLOUDFLARE_API_TOKEN=${CF_DEPLOY_TOKEN_REF}" --
 
@@ -49,7 +50,7 @@ site-deploy :: site-build
 
 media-import :: node_modules
 	$(LOG) "Importing media from ${DEMO_DIR}"
-	@DEMO_DIR=${DEMO_DIR} MEDIA_BASE=${MEDIA_HOST} node tools/import-media.ts
+	@BOTROPOLIS_DIR=${BOTROPOLIS_DIR} DEMO_DIR=${DEMO_DIR} MEDIA_BASE=${MEDIA_HOST} node tools/import-media.ts
 
 media-upload :: node_modules
 	$(LOG) "Uploading clips in .media/ to R2 bucket ${MEDIA_BUCKET}"

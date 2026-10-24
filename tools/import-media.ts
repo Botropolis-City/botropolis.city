@@ -3,7 +3,9 @@ import { createHash } from "node:crypto";
 import { copyFile, mkdir, readFile, readdir, rm, writeFile } from "node:fs/promises";
 import { join, resolve } from "node:path";
 import sharp from "sharp";
+import { parse } from "yaml";
 import { catalog, imageName, type Manifest } from "./media.ts";
+import { lenses, viewFrames, type Scenario } from "./views.ts";
 
 const usage = `Usage: node tools/import-media.ts [--help]
 
@@ -15,12 +17,17 @@ Imports the demo media filmed by the botropolis repo into this site.
 
 GIFs are left behind; they are for the README.
 
-Until the city films a still per view, each view is a frame of layers/views,
-taken at the second the table below names, and written as views-<name>.webp.
+Until the city films a still per lens, each lens is a frame of layers/views,
+written as views-<name>.webp. The lenses, their order and their questions come
+from the city's pkg/city/lens.go, and the second each is taken at from the
+views shot's script in demo/scenarios/layers.yaml: half a second before the
+next key. The import refuses a frame past the clip's end, a key for a lens the
+city does not have, and a lens the clip never shows.
 
 Environment:
-  DEMO_DIR    the filmed media (default: ../botropolis/dist/demo)
-  MEDIA_BASE  where uploaded clips are served (default: https://media.botropolis.city)
+  BOTROPOLIS_DIR  the botropolis checkout (default: ../botropolis)
+  DEMO_DIR        the filmed media (default: $BOTROPOLIS_DIR/dist/demo)
+  MEDIA_BASE      where uploaded clips are served (default: https://media.botropolis.city)
 `;
 
 if (process.argv.includes("--help") || process.argv.includes("-h")) {
@@ -28,7 +35,8 @@ if (process.argv.includes("--help") || process.argv.includes("-h")) {
   process.exit(0);
 }
 
-const demo = resolve(process.env.DEMO_DIR ?? "../botropolis/dist/demo");
+const botropolis = resolve(process.env.BOTROPOLIS_DIR ?? "../botropolis");
+const demo = resolve(process.env.DEMO_DIR ?? join(botropolis, "dist/demo"));
 const base = process.env.MEDIA_BASE ?? "https://media.botropolis.city";
 const images = "src/assets/media";
 const clipsOut = ".media";
@@ -54,23 +62,17 @@ for (const file of pictures) {
   await sharp(join(demo, file)).webp({ quality: 92 }).toFile(join(images, `${imageName(file)}.webp`));
 }
 
-const viewFrames: [string, string, number][] = [
-  ["attention", "who wants me", 30],
-  ["spend", "where the money went", 4],
-  ["pressure", "who is about to compact", 6.8],
-  ["staleness", "what has gone quiet", 9],
-  ["servers", "what breaks if a server goes down", 11.8],
-  ["traffic", "which repos talk to each other", 14],
-  ["models", "where the models are", 16.8],
-  ["fan-out", "which sessions spawn armies", 19],
-  ["health", "what is broken, what shipped", 21.3],
-  ["night", "lit windows are the sessions that are awake", 25],
-];
-for (const [name, , at] of viewFrames) {
-  const png = execFileSync("ffmpeg", ["-v", "error", "-ss", String(at), "-i", join(demo, "layers/views.mp4"), "-frames:v", "1", "-f", "image2pipe", "-c:v", "png", "-"], { maxBuffer: 64 << 20 });
-  await sharp(png).webp({ quality: 92 }).toFile(join(images, `views-${name}.webp`));
+const city = lenses(await readFile(join(botropolis, "pkg/city/lens.go"), "utf8"));
+const scenario = parse(await readFile(join(botropolis, "demo/scenarios/layers.yaml"), "utf8")) as Scenario;
+const viewsClip = manifest.media.find((m) => m.file === "layers/views.mp4");
+if (!viewsClip?.seconds) throw new Error("the film has no layers/views.mp4 with a length");
+const viewSection = viewFrames(scenario, city, viewsClip.seconds);
+for (const f of viewSection.frames) {
+  const png = execFileSync("ffmpeg", ["-v", "error", "-ss", String(f.at), "-i", join(demo, "layers/views.mp4"), "-frames:v", "1", "-f", "image2pipe", "-c:v", "png", "-"], { maxBuffer: 64 << 20 });
+  if (!png.length) throw new Error(`ffmpeg returned no frame for ${f.name} at ${f.at} s`);
+  await sharp(png).webp({ quality: 92 }).toFile(join(images, `${f.image}.webp`));
 }
-const views = viewFrames.map(([name, question]) => ({ name, question, image: `views-${name}` }));
+const views = { title: viewSection.title, frames: viewSection.frames.map(({ name, key, question, image }) => ({ name, key, question, image })) };
 
 await mkdir(clipsOut, { recursive: true });
 const wanted = new Set(result.clips.flatMap((c) => c.sources.map((s) => s.name)));

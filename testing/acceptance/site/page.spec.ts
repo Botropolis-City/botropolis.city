@@ -156,6 +156,30 @@ test.describe("when ? is pressed", () => {
   });
 });
 
+test.describe("when the views section is shown", () => {
+  const section = (page: Page) => page.locator("#views");
+  const tabs = (page: Page) => section(page).getByRole("group", { name: "Views" }).locator("[data-view]");
+
+  test.beforeEach(async ({ page }) => {
+    await page.goto("/");
+  });
+
+  test("it should be titled for the city's six lenses", async ({ page }) => {
+    await expect(section(page).getByRole("heading", { level: 2 })).toHaveText("Six ways to read the city");
+  });
+
+  test("it should offer one tab per lens, and night", async ({ page }) => {
+    await expect(tabs(page)).toHaveText(["1Attention", "2Work", "3Cost", "4Capacity", "5Health", "6Connections", "nNight"]);
+  });
+
+  test.describe("and a lens is chosen", () => {
+    test("it should ask that lens's question in the city's words", async ({ page }) => {
+      await tabs(page).filter({ hasText: "Cost" }).click();
+      await expect(section(page).locator("[data-question]")).toHaveText("What each session has spent, and on which models.");
+    });
+  });
+});
+
 test.describe("when v is pressed", () => {
   test.beforeEach(async ({ page }) => {
     await page.goto("/");

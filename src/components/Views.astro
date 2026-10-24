@@ -4,25 +4,26 @@ import { image, media } from "../data/catalog.ts";
 import AppWindow from "./AppWindow.astro";
 import Keycap from "./Keycap.astro";
 
-const views = media.views;
+const { title, frames: views } = media.views;
 const first = views[0];
+const lensCount = views.filter((v) => v.key !== "n").length;
 ---
 
 <section class="band" id="views" aria-labelledby="views-title">
   <div class="wrap">
     <p class="eyebrow"><span class="dot" style="--tone:var(--unattended)"></span> views</p>
-    <h2 id="views-title">Nine ways to read the city</h2>
+    <h2 id="views-title">{title}</h2>
     <p class="lead">
-      The same map recoloured to answer one question at a time. In the app it is <Keycap k="v" /> and a number; here, <Keycap k="v" /> steps through
-      them too.
+      The same map recoloured to answer one question at a time. In the app each lens is a number, <Keycap k="1" /> to <Keycap k={String(lensCount)} />,
+      and <Keycap k="n" /> is night; here, <Keycap k="v" /> steps through them too.
     </p>
 
     <div class="viewer" data-views>
       <div class="tabs" role="group" aria-label="Views">
         {
           views.map((v, i) => (
-            <button type="button" aria-pressed={i === 0 ? "true" : "false"} data-view={i}>
-              <span class="n">{v.name === "night" ? "n" : i + 1}</span>
+            <button type="button" aria-pressed={i === 0 ? "true" : "false"} data-view={i} data-name={v.name} data-about={v.question}>
+              <span class="n">{v.key}</span>
               {v.name}
             </button>
           ))
@@ -42,7 +43,7 @@ const first = views[0];
                 formats={["avif"]} fallbackFormat="webp"
                 widths={[640, 960, 1280, 1920]}
                 sizes="(max-width: 1240px) 100vw, 1240px"
-                alt={`The city in the ${v.name} view: ${v.question}.`}
+                alt={v.key === "n" ? `The city at night. ${v.question}` : `The city in the ${v.name} lens. ${v.question}`}
                 loading="lazy"
                 class:list={[i === 0 && "on"]}
               />
@@ -71,9 +72,8 @@ const first = views[0];
     current = i;
     tabs.forEach((t, j) => t.setAttribute("aria-pressed", String(j === i)));
     pictures.forEach((p, j) => p.classList.toggle("on", j === i));
-    const alt = pictures[i].alt.match(/^The city in the (.+) view: (.+)\.$/);
-    name.textContent = alt?.[1] ?? "";
-    question.textContent = alt?.[2] ?? "";
+    name.textContent = tabs[i].dataset.name ?? "";
+    question.textContent = tabs[i].dataset.about ?? "";
   }
 
   tabs.forEach((t, i) => t.addEventListener("click", () => show(i)));

@@ -4,11 +4,12 @@ import data from "./media.json" with { type: "json" };
 
 export interface View {
   name: string;
+  key: string;
   question: string;
   image: string;
 }
 
-export const media = data as Catalog & { views: View[] };
+export const media = data as Catalog & { views: { title: string; frames: View[] } };
 
 const files = import.meta.glob<{ default: ImageMetadata }>("../assets/media/*.webp", { eager: true });
 
