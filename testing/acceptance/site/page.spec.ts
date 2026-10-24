@@ -244,6 +244,10 @@ test.describe("when the reader reaches the release's section", () => {
     await expect(section(page).locator(".eyebrow")).toContainText(release.version);
   });
 
+  test("it should be headed with the headline its tests hold to the table", async ({ page }) => {
+    await expect(section(page).getByRole("heading", { level: 2 })).toHaveText(release.headline.text);
+  });
+
   test("it should say the machine its figures were measured on", async ({ page }) => {
     await expect(section(page)).toContainText(release.measuredOn);
   });

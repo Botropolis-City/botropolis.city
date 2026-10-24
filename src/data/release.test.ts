@@ -65,3 +65,31 @@ describe("when the budgets it misses are read", () => {
     });
   }
 });
+
+describe("when the headline is read", () => {
+  it("it should make at least one claim", () => {
+    expect(release.headline.ratios.length).toBeGreaterThan(0);
+  });
+
+  for (const r of release.headline.ratios) {
+    describe(`and it is "${r.phrase}"`, () => {
+      const figure = release.figures.find((f) => f.label === r.figure);
+
+      it("it should say it", () => {
+        expect(release.headline.text).toContain(r.phrase);
+      });
+
+      it("it should take its before from its figure's before", () => {
+        expect(numbers(figure?.before ?? "")).toContain(r.before.value);
+      });
+
+      it("it should take its after from its figure's after", () => {
+        expect(numbers(figure?.after ?? "")).toContain(r.after.value);
+      });
+
+      it("it should claim no more than those numbers give", () => {
+        expect((Number(r.before.value) * r.before.scale) / (Number(r.after.value) * r.after.scale)).toBeGreaterThanOrEqual(r.factor);
+      });
+    });
+  }
+});

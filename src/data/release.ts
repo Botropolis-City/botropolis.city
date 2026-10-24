@@ -10,8 +10,40 @@ export interface Miss {
   quote: string;
 }
 
+export interface Amount {
+  value: string;
+  scale: number;
+}
+
+export interface Ratio {
+  phrase: string;
+  figure: string;
+  before: Amount;
+  after: Amount;
+  factor: number;
+}
+
 export const release = {
   version: "0.3.0",
+  headline: {
+    text: "Up to four times faster to draw, on a tenth of 0.2.2's memory",
+    ratios: [
+      {
+        phrase: "Up to four times faster to draw",
+        figure: "Drawing a frame, focused",
+        before: { value: "48", scale: 1 },
+        after: { value: "11", scale: 1 },
+        factor: 4,
+      },
+      {
+        phrase: "a tenth of 0.2.2's memory",
+        figure: "The city's memory, settled",
+        before: { value: "4.6", scale: 1024 },
+        after: { value: "445", scale: 1 },
+        factor: 10,
+      },
+    ] as Ratio[],
+  },
   measuredOn: "Measured on a laptop's integrated graphics (Intel Core Ultra 7 265U) with a real history of about 200 sessions in 150 projects",
   figures: [
     {
