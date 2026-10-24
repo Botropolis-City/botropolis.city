@@ -67,6 +67,34 @@ import { glossary, hotspots, states } from "../data/glance.ts";
   </div>
 </section>
 
+<script>
+  const inset = 8;
+  for (const frame of document.querySelectorAll<HTMLElement>("#glance .frame")) {
+    const place = (spot: Element | null) => {
+      const card = spot?.querySelector<HTMLElement>(".card");
+      if (!card) return;
+      card.style.setProperty("--nudge", "0px");
+      const box = card.getBoundingClientRect();
+      const edge = frame.getBoundingClientRect();
+      const nudge = Math.max(edge.left + inset - box.left, 0) + Math.min(edge.right - inset - box.right, 0);
+      card.style.setProperty("--nudge", `${Math.round(nudge)}px`);
+    };
+    for (const spot of frame.querySelectorAll(".spot")) {
+      spot.addEventListener("pointerenter", () => place(spot));
+      spot.addEventListener("focus", () => place(spot));
+    }
+    let queued = false;
+    frame.addEventListener("scroll", () => {
+      if (queued) return;
+      queued = true;
+      requestAnimationFrame(() => {
+        queued = false;
+        frame.querySelectorAll(".spot:hover, .spot:focus").forEach(place);
+      });
+    });
+  }
+</script>
+
 <style>
   .frame {
     position: relative;
@@ -129,6 +157,7 @@ import { glossary, hotspots, states } from "../data/glance.ts";
     translate: -50% 4px;
     width: max-content;
     max-width: min(280px, 70vw);
+    transform: translateX(var(--nudge, 0px));
     display: grid;
     gap: 2px;
     padding: 10px 14px;

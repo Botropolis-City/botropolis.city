@@ -1,6 +1,7 @@
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test, type Page } from "@playwright/test";
 import media from "../../../src/data/media.json" with { type: "json" };
+import { hotspots } from "../../../src/data/glance.ts";
 import { distros, shells } from "../../../src/data/install.ts";
 import { release } from "../../../src/data/release.ts";
 import { stale } from "../../../src/data/stale.ts";
@@ -283,6 +284,24 @@ test.describe("when the reader reaches the map", () => {
         const overlapping = boxes.flatMap((a, i) => boxes.slice(i + 1).filter((b) => a.left < b.right && b.left < a.right && a.top < b.bottom && b.top < a.bottom).map((_, j) => [i, i + 1 + j]));
         expect(overlapping).toEqual([]);
       });
+
+      for (const [i, h] of hotspots.entries()) {
+        test.describe(`and the ${h.title} card is open`, () => {
+          test("it should lie wholly inside the map frame", async ({ page }) => {
+            await page.goto("/");
+            const spot = spots(page).nth(i);
+            await spot.evaluate((el) => el.scrollIntoView({ block: "center", inline: "center", behavior: "instant" }));
+            await spot.hover();
+            const card = spot.locator(".card");
+            await expect(card).toHaveCSS("opacity", "1");
+            await page.waitForTimeout(200);
+            const frame = await page.getByTestId("map-frame").evaluate((el) => el.getBoundingClientRect().toJSON());
+            const box = await card.evaluate((el) => el.getBoundingClientRect().toJSON());
+            const outside = [box.left < frame.left - 0.5 && "left", box.right > frame.right + 0.5 && "right", box.top < frame.top - 0.5 && "top", box.bottom > frame.bottom + 0.5 && "bottom"].filter(Boolean);
+            expect(outside).toEqual([]);
+          });
+        });
+      }
     });
   }
 
