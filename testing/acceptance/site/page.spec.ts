@@ -3,6 +3,7 @@ import { expect, test, type Page } from "@playwright/test";
 import media from "../../../src/data/media.json" with { type: "json" };
 import { distros, shells } from "../../../src/data/install.ts";
 import { release } from "../../../src/data/release.ts";
+import { stale } from "../../../src/data/stale.ts";
 import { theater } from "../../../src/data/theater.ts";
 
 test.describe("when the page loads", () => {
@@ -282,7 +283,7 @@ test.describe("when the page loads", () => {
       [document.body.innerText, ...[...document.querySelectorAll("img[alt]")].map((i) => i.getAttribute("alt")), ...[...document.querySelectorAll("meta[content]")].map((m) => m.getAttribute("content"))].join("\n"),
     );
 
-  for (const phrase of ["as tall as the context", "storage yard", "botropolis install-hooks", "parked"]) {
+  for (const phrase of stale) {
     test.describe(`and it is the sentence 0.3.0 made false, "${phrase}"`, () => {
       test("it should not say it", async ({ page }) => {
         await page.goto("/");
