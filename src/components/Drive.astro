@@ -1,12 +1,12 @@
 ---
 import { Picture } from "astro:assets";
 import { image, still } from "../data/catalog.ts";
+import { actions } from "../data/drive.ts";
 import AppWindow from "./AppWindow.astro";
 import Keycap from "./Keycap.astro";
 
 const needs = still("workshop/needs-you");
 const power = still("workshop/power");
-const actions = ["attach", "stop", "summary", "new session here", "reveal folder", "copy path", "hide project", "star"];
 ---
 
 <section class="band" id="drive" aria-labelledby="drive-title">
@@ -14,8 +14,8 @@ const actions = ["attach", "stop", "summary", "new session here", "reveal folder
     <p class="eyebrow"><span class="dot" style="--tone:var(--needs-you)"></span> drive</p>
     <h2 id="drive-title">Then drive it from the map</h2>
     <p class="lead">
-      Sessions live in Claude Code's own background daemon. Botropolis starts them, opens them in a terminal, parks them and wakes them, and never
-      writes to <code>~/.claude</code> itself.
+      Sessions live in Claude Code's own background daemon. Botropolis starts them, opens them in a terminal, stops them and resumes them, and never writes to
+      <code>~/.claude</code> itself. Close the terminal and the session carries on.
     </p>
 
     <div class="row">
@@ -29,8 +29,8 @@ const actions = ["attach", "stop", "summary", "new session here", "reveal folder
           {actions.map((a) => <li>{a}</li>)}
         </ul>
         <p class="note">
-          A card's summary shows the recap Claude Code writes when a session is left waiting. Asking for a fresh one is the only thing on the map that
-          spends tokens, and only when you press it.
+          <b>read</b> opens the conversation inside the city, formatted. A card leads with the recap Claude Code writes when a session is left waiting; asking for a fresh one
+          with <b>generate summary</b> is the only thing on the map that spends tokens, and only when you press it.
         </p>
       </div>
     </div>

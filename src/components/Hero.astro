@@ -1,6 +1,6 @@
 ---
 import { Picture } from "astro:assets";
-import { clip, duration, image } from "../data/catalog.ts";
+import { clip, duration, image, media } from "../data/catalog.ts";
 import Keycap from "./Keycap.astro";
 
 const tour = clip("workshop/tour");
@@ -13,7 +13,7 @@ const tour = clip("workshop/tour");
       formats={["avif"]} fallbackFormat="webp"
       widths={[640, 960, 1280, 1600, 1920]}
       sizes="(max-width: 900px) 120vw, 80vw"
-      alt="An isometric city of a dozen districts: towers, a plaza with a fountain, two radio towers, a storage yard of shipping containers and boats on the river."
+      alt="An isometric city of a dozen districts on its island: towers, a plaza with a fountain, two radio towers on the ridge, the depot's crates, and boats on the river."
       loading="eager"
       fetchpriority="high"
       data-testid="hero-media"
@@ -24,8 +24,11 @@ const tour = clip("workshop/tour");
     <h1>Botropolis</h1>
     <p class="lede">Every Claude Code session on your machine, drawn as a city, and driven from it.</p>
     <p class="sub">
-      Districts are projects. Buildings are sessions, as tall as the context they have used, and their beacons say which one needs you. Click
-      one to attach, stop, summarise or park it; the terminal is only ever a view.
+      Districts are projects, and a project is just a directory. Buildings are sessions, one to five storeys by how much work each has done, and their beacons say which one needs
+      you. Click one to attach it, stop it, read it or pack it away; the terminal is only ever a view.
+    </p>
+    <p class="news">
+      <a href="#new"><b>New in {media.version}</b> a frame in about 10–11 ms and about 445 MiB settled, on a laptop's integrated graphics; under 1% of a core while hidden →</a>
     </p>
     <div class="actions">
       <a class="btn primary" href="#install">Install <span class="kbd"><Keycap k="i" /></span></a>
@@ -120,9 +123,30 @@ const tour = clip("workshop/tour");
     text-wrap: balance;
   }
   .sub {
-    margin: 0 0 36px;
+    margin: 0 0 20px;
     color: var(--dim);
     text-wrap: pretty;
+  }
+  .news {
+    margin: 0 0 32px;
+    font-size: 15px;
+  }
+  .news a {
+    display: inline-block;
+    padding: 8px 12px;
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius);
+    background: var(--panel);
+    color: var(--dim);
+    text-decoration: none;
+  }
+  .news a:hover {
+    color: var(--text);
+  }
+  .news b {
+    margin-right: 6px;
+    color: var(--working);
+    font-weight: 600;
   }
   .actions {
     display: flex;

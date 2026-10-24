@@ -1,5 +1,5 @@
 ---
-import { distros, shells, start } from "../data/install.ts";
+import { distros, moved, shells, start } from "../data/install.ts";
 ---
 
 <section class="band" id="install" aria-labelledby="install-title">
@@ -7,8 +7,8 @@ import { distros, shells, start } from "../data/install.ts";
     <p class="eyebrow"><span class="dot" style="--tone:var(--merged)"></span> install</p>
     <h2 id="install-title">Move in</h2>
     <p class="lead">
-      Linux, amd64 or arm64, and macOS on Apple silicon or Intel. Every Linux package carries the three binaries, the systemd user units, the desktop entry and the shell integration. Checksums
-      are on <a href="https://github.com/Botropolis-City/botropolis/releases/latest">the release</a>.
+      Linux, amd64 or arm64, and macOS on Apple silicon or Intel. Every package carries the three binaries, the manual pages and the shell integration, and every
+      Linux package the systemd user units and the desktop entry too. Checksums are on <a href="https://github.com/Botropolis-City/botropolis/releases/latest">the release</a>.
     </p>
 
     <div class="term" data-install>
@@ -48,11 +48,14 @@ import { distros, shells, start } from "../data/install.ts";
     <div class="term">
       <pre><code>{start}</code></pre>
       <div class="foot">
-        <span>The daemon, the hooks, a check that everything is wired, and the city.</span>
+        <span>botropolis setup registers the hooks, starts the daemon with systemd or Homebrew and says exactly what it ran; doctor checks it is all wired; then the city.</span>
         <button type="button" class="copy" data-copy={start}>Copy</button>
       </div>
     </div>
-    <p class="after">And one line in your shell's startup file, so sessions you start by hand show up too. It names no install path, so it is the same line on Linux and macOS (where zsh is the default):</p>
+    <p class="after">
+      botropolis setup also prints one line for your shell's startup file, so sessions you start by hand show up too. It names no install path, so it is the same line on Linux and macOS (where
+      zsh is the default):
+    </p>
     {
       shells.map((sh) => (
         <div class="term" data-shell={sh.name}>
@@ -64,6 +67,24 @@ import { distros, shells, start } from "../data/install.ts";
         </div>
       ))
     }
+
+    <div class="upgrade" data-testid="upgrade">
+      <h3>Upgrading from 0.2</h3>
+      <p>
+        After installing, restart the daemon with <code>botropolis setup</code>, or the city's Restart Daemon dialog: a 0.3.0 city and daemon talk a new version of their protocol, and a city
+        meeting an older daemon says so and offers to restart it.
+      </p>
+      <p>Some commands moved. The old names still work through 0.x, with a note on stderr:</p>
+      <ul class="moved">
+        {
+          moved.map(([was, is]) => (
+            <li>
+              <code>{was}</code> is <code>{is}</code>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
   </div>
 </section>
 
@@ -179,5 +200,34 @@ import { distros, shells, start } from "../data/install.ts";
   .after {
     margin: 20px 0 14px;
     color: var(--dim);
+  }
+  .upgrade {
+    max-width: 52rem;
+    margin-top: 40px;
+    padding: 20px 24px;
+    border: 1px solid var(--hairline);
+    border-left: 3px solid var(--accent);
+    border-radius: var(--radius);
+    background: var(--raised);
+  }
+  .upgrade h3 {
+    margin: 0 0 10px;
+  }
+  .upgrade p {
+    margin: 0 0 12px;
+    color: var(--dim);
+  }
+  .moved {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 24px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    color: var(--dim);
+    font-size: 15px;
+  }
+  .moved code {
+    font: 0.92em var(--mono);
   }
 </style>

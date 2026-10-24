@@ -48,7 +48,7 @@ export const distros: Distro[] = [
   {
     id: "macos",
     label: "macOS",
-    note: "Apple silicon or Intel. Adds the tap once; brew upgrade brings every release after. brew services runs the daemon, so skip the systemctl line below. Built from source, so nothing needs signing; nobody has looked at the window on a Mac yet, so tell us what you see.",
+    note: "Apple silicon or Intel. Adds the tap once; brew upgrade brings every release after. Built from source, so nothing needs signing; nobody has looked at the window on a Mac yet, so tell us what you see.",
     command: [
       `brew tap botropolis-city/botropolis ${pkg}/brew`,
       "brew install botropolis-city/botropolis/botropolis",
@@ -57,10 +57,16 @@ export const distros: Distro[] = [
   },
 ];
 
-export const start = `systemctl --user enable --now botropolisd
-botropolis install-hooks
+export const start = `botropolis setup
 botropolis doctor
 botropolis`;
+
+export const moved = [
+  ["tui", "status --live"],
+  ["resume", "attach"],
+  ["prune", "rm --older-than"],
+  ["install-hooks", "setup"],
+] as const;
 
 export interface Shell {
   name: string;

@@ -2,6 +2,7 @@ import AxeBuilder from "@axe-core/playwright";
 import { expect, test, type Page } from "@playwright/test";
 import media from "../../../src/data/media.json" with { type: "json" };
 import { distros, shells } from "../../../src/data/install.ts";
+import { release } from "../../../src/data/release.ts";
 import { theater } from "../../../src/data/theater.ts";
 
 test.describe("when the page loads", () => {
@@ -227,6 +228,61 @@ test.describe("when a shell's line is copied", () => {
         await page.goto("/");
         await page.locator(`[data-shell="${sh.name}"]`).getByRole("button", { name: /copy/i }).click();
         expect(await page.evaluate(() => navigator.clipboard.readText())).toBe(sh.line);
+      });
+    });
+  }
+});
+
+test.describe("when the reader reaches the release's section", () => {
+  const section = (page: Page) => page.locator("#new");
+
+  test.beforeEach(async ({ page }) => {
+    await page.goto("/");
+  });
+
+  test("it should be titled with the release's version", async ({ page }) => {
+    await expect(section(page).locator(".eyebrow")).toContainText(release.version);
+  });
+
+  test("it should say the machine its figures were measured on", async ({ page }) => {
+    await expect(section(page)).toContainText(release.measuredOn);
+  });
+
+  for (const f of release.figures) {
+    test.describe(`and it is ${f.label}`, () => {
+      test("it should show the figure as the changelog gives it", async ({ page }) => {
+        await expect(section(page).getByRole("row", { name: f.label })).toHaveText(`${f.label}${f.before}${f.after}`);
+      });
+    });
+  }
+
+  for (const m of release.misses) {
+    test.describe(`and it is the missed budget "${m.text}"`, () => {
+      test("it should say so", async ({ page }) => {
+        await expect(section(page)).toContainText(m.text);
+      });
+    });
+  }
+});
+
+test.describe("when the reader reaches the install section", () => {
+  test("it should tell an upgrader to restart the daemon with botropolis setup", async ({ page }) => {
+    await page.goto("/");
+    await expect(page.getByTestId("upgrade")).toContainText("restart the daemon with botropolis setup");
+  });
+});
+
+test.describe("when the page loads", () => {
+  const said = (page: Page) =>
+    page.evaluate(() =>
+      [document.body.innerText, ...[...document.querySelectorAll("img[alt]")].map((i) => i.getAttribute("alt")), ...[...document.querySelectorAll("meta[content]")].map((m) => m.getAttribute("content"))].join("\n"),
+    );
+
+  for (const phrase of ["as tall as the context", "storage yard", "botropolis install-hooks", "parked"]) {
+    test.describe(`and it is the sentence 0.3.0 made false, "${phrase}"`, () => {
+      test("it should not say it", async ({ page }) => {
+        await page.goto("/");
+        expect((await said(page)).includes(phrase)).toBe(false);
       });
     });
   }
