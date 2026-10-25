@@ -2,7 +2,7 @@ import { existsSync, readFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 import sharp from "sharp";
 import { beforeAll, describe, expect, it } from "vitest";
-import { classify, hotspots, still } from "./glance.ts";
+import { classify, hotspots, place, still, type Spec } from "./glance.ts";
 
 const botropolis = resolve(process.env.BOTROPOLIS_DIR ?? "../botropolis");
 const live = existsSync(join(botropolis, "pkg/city/kinds.go"));
@@ -11,6 +11,42 @@ const liveName = (name: string) => (live ? name : `${name} (skipped: no botropol
 
 const titles = hotspots.map((h) => h.title);
 const districts = hotspots.filter((h) => h.on === "plate");
+
+// Item 76: the film says where the plant, the towers, the library, the
+// depot and each district landed in the still, so a refilm moves their
+// hotspots with them. Item 231's checks below hold either way.
+describe("when the hotspots are placed", () => {
+  const spec = (title: string, extra: Partial<Spec> = {}): Spec => ({
+    title, line: title, source: "pkg/city/kinds.go", on: "object", px: 960, py: 540, tone: "var(--dim)", ...extra,
+  });
+  const plant = spec("power plant", { anchor: { name: "plant", dx: -4, dy: -34 } });
+  const road = spec("road", { px: 1330, py: 545 });
+
+  describe("and a hotspot names an anchor the still has", () => {
+    it("it should stand at the anchor, nudged by its own offset", () => {
+      const [h] = place([plant], { plant: { x: 1000, y: 500 } });
+      expect([h.x, h.y]).toEqual([Math.round((996 / still.width) * 10000) / 100, Math.round((466 / still.height) * 10000) / 100]);
+    });
+  });
+
+  describe("and the still has anchors, but not the one a hotspot names", () => {
+    it("it should refuse, naming it", () => {
+      expect(() => place([plant], { "tower:tracker": { x: 1, y: 1 } })).toThrow(/power plant.*plant/);
+    });
+  });
+
+  describe("and the still has no anchors", () => {
+    it("it should stand every hotspot where it was placed by hand", () => {
+      expect(place([plant, road]).map((h) => [h.x, h.y])).toEqual(place([spec("a"), road]).map((h) => [h.x, h.y]));
+    });
+  });
+
+  describe("and a hotspot names no anchor", () => {
+    it("it should stand where it was placed by hand, whatever the still has", () => {
+      expect(place([road], { plant: { x: 1, y: 1 } })).toEqual(place([road]));
+    });
+  });
+});
 
 describe("when a pixel is classified", () => {
   const cases: [string, [number, number, number], string][] = [

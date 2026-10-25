@@ -66,6 +66,7 @@ const pictures = new Set<string>([
 ]);
 const standIns: string[] = [];
 if (heroMedia(result).kind === "still") standIns.push("hero: the metropolis/hero still with a CSS drift, since the film has no metropolis/loop");
+if (!result.stills.find((s) => s.id === "metropolis/hero")?.anchors) standIns.push("map key: every hotspot placed by hand, since the metropolis/hero still has no anchors");
 if (socialCard(result).crop) standIns.push("link preview: metropolis/hero cropped to 1200x630, since the film has no metropolis/card");
 
 await rm(images, { recursive: true, force: true });

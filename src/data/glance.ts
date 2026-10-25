@@ -1,3 +1,6 @@
+import type { Anchor, Catalog } from "../../tools/media.ts";
+import media from "./media.json" with { type: "json" };
+
 export type Ground = "plate" | "plaza" | "grass" | "water" | "object";
 
 export interface Hotspot {
@@ -13,25 +16,50 @@ export interface Hotspot {
 
 export const still = { file: "src/assets/media/metropolis-hero.webp", width: 1920, height: 1080 };
 
-const kinds = "pkg/city/kinds.go";
-function spot(s: { title: string; line: string; quote?: string; source: string; on: Ground; px: number; py: number; tone: string }): Hotspot {
-  return {
-    title: s.title,
-    line: s.line,
-    quote: s.quote ?? s.line,
-    source: s.source,
-    on: s.on,
-    x: Math.round((s.px / still.width) * 10000) / 100,
-    y: Math.round((s.py / still.height) * 10000) / 100,
-    tone: s.tone,
-  };
+// Spec is a hotspot as written: its words, what it sits on, where it was
+// placed by hand, and, for something the film anchors, the anchor's name
+// and the offset from that anchor, which is at the object's foot, to the
+// spot on the object itself (item 76).
+export interface Spec {
+  title: string;
+  line: string;
+  quote?: string;
+  source: string;
+  on: Ground;
+  px: number;
+  py: number;
+  tone: string;
+  anchor?: { name: string; dx: number; dy: number };
 }
 
-export const hotspots: Hotspot[] = [
+const percent = (v: number, of: number) => Math.round((v / of) * 10000) / 100;
+
+// place stands each hotspot at its anchor in the still, when the film
+// gave the still anchors, or where it was placed by hand when it did not.
+export function place(specs: Spec[], anchors?: Record<string, Anchor>): Hotspot[] {
+  return specs.map((s) => {
+    let [px, py] = [s.px, s.py];
+    if (s.anchor && anchors) {
+      const at = anchors[s.anchor.name];
+      if (!at) throw new Error(`glance: the ${s.title} hotspot stands on the ${s.anchor.name} anchor, and the still has none by that name`);
+      [px, py] = [at.x + s.anchor.dx, at.y + s.anchor.dy];
+    }
+    return { title: s.title, line: s.line, quote: s.quote ?? s.line, source: s.source, on: s.on, x: percent(px, still.width), y: percent(py, still.height), tone: s.tone };
+  });
+}
+
+const heroAnchors = (media as Catalog).stills.find((s) => s.id === "metropolis/hero")?.anchors;
+
+const kinds = "pkg/city/kinds.go";
+const spot = (s: Spec) => s;
+
+// The offsets were measured on a film of the metropolis hero made with
+// anchors, against these hand placements, on 2026-10-25.
+export const hotspots: Hotspot[] = place([
   spot({ title: "trains", line: "Each train on the loop is one model. Its length is that model's share of today's tokens.", source: kinds, on: "object", px: 915, py: 112, tone: "var(--plant)" }),
-  spot({ title: "radio towers", line: "Each radio tower is an MCP server.", source: kinds, on: "object", px: 988, py: 105, tone: "var(--dim)" }),
-  spot({ title: "library", line: "The library holds the skills sessions have used, and how often.", source: kinds, on: "object", px: 885, py: 450, tone: "var(--plant)" }),
-  spot({ title: "power plant", line: "The power plant is the city's spend: tokens and cost across every session.", source: kinds, on: "object", px: 970, py: 405, tone: "var(--plant)" }),
+  spot({ title: "radio towers", line: "Each radio tower is an MCP server.", source: kinds, on: "object", px: 988, py: 105, tone: "var(--dim)", anchor: { name: "tower:tracker", dx: 1, dy: -56 } }),
+  spot({ title: "library", line: "The library holds the skills sessions have used, and how often.", source: kinds, on: "object", px: 885, py: 450, tone: "var(--plant)", anchor: { name: "library", dx: -7, dy: -29 } }),
+  spot({ title: "power plant", line: "The power plant is the city's spend: tokens and cost across every session.", source: kinds, on: "object", px: 970, py: 405, tone: "var(--plant)", anchor: { name: "plant", dx: -4, dy: -34 } }),
   spot({ title: "plaza", line: "the civic centre", source: kinds, on: "plaza", px: 1050, py: 500, tone: "var(--plant)" }),
   spot({
     title: "working",
@@ -62,7 +90,7 @@ export const hotspots: Hotspot[] = [
     tone: "var(--unattended)",
   }),
   spot({ title: "road", line: "A road joins two projects that sessions crossed between, by messages or by files.", source: kinds, on: "object", px: 1330, py: 545, tone: "var(--dim)" }),
-  spot({ title: "depot", line: "where packed-up sessions are kept", source: "pkg/city/depot.go", on: "object", px: 300, py: 515, tone: "var(--resting)" }),
+  spot({ title: "depot", line: "where packed-up sessions are kept", source: "pkg/city/depot.go", on: "object", px: 300, py: 515, tone: "var(--resting)", anchor: { name: "depot", dx: 3, dy: -5 } }),
   spot({
     title: "river",
     line: "The river runs through the island to the sea. Its boats carry your usage and the sessions arriving and leaving.",
@@ -80,8 +108,9 @@ export const hotspots: Hotspot[] = [
     px: 1270,
     py: 350,
     tone: "var(--dim)",
+    anchor: { name: "district:thistledown", dx: 53, dy: -7 },
   }),
-];
+], heroAnchors);
 
 const references: [Ground, [number, number, number]][] = [
   ["plate", [193, 192, 183]],
