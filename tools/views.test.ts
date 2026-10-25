@@ -2,7 +2,8 @@ import { existsSync, readFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { describe, expect, it } from "vitest";
 import { parse } from "yaml";
-import { lenses, viewFrames, type Scenario } from "./views.ts";
+import type { Manifest, ManifestEntry } from "./media.ts";
+import { lenses, viewFrames, viewStills, type Scenario } from "./views.ts";
 
 const lensSource = `package city
 
@@ -36,6 +37,34 @@ func (l Lens) About() string {
 		return "What each session has spent, and on which models."
 	}
 	return "Which sessions are waiting for you, and which are working."
+}
+
+// Views is the views a lens holds; its key opens the first.
+func (l Lens) Views() []View {
+	switch l {
+	case LensWork:
+		return []View{ViewGroups}
+	case LensCost:
+		return []View{ViewSpend, ViewModels}
+	}
+	return []View{ViewAttention}
+}
+`;
+
+const viewSource = `package city
+
+// Name is the view's own name, for the strip and the legend.
+func (v View) Name() string {
+	switch v {
+	case ViewSpend:
+		return "spend"
+	case ViewModels:
+		return "models"
+	case ViewGroups:
+		return "groups"
+	default:
+		return "attention"
+	}
 }
 `;
 
@@ -160,6 +189,67 @@ describe("viewFrames", () => {
   });
 });
 
+// Item 76: the film makes a still of every view, so the section shows
+// each lens's own still instead of a frame cut from layers/views.
+describe("lenses, with the city's view source", () => {
+  it("should give each lens its first view's name", () => {
+    expect(lenses(lensSource, viewSource).map((l) => l.view)).toEqual(["attention", "groups", "spend"]);
+  });
+});
+
+describe("viewStills", () => {
+  const still = (shot: string, extra: Partial<ManifestEntry> = {}): ManifestEntry => ({
+    file: `layers/${shot}.png`, kind: "image", format: "png", scenario: "layers", shot, title: shot, description: `about ${shot}`, width: 1920, height: 1080, ...extra,
+  });
+  const manifestOf = (...media: ManifestEntry[]): Manifest => ({ generated: "2026-10-25T00:00:00Z", version: "0.4.0", media });
+  const city = lenses(lensSource, viewSource);
+  const filmed = manifestOf(
+    still("attention", { view: "attention" }),
+    still("groups", { view: "groups" }),
+    still("spend", { view: "spend" }),
+    still("models", { view: "models" }),
+    still("night", { description: "Lit windows mark the sessions that are awake." }),
+  );
+
+  describe("when the manifest has a still for each lens's first view, and a night", () => {
+    const result = viewStills(filmed, scenario(scenarioSource), city);
+
+    it("should take the section's title from the views shot", () => {
+      expect(result?.title).toBe("Three ways to read the city");
+    });
+
+    it("should show the lenses in key order, then night", () => {
+      expect(result?.frames.map((f) => f.name)).toEqual(["Attention", "Work", "Cost", "Night"]);
+    });
+
+    it("should label each lens with its key, and night with n", () => {
+      expect(result?.frames.map((f) => f.key)).toEqual(["1", "2", "3", "n"]);
+    });
+
+    it("should use each lens's still, by its image name", () => {
+      expect(result?.frames.map((f) => f.image)).toEqual(["layers-attention", "layers-groups", "layers-spend", "layers-night"]);
+    });
+
+    it("should ask each lens's question in the city's words, and night's from its still", () => {
+      expect(result?.frames.map((f) => f.question)).toEqual([...city.map((l) => l.about), "Lit windows mark the sessions that are awake."]);
+    });
+  });
+
+  describe("when a lens's first view has no still", () => {
+    const short = manifestOf(...filmed.media.filter((m) => m.view !== "groups"));
+
+    it("should refuse, naming the lens and the view", () => {
+      expect(() => viewStills(short, scenario(scenarioSource), city)).toThrow(/Work.*groups/);
+    });
+  });
+
+  describe("when the manifest has no view stills at all", () => {
+    it("should say there are none, so the import falls back to frames of the views clip", () => {
+      expect(viewStills(manifestOf(still("night")), scenario(scenarioSource), city)).toBeUndefined();
+    });
+  });
+});
+
 const botropolis = resolve(process.env.BOTROPOLIS_DIR ?? "../botropolis");
 const live = existsSync(join(botropolis, "pkg/city/lens.go"));
 
@@ -170,5 +260,11 @@ describe.skipIf(!live)(`when the city's own sources are checked out at ${botropo
     const s = scenario(read("demo/scenarios/layers.yaml"));
     const seconds = s.shots.find((shot) => shot.name === "views")?.record?.seconds ?? 0;
     expect(() => viewFrames(s, lenses(read("pkg/city/lens.go")), seconds)).not.toThrow();
+  });
+
+  it("should film a still of every lens's first view", () => {
+    const city = lenses(read("pkg/city/lens.go"), read("pkg/city/view.go"));
+    const filmed = (parse(read("demo/scenarios/layers.yaml")) as { shots: { view?: string }[] }).shots.map((s) => s.view);
+    expect(city.map((l) => l.view).filter((v) => !filmed.includes(v))).toEqual([]);
   });
 });

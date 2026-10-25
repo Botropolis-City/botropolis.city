@@ -85,3 +85,40 @@ describe("catalog", () => {
     });
   });
 });
+
+// Item 76: the film names the view a still shows, and cuts a phone crop
+// of a clip beside it.
+describe("catalog, item 76", () => {
+  describe("when a still names a view", () => {
+    const viewed = { ...manifest, media: [entry("layers/spend.png", { view: "spend" })] } as Manifest;
+
+    it("should carry the view", () => {
+      expect(catalog(viewed, hashOf, "https://m").stills[0].view).toBe("spend");
+    });
+  });
+
+  describe("when a clip has a 4:5 crop", () => {
+    const cropped = {
+      ...manifest,
+      media: [
+        entry("metropolis/loop.webm", { seconds: 15, poster: "metropolis/loop.png" }),
+        entry("metropolis/loop.mp4", { seconds: 15, poster: "metropolis/loop.png" }),
+        entry("metropolis/loop-4x5.webm", { shot: "loop", seconds: 15, poster: "metropolis/loop-4x5.png", crop: "4:5", width: 864 }),
+        entry("metropolis/loop-4x5.mp4", { shot: "loop", seconds: 15, poster: "metropolis/loop-4x5.png", crop: "4:5", width: 864 }),
+      ],
+    } as Manifest;
+    const loop = catalog(cropped, hashOf, "https://m").clips[0];
+
+    it("should keep the crop out of the clip's own sources", () => {
+      expect(loop.sources.map((s) => s.file)).toEqual(["metropolis/loop.webm", "metropolis/loop.mp4"]);
+    });
+
+    it("should list the crop's sources, webm first", () => {
+      expect(loop.crops?.["4:5"]?.sources.map((s) => s.file)).toEqual(["metropolis/loop-4x5.webm", "metropolis/loop-4x5.mp4"]);
+    });
+
+    it("should give the crop its own poster", () => {
+      expect([loop.crops?.["4:5"]?.poster, loop.crops?.["4:5"]?.posterFile]).toEqual(["metropolis-loop-4x5", "metropolis/loop-4x5.png"]);
+    });
+  });
+});

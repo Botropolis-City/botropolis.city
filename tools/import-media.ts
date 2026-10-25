@@ -5,7 +5,7 @@ import { join, resolve } from "node:path";
 import sharp from "sharp";
 import { parse } from "yaml";
 import { catalog, imageName, type Manifest } from "./media.ts";
-import { lenses, viewFrames, type Scenario } from "./views.ts";
+import { lenses, viewFrames, viewStills, type Scenario } from "./views.ts";
 
 const usage = `Usage: node tools/import-media.ts [--help]
 
@@ -17,12 +17,19 @@ Imports the demo media filmed by the botropolis repo into this site.
 
 GIFs are left behind; they are for the README.
 
-Until the city films a still per lens, each lens is a frame of layers/views,
-written as views-<name>.webp. The lenses, their order and their questions come
-from the city's pkg/city/lens.go, and the second each is taken at from the
-views shot's script in demo/scenarios/layers.yaml: half a second before the
-next key. The import refuses a frame past the clip's end, a key for a lens the
-city does not have, and a lens the clip never shows.
+Each lens shows the film's still of the view its key opens on, and night its
+night still. The lenses, their order, their questions and their first views come
+from the city's pkg/city/lens.go and view.go; the import refuses a lens whose
+view the film has no still of.
+
+A film made before the stills existed falls back to frames of layers/views,
+written as views-<name>.webp, each taken half a second before the next key of
+the views shot's script in demo/scenarios/layers.yaml. The import refuses a
+frame past the clip's end, a key for a lens the city does not have, and a lens
+the clip never shows.
+
+It ends by listing every stand-in still in use: what the page shows in place of
+something the film did not make.
 
 Environment:
   BOTROPOLIS_DIR  the botropolis checkout (default: ../botropolis)
@@ -54,7 +61,9 @@ const result = catalog(manifest, (file) => hashes.get(file)!, base);
 const pictures = new Set<string>([
   ...manifest.media.filter((m) => m.kind === "image").map((m) => m.file),
   ...result.clips.map((c) => c.posterFile),
+  ...result.clips.flatMap((c) => Object.values(c.crops ?? {}).map((crop) => crop.posterFile)),
 ]);
+const standIns: string[] = [];
 
 await rm(images, { recursive: true, force: true });
 await mkdir(images, { recursive: true });
@@ -62,24 +71,28 @@ for (const file of pictures) {
   await sharp(join(demo, file)).webp({ quality: 92 }).toFile(join(images, `${imageName(file)}.webp`));
 }
 
-const city = lenses(await readFile(join(botropolis, "pkg/city/lens.go"), "utf8"));
+const city = lenses(await readFile(join(botropolis, "pkg/city/lens.go"), "utf8"), await readFile(join(botropolis, "pkg/city/view.go"), "utf8"));
 const scenario = parse(await readFile(join(botropolis, "demo/scenarios/layers.yaml"), "utf8")) as Scenario;
-const viewsClip = manifest.media.find((m) => m.file === "layers/views.mp4");
-if (!viewsClip?.seconds) throw new Error("the film has no layers/views.mp4 with a length");
-const viewSection = viewFrames(scenario, city, viewsClip.seconds);
-for (const f of viewSection.frames) {
-  const png = execFileSync("ffmpeg", ["-v", "error", "-ss", String(f.at), "-i", join(demo, "layers/views.mp4"), "-frames:v", "1", "-f", "image2pipe", "-c:v", "png", "-"], { maxBuffer: 64 << 20 });
-  if (!png.length) throw new Error(`ffmpeg returned no frame for ${f.name} at ${f.at} s`);
-  await sharp(png).webp({ quality: 92 }).toFile(join(images, `${f.image}.webp`));
+let views = viewStills(manifest, scenario, city);
+if (!views) {
+  standIns.push("views: frames cut from layers/views.mp4, since the film has no still per view");
+  const viewsClip = manifest.media.find((m) => m.file === "layers/views.mp4");
+  if (!viewsClip?.seconds) throw new Error("the film has no layers/views.mp4 with a length");
+  const viewSection = viewFrames(scenario, city, viewsClip.seconds);
+  for (const f of viewSection.frames) {
+    const png = execFileSync("ffmpeg", ["-v", "error", "-ss", String(f.at), "-i", join(demo, "layers/views.mp4"), "-frames:v", "1", "-f", "image2pipe", "-c:v", "png", "-"], { maxBuffer: 64 << 20 });
+    if (!png.length) throw new Error(`ffmpeg returned no frame for ${f.name} at ${f.at} s`);
+    await sharp(png).webp({ quality: 92 }).toFile(join(images, `${f.image}.webp`));
+  }
+  views = { title: viewSection.title, frames: viewSection.frames.map(({ name, key, question, image }) => ({ name, key, question, image })) };
 }
-const views = { title: viewSection.title, frames: viewSection.frames.map(({ name, key, question, image }) => ({ name, key, question, image })) };
 
 await mkdir(clipsOut, { recursive: true });
-const wanted = new Set(result.clips.flatMap((c) => c.sources.map((s) => s.name)));
+const sources = result.clips.flatMap((c) => [...c.sources, ...Object.values(c.crops ?? {}).flatMap((crop) => crop.sources)]);
+const wanted = new Set(sources.map((s) => s.name));
 for (const stale of (await readdir(clipsOut)).filter((f) => !wanted.has(f))) await rm(join(clipsOut, stale));
-for (const clip of result.clips) {
-  for (const s of clip.sources) await copyFile(join(demo, s.file), join(clipsOut, s.name));
-}
+for (const s of sources) await copyFile(join(demo, s.file), join(clipsOut, s.name));
 
 await writeFile("src/data/media.json", JSON.stringify({ ...result, views }, null, 2) + "\n");
 console.log(`${pictures.size} images, ${wanted.size} clip files, version ${result.version}`);
+console.log(standIns.length ? `stand-ins still in use:\n${standIns.map((s) => `  - ${s}`).join("\n")}` : "no stand-ins: the film made everything the page shows");
