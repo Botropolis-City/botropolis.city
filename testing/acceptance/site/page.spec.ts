@@ -70,6 +70,42 @@ test.describe("when the page loads", () => {
   });
 });
 
+// Item 76: once the release films the metropolis loop, the title screen
+// plays it in place of the drifting still.
+const hasLoop = media.clips.some((c) => c.id === "metropolis/loop");
+test.describe(`when the hero plays a loop${hasLoop ? "" : " (skipped: media.json has no metropolis/loop until the release films it)"}`, () => {
+  test.skip(!hasLoop);
+  test.beforeEach(async ({ page }) => {
+    await page.goto("/");
+  });
+
+  for (const [property, expected] of [
+    ["muted", true],
+    ["loop", true],
+    ["playsInline", true],
+    ["autoplay", true],
+  ] as const) {
+    test(`it should be ${property}`, async ({ page }) => {
+      expect(await page.getByTestId("hero-media").evaluate((el, p) => (el as HTMLVideoElement)[p], property)).toBe(expected);
+    });
+  }
+
+  test.describe("and the pause button is pressed", () => {
+    test("it should pause the loop", async ({ page }) => {
+      await page.getByRole("button", { name: /pause/i }).click();
+      expect(await page.getByTestId("hero-media").evaluate((el) => (el as HTMLVideoElement).paused)).toBe(true);
+    });
+  });
+
+  test.describe("and the reader prefers reduced motion", () => {
+    test.use({ reducedMotion: "reduce" });
+
+    test("it should not play", async ({ page }) => {
+      expect(await page.getByTestId("hero-media").evaluate((el) => (el as HTMLVideoElement).paused)).toBe(true);
+    });
+  });
+});
+
 test.describe("the theater's player", () => {
   test.beforeEach(async ({ page }) => {
     await page.goto("/");

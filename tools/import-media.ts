@@ -4,6 +4,7 @@ import { copyFile, mkdir, readFile, readdir, rm, writeFile } from "node:fs/promi
 import { join, resolve } from "node:path";
 import sharp from "sharp";
 import { parse } from "yaml";
+import { heroMedia, socialCard } from "../src/data/hero.ts";
 import { catalog, imageName, type Manifest } from "./media.ts";
 import { lenses, viewFrames, viewStills, type Scenario } from "./views.ts";
 
@@ -64,6 +65,8 @@ const pictures = new Set<string>([
   ...result.clips.flatMap((c) => Object.values(c.crops ?? {}).map((crop) => crop.posterFile)),
 ]);
 const standIns: string[] = [];
+if (heroMedia(result).kind === "still") standIns.push("hero: the metropolis/hero still with a CSS drift, since the film has no metropolis/loop");
+if (socialCard(result).crop) standIns.push("link preview: metropolis/hero cropped to 1200x630, since the film has no metropolis/card");
 
 await rm(images, { recursive: true, force: true });
 await mkdir(images, { recursive: true });

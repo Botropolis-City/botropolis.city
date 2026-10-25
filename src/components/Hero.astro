@@ -1,23 +1,39 @@
 ---
-import { Picture } from "astro:assets";
+import { getImage, Picture } from "astro:assets";
 import { clip, duration, image, media } from "../data/catalog.ts";
+import { heroMedia } from "../data/hero.ts";
 import Keycap from "./Keycap.astro";
 
 const tour = clip("workshop/tour");
+const hero = heroMedia(media);
+const alt =
+  "An isometric city of a dozen districts on its island: towers, a plaza with a fountain, two radio towers on the ridge, the depot's crates, and boats on the river.";
+const poster = hero.kind === "loop" ? await getImage({ src: image(hero.poster), width: 1920, format: "webp" }) : undefined;
 ---
 
 <section class="hero" id="top" data-hero>
   <div class="city">
-    <Picture
-      src={image("metropolis-hero")}
-      formats={["avif"]} fallbackFormat="webp"
-      widths={[640, 960, 1280, 1600, 1920]}
-      sizes="(max-width: 900px) 120vw, 80vw"
-      alt="An isometric city of a dozen districts on its island: towers, a plaza with a fountain, two radio towers on the ridge, the depot's crates, and boats on the river."
-      loading="eager"
-      fetchpriority="high"
-      data-testid="hero-media"
-    />
+    {
+      hero.kind === "loop" ? (
+        <video autoplay muted loop playsinline preload="auto" poster={poster!.src} aria-label={alt} data-testid="hero-media" data-hero-loop>
+          {hero.sources.map((s) => (
+            <source src={s.url} type={s.type} media={s.media} />
+          ))}
+        </video>
+      ) : (
+        <Picture
+          src={image(hero.image)}
+          formats={["avif"]}
+          fallbackFormat="webp"
+          widths={[640, 960, 1280, 1600, 1920]}
+          sizes="(max-width: 900px) 120vw, 80vw"
+          alt={alt}
+          loading="eager"
+          fetchpriority="high"
+          data-testid="hero-media"
+        />
+      )
+    }
   </div>
   <div class="wrap copy">
     <p class="eyebrow"><span class="dot" style="--tone:var(--needs-you)"></span> a city for your Claude Code sessions</p>
@@ -52,9 +68,18 @@ const tour = clip("workshop/tour");
 <script>
   const hero = document.querySelector<HTMLElement>("[data-hero]")!;
   const button = hero.querySelector<HTMLButtonElement>("[data-pause]")!;
+  const loop = hero.querySelector<HTMLVideoElement>("[data-hero-loop]");
+  if (loop && matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    loop.removeAttribute("autoplay");
+    loop.pause();
+    hero.classList.add("paused");
+    button.setAttribute("aria-pressed", "true");
+  }
   button.addEventListener("click", () => {
     const paused = hero.classList.toggle("paused");
     button.setAttribute("aria-pressed", String(paused));
+    if (loop && paused) loop.pause();
+    else if (loop) void loop.play();
   });
 </script>
 
@@ -83,6 +108,10 @@ const tour = clip("workshop/tour");
   }
   .hero.paused .city :global(img) {
     animation-play-state: paused;
+  }
+  .city video {
+    display: block;
+    width: 100%;
   }
   @keyframes drift {
     from {
