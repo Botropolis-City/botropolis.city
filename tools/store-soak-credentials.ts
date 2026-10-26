@@ -1,5 +1,8 @@
 import { execFileSync, spawnSync } from "node:child_process";
-import { opCreateArgs, opItems, type Access, type Credential } from "./soak.ts";
+import { mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
+import { opCreateArgs, opItems, storeItems, stored, type Access, type Credential, type Op } from "./soak.ts";
 
 const usage = `Usage: node tools/store-soak-credentials.ts [--help]
 
@@ -8,9 +11,12 @@ the box's write-only key and the laptop's read-only key (item 266).
 Each item gets the fields "access key id", "secret access key" and "bucket url",
 so a secret-run reference is op:<vault>/<item>/<field>.
 
-The keys go from terraform to op on standard input, never on a command line,
-and nothing is printed but the items' names. An item that already exists is
-left alone; delete it first to replace it.
+Each item's template is written to a file only its owner can read, in a private
+temporary directory removed as soon as op has read it; no key is ever on a
+command line. Every item, made now or already there, is then read back by its
+title, and the run fails unless each field is present and not empty. Nothing is
+printed but the items' names and what is missing. An item that already exists
+is left alone; archive it first to replace it.
 
 Environment:
   TF_DIR          the Terraform directory      (default: infra)
@@ -41,26 +47,37 @@ const tfDir = process.env.TF_DIR ?? "infra";
 const output = (name: string) =>
   JSON.parse(execFileSync("terraform", [`-chdir=${tfDir}`, "output", "-json", name], { encoding: "utf8" }));
 
+const op: Op = {
+  exists: (vault, title) => spawnSync("op", ["item", "get", "--vault", vault, title], { stdio: "ignore" }).status === 0,
+
+  create: (item) => {
+    const dir = mkdtempSync(join(tmpdir(), "soak-credentials-"));
+    try {
+      const path = join(dir, "item.json");
+      writeFileSync(path, JSON.stringify(item.template), { mode: 0o600 });
+      return spawnSync("op", opCreateArgs(item, path), { stdio: ["ignore", "ignore", "inherit"] }).status === 0;
+    } finally {
+      rmSync(dir, { recursive: true, force: true });
+    }
+  },
+
+  fields: (vault, title) => {
+    const got = spawnSync("op", ["item", "get", "--vault", vault, title, "--format", "json", "--reveal"], {
+      encoding: "utf8",
+      stdio: ["ignore", "pipe", "ignore"],
+    });
+    if (got.status !== 0) return null;
+    const fields: { label?: string; value?: string }[] = JSON.parse(got.stdout).fields ?? [];
+    return fields.map((f) => ({ label: f.label ?? "", value: f.value ?? "" }));
+  },
+};
+
 const credentials: Record<Access, Credential> = output("soak_credentials");
 const bucketUrl: string = output("soak_bucket_url");
 
-let failed = false;
-for (const item of opItems(credentials, refs, bucketUrl)) {
-  const name = `${item.vault}/${item.template.title}`;
-  const exists = spawnSync("op", ["item", "get", "--vault", item.vault, item.template.title], { stdio: "ignore" });
-  if (exists.status === 0) {
-    process.stdout.write(`  have ${name}\n`);
-    continue;
-  }
-  const created = spawnSync("op", opCreateArgs(item), {
-    input: JSON.stringify(item.template),
-    stdio: ["pipe", "ignore", "inherit"],
-  });
-  if (created.status === 0) {
-    process.stdout.write(`  made ${name} (${item.access})\n`);
-  } else {
-    process.stderr.write(`  could not make ${name}\n`);
-    failed = true;
-  }
+const results = storeItems(opItems(credentials, refs, bucketUrl), op);
+for (const r of results) {
+  const line = `  ${r.outcome} ${r.name} (${r.access})${r.missing ? `: missing ${r.missing.join(", ")}` : ""}\n`;
+  (r.outcome === "have" || r.outcome === "made" ? process.stdout : process.stderr).write(line);
 }
-process.exit(failed ? 1 : 0);
+process.exit(stored(results) ? 0 : 1);
