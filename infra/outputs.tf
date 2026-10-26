@@ -22,3 +22,19 @@ output "media_hostname" {
 output "packages_hostname" {
   value = cloudflare_r2_custom_domain.packages.domain
 }
+
+output "soak_bucket_url" {
+  description = "The soak bucket's S3 endpoint and bucket, for BUCKET_URL."
+  value       = "https://${local.account_id}.r2.cloudflarestorage.com/${cloudflare_r2_bucket.soak.name}"
+}
+
+output "soak_credentials" {
+  description = "S3 keys for the soak bucket, write-only for the box and read-only for the laptop: the token's id and the SHA-256 of its value."
+  sensitive   = true
+  value = {
+    for access, token in cloudflare_account_token.soak : access => {
+      access_key_id     = token.id
+      secret_access_key = sha256(token.value)
+    }
+  }
+}

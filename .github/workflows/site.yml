@@ -24,6 +24,8 @@ jobs:
         with:
           terraform_version: 1.16.5
       - run: terraform -chdir=infra fmt -check -recursive
+      - run: terraform -chdir=infra init -backend=false -input=false
+      - run: terraform -chdir=infra test
       - run: for f in testing/acceptance/verify.sh tools/upload-media.sh; do bash -n "$f"; done
       - uses: actions/setup-node@v7
         with:

@@ -64,7 +64,12 @@ test-acceptance :: site-build
 	$(LOG) "Acceptance tests against $${BASE_URL:-a local wrangler dev}"
 	@npx playwright test
 
-test :: test-unit test-acceptance
+test-infra ::
+	$(LOG) "Terraform tests, against a mocked provider"
+	@$(TF) init -backend=false -input=false >/dev/null
+	@$(TF) test
+
+test :: test-unit test-infra test-acceptance
 
 infra-fmt ::
 	$(LOG) "Formatting Terraform"
@@ -81,6 +86,10 @@ infra-validate :: infra-init
 infra-plan :: infra-init
 	$(LOG) "Speculative plan on HCP Terraform (applies happen on merge to main)"
 	@$(TF) plan
+
+soak-credentials :: infra-init
+	$(LOG) "Copying the soak bucket's write and read keys into 1Password"
+	@SOAK_WRITE_ITEM="${SOAK_WRITE_ITEM}" SOAK_READ_ITEM="${SOAK_READ_ITEM}" node tools/store-soak-credentials.ts
 
 name-servers :: infra-init
 	$(LOG) "Cloudflare name servers, for the namecheap repo"
