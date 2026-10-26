@@ -1,5 +1,5 @@
 ---
-import { media } from "../data/catalog.ts";
+import { latest } from "../data/current.ts";
 
 const links = [
   { href: "#watch", label: "watch", tone: "var(--working)" },
@@ -30,7 +30,7 @@ const links = [
       }
     </ul>
   </nav>
-  <span class="version" data-testid="version">v{media.version}</span>
+  <a class="version" data-testid="version" href={latest.url}>v{latest.version}</a>
 </header>
 
 <style>
@@ -85,6 +85,7 @@ const links = [
     padding: 4px 8px;
     border: 1px solid var(--hairline);
     border-radius: 4px;
+    text-decoration: none;
   }
   @media (max-width: 560px) {
     .mark span {

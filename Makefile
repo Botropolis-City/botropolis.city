@@ -13,6 +13,7 @@ MEDIA_BUCKET ?= botropolis-media
 MEDIA_HOST ?= https://media.botropolis.city
 BOTROPOLIS_DIR ?= ../botropolis
 DEMO_DIR ?= ${BOTROPOLIS_DIR}/dist/demo
+RELEASE_FIXTURE ?= $(if ${BASE_URL},,testing/fixtures/release.json)
 TF := terraform -chdir=infra
 WITH_DEPLOY_TOKEN := secret-run --env "CLOUDFLARE_API_TOKEN=${CF_DEPLOY_TOKEN_REF}" --
 
@@ -60,8 +61,9 @@ test-unit :: node_modules
 	$(LOG) "Unit tests"
 	@npx vitest run
 
+test-acceptance : export BOTROPOLIS_RELEASE = ${RELEASE_FIXTURE}
 test-acceptance :: site-build
-	$(LOG) "Acceptance tests against $${BASE_URL:-a local wrangler dev}"
+	$(LOG) "Acceptance tests against $${BASE_URL:-a local wrangler dev}, with the release in ${RELEASE_FIXTURE}"
 	@npx playwright test
 
 test-infra ::

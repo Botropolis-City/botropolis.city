@@ -1,5 +1,6 @@
 ---
-import { release } from "../data/release.ts";
+import { latest, news } from "../data/current.ts";
+import { release, versions } from "../data/release.ts";
 import Keycap from "./Keycap.astro";
 
 const repo = "https://github.com/Botropolis-City/botropolis/blob/main";
@@ -7,11 +8,36 @@ const repo = "https://github.com/Botropolis-City/botropolis/blob/main";
 
 <section class="band" id="new" aria-labelledby="new-title">
   <div class="wrap">
-    <p class="eyebrow"><span class="dot" style="--tone:var(--working)"></span> new in {release.version}</p>
-    <h2 id="new-title">{release.headline.text}</h2>
+    <p class="eyebrow"><span class="dot" style="--tone:var(--working)"></span> new in {latest.version}</p>
+    <h2 id="new-title">What changed in {latest.version}</h2>
+    <p class="lead">Released <time datetime={latest.date}>{latest.date}</time>. Each line leads an entry in the release's notes.</p>
+
+    <div class="news" data-testid="highlights">
+      {
+        news.map((s) => (
+          <div class="kind">
+            <h3>{s.heading}</h3>
+            <ul>
+              {s.items.map((item) => (
+                <li>{item.map((seg) => (seg.code ? <code>{seg.text}</code> : seg.text))}</li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </div>
+
+    <p class="more">
+      Read <a href={latest.url}>the full notes</a>, or every release in <a href={`${repo}/CHANGELOG.md`}>the changelog</a>.
+    </p>
+  </div>
+
+  <div class="wrap earlier" data-testid="measured">
+    <p class="eyebrow"><span class="dot" style="--tone:var(--resting)"></span> {release.measured}, the performance release</p>
+    <h3 class="headline">{release.headline.text}</h3>
     <p class="lead">
-      {release.version} is a performance release. Hidden, it takes under 1% of a core, and so does the daemon once it settles; the first launch no longer takes the machine.
-      <span class="measured">{release.measuredOn}, against 0.2.2 and the first builds of this release:</span>
+      {release.measured} is a performance release. Hidden, it takes under 1% of a core, and so does the daemon once it settles; the first launch no longer takes the machine.
+      <span class="measured">{release.measuredOn}, against {release.against} and the first builds of {release.measured}:</span>
     </p>
 
     <div class="table">
@@ -20,7 +46,7 @@ const repo = "https://github.com/Botropolis-City/botropolis/blob/main";
           <tr>
             <th scope="col"><span class="sr-only">Measure</span></th>
             <th scope="col">before</th>
-            <th scope="col">{release.version}</th>
+            <th scope="col">{release.measured}</th>
           </tr>
         </thead>
         <tbody>
@@ -38,14 +64,14 @@ const repo = "https://github.com/Botropolis-City/botropolis/blob/main";
     </div>
 
     <div class="misses">
-      <h3>Still missed</h3>
-      <p>Two budgets, and 0.3.x continues on them:</p>
+      <h4>Still missed</h4>
+      <p>Two budgets, and {release.continues} continues on them:</p>
       <ul>{release.misses.map((m) => <li>{m.text}</li>)}</ul>
     </div>
 
     <div class="cards">
       <article>
-        <h3>Post your city <Keycap k="⇧s" /></h3>
+        <h4>Post your city <Keycap k="⇧s" /></h4>
         <p>
           Sharing mode hides what identifies you: session titles, project and district names, prompts, spend and token figures, and every panel that shows them. The city wears neutral
           names such as District A and Session 3. Then <Keycap k="p" /> saves a picture, <Keycap k="g" /> a four-second GIF and <Keycap k="c" /> a clip of 5 to 60 seconds, and
@@ -53,27 +79,55 @@ const repo = "https://github.com/Botropolis-City/botropolis/blob/main";
         </p>
       </article>
       <article>
-        <h3>Read a session in the city <Keycap k="o" /></h3>
+        <h4>Read a session in the city <Keycap k="o" /></h4>
         <p>The reading pane shows Claude's replies as formatted text, not raw Markdown: bold is bold, code and tables are set in Go Mono, and a link shows its URL after its text.</p>
       </article>
       <article>
-        <h3>Manual pages, and a promise</h3>
+        <h4>Manual pages, and a promise</h4>
         <p>
           <code>man botropolis</code>, a page per command, and <code>man botropolis-config</code> for every setting with its default.{" "}
-          <a href={`${repo}/docs/compatibility.md`}>docs/compatibility.md</a> says what 1.0.0 promises not to break: every command and flag <code>--help</code> shows, every config key,
+          <a href={`${repo}/docs/compatibility.md`}>docs/compatibility.md</a> says what {versions.promise} promises not to break: every command and flag <code>--help</code> shows, every config key,
           every data file an earlier version wrote.
         </p>
       </article>
     </div>
 
     <p class="more">
-      Commands moved too, and the daemon needs a restart after upgrading: <a href="#install">see install</a>. Everything else is in{" "}
+      Commands moved too, and the daemon needs a restart after upgrading: <a href="#install">see install</a>. Everything else in {release.measured} is in{" "}
       <a href={`${repo}/CHANGELOG.md`}>the changelog</a>.
     </p>
   </div>
 </section>
 
 <style>
+  .news {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+    gap: 20px 32px;
+  }
+  .kind h3 {
+    margin: 0 0 10px;
+    font: 500 12px/1 var(--mono);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--dim);
+  }
+  .kind ul {
+    margin: 0;
+    padding-left: 18px;
+    font-size: 15px;
+  }
+  .kind li + li {
+    margin-top: 6px;
+  }
+  .earlier {
+    margin-top: 72px;
+  }
+  .headline {
+    margin: 0 0 12px;
+    font-size: 1.5rem;
+    letter-spacing: -0.01em;
+  }
   .measured {
     display: block;
     margin-top: 12px;
@@ -125,7 +179,7 @@ const repo = "https://github.com/Botropolis-City/botropolis/blob/main";
     color: var(--dim);
     font-size: 15px;
   }
-  .misses h3 {
+  .misses h4 {
     display: inline;
     margin: 0 8px 0 0;
     font: 500 12px/1 var(--mono);
@@ -151,7 +205,7 @@ const repo = "https://github.com/Botropolis-City/botropolis/blob/main";
     border-radius: 10px;
     background: var(--raised);
   }
-  article h3 {
+  article h4 {
     display: flex;
     align-items: center;
     justify-content: space-between;

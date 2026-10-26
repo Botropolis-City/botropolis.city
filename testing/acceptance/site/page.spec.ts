@@ -3,6 +3,7 @@ import { expect, test, type Page } from "@playwright/test";
 import media from "../../../src/data/media.json" with { type: "json" };
 import { hotspots } from "../../../src/data/glance.ts";
 import { distros, shells } from "../../../src/data/install.ts";
+import { latest, news } from "../../../src/data/current.ts";
 import { release } from "../../../src/data/release.ts";
 import { stale } from "../../../src/data/stale.ts";
 import { theater } from "../../../src/data/theater.ts";
@@ -16,8 +17,20 @@ test.describe("when the page loads", () => {
     await expect(page.getByRole("heading", { level: 1 })).toHaveText("Botropolis");
   });
 
-  test("it should show the filmed version in the HUD", async ({ page }) => {
-    await expect(page.getByTestId("version")).toHaveText(`v${media.version}`);
+  test("it should show the latest release's version in the HUD", async ({ page }) => {
+    await expect(page.getByTestId("version")).toHaveText(`v${latest.version}`);
+  });
+
+  test("it should link the HUD's version to its release", async ({ page }) => {
+    await expect(page.getByTestId("version")).toHaveAttribute("href", latest.url);
+  });
+
+  test("it should name the latest release's version in the hero's news", async ({ page }) => {
+    await expect(page.getByTestId("news")).toContainText(`New in ${latest.version}`);
+  });
+
+  test("it should say the version the film was made from", async ({ page }) => {
+    await expect(page.locator("#watch .lead")).toContainText(`filmed in v${media.version} from demo sessions`);
   });
 
   test("it should link to the source on GitHub", async ({ page }) => {
@@ -278,12 +291,31 @@ test.describe("when the reader reaches the release's section", () => {
     await page.goto("/");
   });
 
-  test("it should be titled with the release's version", async ({ page }) => {
-    await expect(section(page).locator(".eyebrow")).toContainText(release.version);
+  test("it should be titled with the latest release's version", async ({ page }) => {
+    await expect(section(page).locator(".eyebrow").first()).toContainText(`new in ${latest.version}`);
+  });
+
+  test("it should link the release's full notes", async ({ page }) => {
+    await expect(section(page).getByRole("link", { name: "the full notes" })).toHaveAttribute("href", latest.url);
+  });
+
+  for (const s of news) {
+    for (const item of s.items) {
+      const text = item.map((x) => x.text).join("");
+      test.describe(`and it is the ${s.heading} highlight "${text}"`, () => {
+        test("it should show it", async ({ page }) => {
+          await expect(section(page).getByTestId("highlights")).toContainText(text);
+        });
+      });
+    }
+  }
+
+  test("it should name the release its figures measured", async ({ page }) => {
+    await expect(section(page).getByTestId("measured")).toContainText(`${release.measured}, the performance release`);
   });
 
   test("it should be headed with the headline its tests hold to the table", async ({ page }) => {
-    await expect(section(page).getByRole("heading", { level: 2 })).toHaveText(release.headline.text);
+    await expect(section(page).getByTestId("measured").getByRole("heading", { level: 3 }).first()).toHaveText(release.headline.text);
   });
 
   test("it should say the machine its figures were measured on", async ({ page }) => {

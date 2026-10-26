@@ -23,8 +23,16 @@ export interface Ratio {
   factor: number;
 }
 
+export const versions = {
+  protocolSince: "0.3.0",
+  protocolBefore: "0.2",
+  promise: "1.0.0",
+};
+
 export const release = {
-  version: "0.3.0",
+  measured: "0.3.0",
+  against: "0.2.2",
+  continues: "0.3.x",
   headline: {
     text: "Up to four times faster to draw, on a tenth of 0.2.2's memory",
     ratios: [

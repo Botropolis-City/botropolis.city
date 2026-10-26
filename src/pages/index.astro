@@ -10,11 +10,12 @@ import Release from "../components/Release.astro";
 import Theater from "../components/Theater.astro";
 import Views from "../components/Views.astro";
 import Base from "../layouts/Base.astro";
+import { release } from "../data/release.ts";
 ---
 
 <Base
   title="Botropolis: every Claude Code session, drawn as a city"
-  description="Every Claude Code session on your machine, drawn as a city you can read at a glance and drive from the map. 0.3.0 draws a frame in about 10–11 ms and settles at about 445 MiB, on a laptop's integrated graphics."
+  description={`Every Claude Code session on your machine, drawn as a city you can read at a glance and drive from the map. ${release.measured} draws a frame in about 10–11 ms and settles at about 445 MiB, on a laptop's integrated graphics.`}
 >
   <HudBar />
   <main>

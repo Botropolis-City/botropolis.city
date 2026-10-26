@@ -1,5 +1,6 @@
 ---
 import { distros, moved, shells, start } from "../data/install.ts";
+import { versions } from "../data/release.ts";
 ---
 
 <section class="band" id="install" aria-labelledby="install-title">
@@ -69,9 +70,9 @@ import { distros, moved, shells, start } from "../data/install.ts";
     }
 
     <div class="upgrade" data-testid="upgrade">
-      <h3>Upgrading from 0.2</h3>
+      <h3>Upgrading from {versions.protocolBefore}</h3>
       <p>
-        After installing, restart the daemon with <code>botropolis setup</code>, or the city's Restart Daemon dialog: a 0.3.0 city and daemon talk a new version of their protocol, and a city
+        After installing, restart the daemon with <code>botropolis setup</code>, or the city's Restart Daemon dialog: a {versions.protocolSince} city and daemon talk a new version of their protocol, and a city
         meeting an older daemon says so and offers to restart it.
       </p>
       <p>Some commands moved. The old names still work through 0.x, with a note on stderr:</p>

@@ -4,6 +4,7 @@ import { clip, duration, image } from "../data/catalog.ts";
 import AppWindow from "./AppWindow.astro";
 import Keycap from "./Keycap.astro";
 import { theater } from "../data/theater.ts";
+import { media } from "../data/catalog.ts";
 
 const scenes = await Promise.all(
   theater.map(async (id) => {
@@ -19,7 +20,7 @@ const first = scenes[0];
   <div class="wrap">
     <p class="eyebrow"><span class="dot" style="--tone:var(--working)"></span> watch</p>
     <h2 id="watch-title">Scene select</h2>
-    <p class="lead">Six cities filmed from demo sessions, with the interface as you would see it. Pick one, or step through them.</p>
+    <p class="lead">Six cities filmed in v{media.version} from demo sessions, with the interface as you would see it. Pick one, or step through them.</p>
 
     <div class="stage" data-theater>
       <div class="screen">

@@ -50,6 +50,19 @@ The palette, radius and grid are copied from `pkg/ui/theme.go` in the app.
 
 Single-key shortcuts (`?` lists them) are ignored while typing or holding a modifier, and the `?` dialog switches them off for good, as WCAG 2.1.4 requires.
 
+## The release
+
+The site never types a version number.
+Its build reads botropolis's latest release from GitHub, and the release's notes are the "new in" section; a build that cannot reach GitHub fails rather than guess.
+Only `src/data/release.ts` names past versions, each for what it measured or changed, and a unit test fails on a version number anywhere else in `src/`.
+`media.json` names the version the film was made from, which the theatre captions as such.
+
+botropolis's release workflow runs this repo's `site` workflow as its last step, so the site rebuilds minutes after every release.
+If the site does not show a new version, run `site` by hand from the Actions tab.
+
+`make test` builds and tests against the invented release in `testing/fixtures/release.json`, so it needs no network and proves the page is driven by its source.
+With `BASE_URL` set, and in CI, it uses the real one.
+
 ## Media
 
 The media is filmed in the botropolis repo by `make demo-media`, from demo sessions rather than anyone's real ones.

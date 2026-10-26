@@ -6,7 +6,7 @@ import { numbers, release, section } from "./release.ts";
 const botropolis = resolve(process.env.BOTROPOLIS_DIR ?? "../botropolis");
 const changelogPath = join(botropolis, "CHANGELOG.md");
 const live = existsSync(changelogPath);
-const changelog = live ? section(readFileSync(changelogPath, "utf8"), release.version) : "";
+const changelog = live ? section(readFileSync(changelogPath, "utf8"), release.measured) : "";
 const liveIt = live ? it : it.skip;
 const liveName = (name: string) => (live ? name : `${name} (skipped: no botropolis checkout at ${botropolis})`);
 

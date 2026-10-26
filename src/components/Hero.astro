@@ -1,10 +1,12 @@
 ---
 import { getImage, Picture } from "astro:assets";
 import { clip, duration, image, media } from "../data/catalog.ts";
+import { latest, news } from "../data/current.ts";
 import { heroMedia } from "../data/hero.ts";
 import Keycap from "./Keycap.astro";
 
 const tour = clip("workshop/tour");
+const first = news[0]?.items[0];
 const hero = heroMedia(media);
 const alt =
   "An isometric city of a dozen districts on its island: towers, a plaza with a fountain, two radio towers on the ridge, the depot's crates, and boats on the river.";
@@ -43,8 +45,8 @@ const poster = hero.kind === "loop" ? await getImage({ src: image(hero.poster), 
       Districts are projects, and a project is just a directory. Buildings are sessions, one to five storeys by how much work each has done, and their beacons say which one needs
       you. Click one to attach it, stop it, read it or pack it away; the terminal is only ever a view.
     </p>
-    <p class="news">
-      <a href="#new"><b>New in {media.version}</b> a frame in about 10–11 ms and about 445 MiB settled, on a laptop's integrated graphics; under 1% of a core while hidden →</a>
+    <p class="news" data-testid="news">
+      <a href="#new"><b>New in {latest.version}</b> {first ? first.map((s) => (s.code ? <code>{s.text}</code> : s.text)) : "what changed"} →</a>
     </p>
     <div class="actions">
       <a class="btn primary" href="#install">Install <span class="kbd"><Keycap k="i" /></span></a>
