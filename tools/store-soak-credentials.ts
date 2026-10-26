@@ -1,5 +1,5 @@
 import { execFileSync, spawnSync } from "node:child_process";
-import { opItems, type Access, type Credential } from "./soak.ts";
+import { opCreateArgs, opItems, type Access, type Credential } from "./soak.ts";
 
 const usage = `Usage: node tools/store-soak-credentials.ts [--help]
 
@@ -52,7 +52,7 @@ for (const item of opItems(credentials, refs, bucketUrl)) {
     process.stdout.write(`  have ${name}\n`);
     continue;
   }
-  const created = spawnSync("op", ["item", "create", "--vault", item.vault, "-"], {
+  const created = spawnSync("op", opCreateArgs(item), {
     input: JSON.stringify(item.template),
     stdio: ["pipe", "ignore", "inherit"],
   });

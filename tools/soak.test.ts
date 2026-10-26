@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { opItems, parseItemRef } from "./soak.ts";
+import { opCreateArgs, opItems, parseItemRef } from "./soak.ts";
 
 describe("parseItemRef", () => {
   describe("when given a reference to a vault and an item", () => {
@@ -72,6 +72,41 @@ describe("opItems", () => {
   describe("when a credential is missing", () => {
     it("should refuse", () => {
       expect(() => opItems({ write: credentials.write } as typeof credentials, refs, bucketUrl)).toThrow(/read/);
+    });
+  });
+});
+
+describe("opCreateArgs", () => {
+  describe("when given an item", () => {
+    const [item] = opItems(
+      {
+        write: { access_key_id: "write-id", secret_access_key: "write-secret" },
+        read: { access_key_id: "read-id", secret_access_key: "read-secret" },
+      },
+      { write: "op:Vault/Box Key", read: "op:Vault/Laptop Key" },
+      "https://acct.r2.cloudflarestorage.com/soak",
+    );
+    const args = opCreateArgs(item);
+    const flag = (name: string) => args[args.indexOf(name) + 1];
+
+    it("should create an item", () => {
+      expect(args.slice(0, 2)).toEqual(["item", "create"]);
+    });
+
+    it("should name the item's vault", () => {
+      expect(flag("--vault")).toBe("Vault");
+    });
+
+    it("should name the template's category", () => {
+      expect(flag("--category")).toBe("API Credential");
+    });
+
+    it("should read the template from standard input", () => {
+      expect(args.at(-1)).toBe("-");
+    });
+
+    it("should carry no secret", () => {
+      expect(args.join(" ")).not.toMatch(/write-id|write-secret|https:/);
     });
   });
 });

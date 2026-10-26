@@ -12,6 +12,14 @@ export type OpItem = {
 
 const accesses: Access[] = ["write", "read"];
 
+const categoryNames: Record<OpItem["template"]["category"], string> = {
+  API_CREDENTIAL: "API Credential",
+};
+
+export function opCreateArgs(item: OpItem): string[] {
+  return ["item", "create", "--vault", item.vault, "--category", categoryNames[item.template.category], "-"];
+}
+
 export function parseItemRef(ref: string): { vault: string; title: string } {
   if (!ref.startsWith("op:")) throw new Error(`${ref}: want an op: reference`);
   const parts = ref.slice(3).split("/");
