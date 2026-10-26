@@ -25,8 +25,20 @@ case "$2" in
     [[ "$*" == *"--format json"* ]] && cat "$file"
     exit 0 ;;
   create)
-    template=""
-    while (($#)); do [[ $1 == --template ]] && template=$2; shift; done
+    template="" category=""
+    while (($#)); do
+      [[ $1 == --template ]] && template=$2
+      [[ $1 == --category ]] && category=$2
+      shift
+    done
+    if [[ -n $template && -n $category ]]; then
+      echo "[ERROR] cannot provide the item category with both the JSON template and the --category flag" >&2
+      exit 1
+    fi
+    if [[ -z $template && -z $category ]]; then
+      echo "[ERROR] provide the item category with '--category' flag" >&2
+      exit 1
+    fi
     if [[ $FAKE_OP_MODE == reads && -n $template ]]; then
       stat -c %a "$template" > "$FAKE_OP_DIR/mode"
       printf '%s\\n' "$template" > "$FAKE_OP_DIR/template-path"
@@ -71,6 +83,10 @@ describe("store-soak-credentials", () => {
 
     it("should give op a template only its owner can read", () => {
       expect(read("mode").trim()).toBe("600");
+    });
+
+    it("should hand op a template", () => {
+      expect(read("template-path").trim()).not.toBe("");
     });
 
     it("should remove the template once op has read it", () => {

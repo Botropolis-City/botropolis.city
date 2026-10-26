@@ -97,8 +97,8 @@ describe("opCreateArgs", () => {
       expect(flag("--vault")).toBe("Vault");
     });
 
-    it("should name the template's category", () => {
-      expect(flag("--category")).toBe("API Credential");
+    it("should leave the category to the template", () => {
+      expect(args).not.toContain("--category");
     });
 
     it("should read the template from the file it is given", () => {

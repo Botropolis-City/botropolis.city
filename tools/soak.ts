@@ -12,21 +12,8 @@ export type OpItem = {
 
 const accesses: Access[] = ["write", "read"];
 
-const categoryNames: Record<OpItem["template"]["category"], string> = {
-  API_CREDENTIAL: "API Credential",
-};
-
 export function opCreateArgs(item: OpItem, templatePath: string): string[] {
-  return [
-    "item",
-    "create",
-    "--vault",
-    item.vault,
-    "--category",
-    categoryNames[item.template.category],
-    "--template",
-    templatePath,
-  ];
+  return ["item", "create", "--vault", item.vault, "--template", templatePath];
 }
 
 export type Op = {
