@@ -1,6 +1,6 @@
 {
-  "version": "0.3.0",
-  "generated": "2026-10-24T02:12:02.077502801Z",
+  "version": "0.3.3",
+  "generated": "2026-10-27T10:31:56.076469403Z",
   "stills": [
     {
       "id": "buildings/types",
@@ -10,7 +10,45 @@
       "description": "Under the default, each district is given a type of its own, and its buildings are that type's kinds, one storey for each fifth of your sessions they have outgrown.",
       "width": 1920,
       "height": 1080,
-      "image": "buildings-types"
+      "image": "buildings-types",
+      "anchors": {
+        "clinic": {
+          "x": 895.2558139534883,
+          "y": 684.3720930232558
+        },
+        "district:kiln": {
+          "x": 879.0697674418603,
+          "y": 465.86046511627904
+        },
+        "district:lanternfish": {
+          "x": 1057.1162790697674,
+          "y": 554.8837209302326
+        },
+        "district:quillmark": {
+          "x": 1235.1627906976744,
+          "y": 643.9069767441861
+        },
+        "district:tidepool": {
+          "x": 717.2093023255813,
+          "y": 546.7906976744185
+        },
+        "fountain": {
+          "x": 911.4418604651162,
+          "y": 643.9069767441861
+        },
+        "library": {
+          "x": 798.1395348837209,
+          "y": 635.813953488372
+        },
+        "plant": {
+          "x": 895.2558139534883,
+          "y": 587.2558139534883
+        },
+        "tower:tracker": {
+          "x": 943.813953488372,
+          "y": 401.1162790697674
+        }
+      }
     },
     {
       "id": "hamlet/overview",
@@ -20,7 +58,37 @@
       "description": "Two projects late at night, one session working and one waiting on an answer.",
       "width": 1920,
       "height": 1080,
-      "image": "hamlet-overview"
+      "image": "hamlet-overview",
+      "anchors": {
+        "clinic": {
+          "x": 895.2558139534883,
+          "y": 684.3720930232558
+        },
+        "district:beacon": {
+          "x": 879.0697674418603,
+          "y": 465.86046511627904
+        },
+        "district:tidepool": {
+          "x": 1057.1162790697674,
+          "y": 554.8837209302326
+        },
+        "fountain": {
+          "x": 911.4418604651162,
+          "y": 643.9069767441861
+        },
+        "library": {
+          "x": 798.1395348837209,
+          "y": 635.813953488372
+        },
+        "plant": {
+          "x": 895.2558139534883,
+          "y": 587.2558139534883
+        },
+        "tower:weather": {
+          "x": 943.813953488372,
+          "y": 401.1162790697674
+        }
+      }
     },
     {
       "id": "hamlet/hero",
@@ -30,27 +98,751 @@
       "description": "The same night with the interface hidden.",
       "width": 1920,
       "height": 1080,
-      "image": "hamlet-hero"
+      "image": "hamlet-hero",
+      "anchors": {
+        "clinic": {
+          "x": 874.4186046511627,
+          "y": 582.7906976744187
+        },
+        "district:beacon": {
+          "x": 853.0232558139534,
+          "y": 293.953488372093
+        },
+        "district:tidepool": {
+          "x": 1088.3720930232557,
+          "y": 411.62790697674416
+        },
+        "fountain": {
+          "x": 895.813953488372,
+          "y": 529.3023255813954
+        },
+        "library": {
+          "x": 746.0465116279069,
+          "y": 518.6046511627907
+        },
+        "plant": {
+          "x": 874.4186046511627,
+          "y": 454.41860465116275
+        },
+        "tower:weather": {
+          "x": 938.6046511627906,
+          "y": 208.3720930232558
+        }
+      }
     },
     {
-      "id": "layers/cost",
+      "id": "layers/attention",
       "scenario": "layers",
-      "shot": "cost",
-      "title": "Cost",
-      "description": "What each session has spent, and on which models.",
+      "shot": "attention",
+      "title": "Attention",
+      "description": "Which sessions are waiting for you, and which are working.",
       "width": 1920,
       "height": 1080,
-      "image": "layers-cost"
+      "image": "layers-attention",
+      "view": "attention",
+      "anchors": {
+        "clinic": {
+          "x": 945.5000000000001,
+          "y": 659.25
+        },
+        "depot": {
+          "x": 496.00000000000006,
+          "y": 637.5
+        },
+        "district:beacon": {
+          "x": 916.5000000000001,
+          "y": 456.25
+        },
+        "district:kiln": {
+          "x": 1090.5,
+          "y": 543.25
+        },
+        "district:lanternfish": {
+          "x": 1264.5,
+          "y": 630.25
+        },
+        "district:orchard": {
+          "x": 771.5000000000001,
+          "y": 528.75
+        },
+        "district:quillmark": {
+          "x": 1119.5,
+          "y": 702.75
+        },
+        "district:tidepool": {
+          "x": 626.5000000000001,
+          "y": 601.25
+        },
+        "fountain": {
+          "x": 960.0000000000001,
+          "y": 623
+        },
+        "library": {
+          "x": 858.5000000000001,
+          "y": 615.75
+        },
+        "plant": {
+          "x": 945.5000000000001,
+          "y": 572.25
+        },
+        "tower:tracker": {
+          "x": 960.0000000000001,
+          "y": 391
+        },
+        "tower:weather": {
+          "x": 1018.0000000000001,
+          "y": 420
+        }
+      }
     },
     {
-      "id": "layers/capacity",
+      "id": "layers/spend",
       "scenario": "layers",
-      "shot": "capacity",
-      "title": "Capacity",
-      "description": "How full each session's context is, and how many subagents it has running.",
+      "shot": "spend",
+      "title": "Spend",
+      "description": "Where the money went.",
       "width": 1920,
       "height": 1080,
-      "image": "layers-capacity"
+      "image": "layers-spend",
+      "view": "spend",
+      "anchors": {
+        "clinic": {
+          "x": 945.7716471354167,
+          "y": 652.5946451822916
+        },
+        "depot": {
+          "x": 504.69270833333337,
+          "y": 631.2521158854166
+        },
+        "district:beacon": {
+          "x": 917.31494140625,
+          "y": 453.397705078125
+        },
+        "district:kiln": {
+          "x": 1088.05517578125,
+          "y": 538.767822265625
+        },
+        "district:lanternfish": {
+          "x": 1258.79541015625,
+          "y": 624.137939453125
+        },
+        "district:orchard": {
+          "x": 775.0314127604167,
+          "y": 524.5394694010416
+        },
+        "district:quillmark": {
+          "x": 1116.5118815104167,
+          "y": 695.2797037760416
+        },
+        "district:tidepool": {
+          "x": 632.7478841145834,
+          "y": 595.6812337239584
+        },
+        "fountain": {
+          "x": 960,
+          "y": 617.0237630208334
+        },
+        "library": {
+          "x": 860.4015299479167,
+          "y": 609.9095865885416
+        },
+        "plant": {
+          "x": 945.7716471354167,
+          "y": 567.2245279947916
+        },
+        "tower:tracker": {
+          "x": 960,
+          "y": 389.3701171875
+        },
+        "tower:weather": {
+          "x": 1016.9134114583334,
+          "y": 417.8268229166667
+        }
+      }
+    },
+    {
+      "id": "layers/pressure",
+      "scenario": "layers",
+      "shot": "pressure",
+      "title": "Pressure",
+      "description": "Who is about to compact.",
+      "width": 1920,
+      "height": 1080,
+      "image": "layers-pressure",
+      "view": "pressure",
+      "anchors": {
+        "clinic": {
+          "x": 945.7716471354167,
+          "y": 652.5946451822916
+        },
+        "depot": {
+          "x": 504.69270833333337,
+          "y": 631.2521158854166
+        },
+        "district:beacon": {
+          "x": 917.31494140625,
+          "y": 453.397705078125
+        },
+        "district:kiln": {
+          "x": 1088.05517578125,
+          "y": 538.767822265625
+        },
+        "district:lanternfish": {
+          "x": 1258.79541015625,
+          "y": 624.137939453125
+        },
+        "district:orchard": {
+          "x": 775.0314127604167,
+          "y": 524.5394694010416
+        },
+        "district:quillmark": {
+          "x": 1116.5118815104167,
+          "y": 695.2797037760416
+        },
+        "district:tidepool": {
+          "x": 632.7478841145834,
+          "y": 595.6812337239584
+        },
+        "fountain": {
+          "x": 960,
+          "y": 617.0237630208334
+        },
+        "library": {
+          "x": 860.4015299479167,
+          "y": 609.9095865885416
+        },
+        "plant": {
+          "x": 945.7716471354167,
+          "y": 567.2245279947916
+        },
+        "tower:tracker": {
+          "x": 960,
+          "y": 389.3701171875
+        },
+        "tower:weather": {
+          "x": 1016.9134114583334,
+          "y": 417.8268229166667
+        }
+      }
+    },
+    {
+      "id": "layers/staleness",
+      "scenario": "layers",
+      "shot": "staleness",
+      "title": "Staleness",
+      "description": "What has gone quiet.",
+      "width": 1920,
+      "height": 1080,
+      "image": "layers-staleness",
+      "view": "staleness",
+      "anchors": {
+        "clinic": {
+          "x": 945.7716471354167,
+          "y": 652.5946451822916
+        },
+        "depot": {
+          "x": 504.69270833333337,
+          "y": 631.2521158854166
+        },
+        "district:beacon": {
+          "x": 917.31494140625,
+          "y": 453.397705078125
+        },
+        "district:kiln": {
+          "x": 1088.05517578125,
+          "y": 538.767822265625
+        },
+        "district:lanternfish": {
+          "x": 1258.79541015625,
+          "y": 624.137939453125
+        },
+        "district:orchard": {
+          "x": 775.0314127604167,
+          "y": 524.5394694010416
+        },
+        "district:quillmark": {
+          "x": 1116.5118815104167,
+          "y": 695.2797037760416
+        },
+        "district:tidepool": {
+          "x": 632.7478841145834,
+          "y": 595.6812337239584
+        },
+        "fountain": {
+          "x": 960,
+          "y": 617.0237630208334
+        },
+        "library": {
+          "x": 860.4015299479167,
+          "y": 609.9095865885416
+        },
+        "plant": {
+          "x": 945.7716471354167,
+          "y": 567.2245279947916
+        },
+        "tower:tracker": {
+          "x": 960,
+          "y": 389.3701171875
+        },
+        "tower:weather": {
+          "x": 1016.9134114583334,
+          "y": 417.8268229166667
+        }
+      }
+    },
+    {
+      "id": "layers/servers",
+      "scenario": "layers",
+      "shot": "servers",
+      "title": "Servers",
+      "description": "What breaks if a server goes down.",
+      "width": 1920,
+      "height": 1080,
+      "image": "layers-servers",
+      "view": "servers",
+      "anchors": {
+        "clinic": {
+          "x": 945.7716471354167,
+          "y": 652.5946451822916
+        },
+        "depot": {
+          "x": 504.69270833333337,
+          "y": 631.2521158854166
+        },
+        "district:beacon": {
+          "x": 917.31494140625,
+          "y": 453.397705078125
+        },
+        "district:kiln": {
+          "x": 1088.05517578125,
+          "y": 538.767822265625
+        },
+        "district:lanternfish": {
+          "x": 1258.79541015625,
+          "y": 624.137939453125
+        },
+        "district:orchard": {
+          "x": 775.0314127604167,
+          "y": 524.5394694010416
+        },
+        "district:quillmark": {
+          "x": 1116.5118815104167,
+          "y": 695.2797037760416
+        },
+        "district:tidepool": {
+          "x": 632.7478841145834,
+          "y": 595.6812337239584
+        },
+        "fountain": {
+          "x": 960,
+          "y": 617.0237630208334
+        },
+        "library": {
+          "x": 860.4015299479167,
+          "y": 609.9095865885416
+        },
+        "plant": {
+          "x": 945.7716471354167,
+          "y": 567.2245279947916
+        },
+        "tower:tracker": {
+          "x": 960,
+          "y": 389.3701171875
+        },
+        "tower:weather": {
+          "x": 1016.9134114583334,
+          "y": 417.8268229166667
+        }
+      }
+    },
+    {
+      "id": "layers/traffic",
+      "scenario": "layers",
+      "shot": "traffic",
+      "title": "Traffic",
+      "description": "Which repos talk to each other.",
+      "width": 1920,
+      "height": 1080,
+      "image": "layers-traffic",
+      "view": "traffic",
+      "anchors": {
+        "clinic": {
+          "x": 945.7716471354167,
+          "y": 652.5946451822916
+        },
+        "depot": {
+          "x": 504.69270833333337,
+          "y": 631.2521158854166
+        },
+        "district:beacon": {
+          "x": 917.31494140625,
+          "y": 453.397705078125
+        },
+        "district:kiln": {
+          "x": 1088.05517578125,
+          "y": 538.767822265625
+        },
+        "district:lanternfish": {
+          "x": 1258.79541015625,
+          "y": 624.137939453125
+        },
+        "district:orchard": {
+          "x": 775.0314127604167,
+          "y": 524.5394694010416
+        },
+        "district:quillmark": {
+          "x": 1116.5118815104167,
+          "y": 695.2797037760416
+        },
+        "district:tidepool": {
+          "x": 632.7478841145834,
+          "y": 595.6812337239584
+        },
+        "fountain": {
+          "x": 960,
+          "y": 617.0237630208334
+        },
+        "library": {
+          "x": 860.4015299479167,
+          "y": 609.9095865885416
+        },
+        "plant": {
+          "x": 945.7716471354167,
+          "y": 567.2245279947916
+        },
+        "tower:tracker": {
+          "x": 960,
+          "y": 389.3701171875
+        },
+        "tower:weather": {
+          "x": 1016.9134114583334,
+          "y": 417.8268229166667
+        }
+      }
+    },
+    {
+      "id": "layers/models",
+      "scenario": "layers",
+      "shot": "models",
+      "title": "Models",
+      "description": "Where the models are.",
+      "width": 1920,
+      "height": 1080,
+      "image": "layers-models",
+      "view": "models",
+      "anchors": {
+        "clinic": {
+          "x": 945.7716471354167,
+          "y": 652.5946451822916
+        },
+        "depot": {
+          "x": 504.69270833333337,
+          "y": 631.2521158854166
+        },
+        "district:beacon": {
+          "x": 917.31494140625,
+          "y": 453.397705078125
+        },
+        "district:kiln": {
+          "x": 1088.05517578125,
+          "y": 538.767822265625
+        },
+        "district:lanternfish": {
+          "x": 1258.79541015625,
+          "y": 624.137939453125
+        },
+        "district:orchard": {
+          "x": 775.0314127604167,
+          "y": 524.5394694010416
+        },
+        "district:quillmark": {
+          "x": 1116.5118815104167,
+          "y": 695.2797037760416
+        },
+        "district:tidepool": {
+          "x": 632.7478841145834,
+          "y": 595.6812337239584
+        },
+        "fountain": {
+          "x": 960,
+          "y": 617.0237630208334
+        },
+        "library": {
+          "x": 860.4015299479167,
+          "y": 609.9095865885416
+        },
+        "plant": {
+          "x": 945.7716471354167,
+          "y": 567.2245279947916
+        },
+        "tower:tracker": {
+          "x": 960,
+          "y": 389.3701171875
+        },
+        "tower:weather": {
+          "x": 1016.9134114583334,
+          "y": 417.8268229166667
+        }
+      }
+    },
+    {
+      "id": "layers/fan-out",
+      "scenario": "layers",
+      "shot": "fan-out",
+      "title": "Fan-out",
+      "description": "Which sessions spawn armies.",
+      "width": 1920,
+      "height": 1080,
+      "image": "layers-fan-out",
+      "view": "fan-out",
+      "anchors": {
+        "clinic": {
+          "x": 945.7716471354167,
+          "y": 652.5946451822916
+        },
+        "depot": {
+          "x": 504.69270833333337,
+          "y": 631.2521158854166
+        },
+        "district:beacon": {
+          "x": 917.31494140625,
+          "y": 453.397705078125
+        },
+        "district:kiln": {
+          "x": 1088.05517578125,
+          "y": 538.767822265625
+        },
+        "district:lanternfish": {
+          "x": 1258.79541015625,
+          "y": 624.137939453125
+        },
+        "district:orchard": {
+          "x": 775.0314127604167,
+          "y": 524.5394694010416
+        },
+        "district:quillmark": {
+          "x": 1116.5118815104167,
+          "y": 695.2797037760416
+        },
+        "district:tidepool": {
+          "x": 632.7478841145834,
+          "y": 595.6812337239584
+        },
+        "fountain": {
+          "x": 960,
+          "y": 617.0237630208334
+        },
+        "library": {
+          "x": 860.4015299479167,
+          "y": 609.9095865885416
+        },
+        "plant": {
+          "x": 945.7716471354167,
+          "y": 567.2245279947916
+        },
+        "tower:tracker": {
+          "x": 960,
+          "y": 389.3701171875
+        },
+        "tower:weather": {
+          "x": 1016.9134114583334,
+          "y": 417.8268229166667
+        }
+      }
+    },
+    {
+      "id": "layers/health",
+      "scenario": "layers",
+      "shot": "health",
+      "title": "Health",
+      "description": "What is broken, and what shipped.",
+      "width": 1920,
+      "height": 1080,
+      "image": "layers-health",
+      "view": "health",
+      "anchors": {
+        "clinic": {
+          "x": 945.7716471354167,
+          "y": 652.5946451822916
+        },
+        "depot": {
+          "x": 504.69270833333337,
+          "y": 631.2521158854166
+        },
+        "district:beacon": {
+          "x": 917.31494140625,
+          "y": 453.397705078125
+        },
+        "district:kiln": {
+          "x": 1088.05517578125,
+          "y": 538.767822265625
+        },
+        "district:lanternfish": {
+          "x": 1258.79541015625,
+          "y": 624.137939453125
+        },
+        "district:orchard": {
+          "x": 775.0314127604167,
+          "y": 524.5394694010416
+        },
+        "district:quillmark": {
+          "x": 1116.5118815104167,
+          "y": 695.2797037760416
+        },
+        "district:tidepool": {
+          "x": 632.7478841145834,
+          "y": 595.6812337239584
+        },
+        "fountain": {
+          "x": 960,
+          "y": 617.0237630208334
+        },
+        "library": {
+          "x": 860.4015299479167,
+          "y": 609.9095865885416
+        },
+        "plant": {
+          "x": 945.7716471354167,
+          "y": 567.2245279947916
+        },
+        "tower:tracker": {
+          "x": 960,
+          "y": 389.3701171875
+        },
+        "tower:weather": {
+          "x": 1016.9134114583334,
+          "y": 417.8268229166667
+        }
+      }
+    },
+    {
+      "id": "layers/groups",
+      "scenario": "layers",
+      "shot": "groups",
+      "title": "Groups",
+      "description": "Whose move each piece of work is.",
+      "width": 1920,
+      "height": 1080,
+      "image": "layers-groups",
+      "view": "groups",
+      "anchors": {
+        "clinic": {
+          "x": 945.5000000000001,
+          "y": 659.25
+        },
+        "depot": {
+          "x": 496.00000000000006,
+          "y": 637.5
+        },
+        "district:beacon": {
+          "x": 916.5000000000001,
+          "y": 456.25
+        },
+        "district:kiln": {
+          "x": 1090.5,
+          "y": 543.25
+        },
+        "district:lanternfish": {
+          "x": 1264.5,
+          "y": 630.25
+        },
+        "district:orchard": {
+          "x": 771.5000000000001,
+          "y": 528.75
+        },
+        "district:quillmark": {
+          "x": 1119.5,
+          "y": 702.75
+        },
+        "district:tidepool": {
+          "x": 626.5000000000001,
+          "y": 601.25
+        },
+        "fountain": {
+          "x": 960.0000000000001,
+          "y": 623
+        },
+        "library": {
+          "x": 858.5000000000001,
+          "y": 615.75
+        },
+        "plant": {
+          "x": 945.5000000000001,
+          "y": 572.25
+        },
+        "tower:tracker": {
+          "x": 960.0000000000001,
+          "y": 391
+        },
+        "tower:weather": {
+          "x": 1018.0000000000001,
+          "y": 420
+        }
+      }
+    },
+    {
+      "id": "layers/day",
+      "scenario": "layers",
+      "shot": "day",
+      "title": "The same city by day",
+      "description": "No view, nothing selected, interface hidden.",
+      "width": 1920,
+      "height": 1080,
+      "image": "layers-day",
+      "anchors": {
+        "clinic": {
+          "x": 940.8333333333333,
+          "y": 549.5833333333333
+        },
+        "depot": {
+          "x": 346.66666666666663,
+          "y": 520.8333333333333
+        },
+        "district:beacon": {
+          "x": 902.4999999999999,
+          "y": 281.25
+        },
+        "district:kiln": {
+          "x": 1132.5,
+          "y": 396.25
+        },
+        "district:lanternfish": {
+          "x": 1362.4999999999998,
+          "y": 511.25
+        },
+        "district:orchard": {
+          "x": 710.8333333333333,
+          "y": 377.0833333333333
+        },
+        "district:quillmark": {
+          "x": 1170.8333333333333,
+          "y": 607.0833333333333
+        },
+        "district:tidepool": {
+          "x": 519.1666666666666,
+          "y": 472.91666666666663
+        },
+        "fountain": {
+          "x": 959.9999999999999,
+          "y": 501.66666666666663
+        },
+        "library": {
+          "x": 825.8333333333333,
+          "y": 492.0833333333333
+        },
+        "plant": {
+          "x": 940.8333333333333,
+          "y": 434.5833333333333
+        },
+        "tower:tracker": {
+          "x": 959.9999999999999,
+          "y": 195
+        },
+        "tower:weather": {
+          "x": 1036.6666666666665,
+          "y": 233.33333333333331
+        }
+      }
     },
     {
       "id": "layers/night",
@@ -60,7 +852,61 @@
       "description": "Lit windows mark the sessions that are awake.",
       "width": 1920,
       "height": 1080,
-      "image": "layers-night"
+      "image": "layers-night",
+      "anchors": {
+        "clinic": {
+          "x": 945.5000000000001,
+          "y": 659.25
+        },
+        "depot": {
+          "x": 496.00000000000006,
+          "y": 637.5
+        },
+        "district:beacon": {
+          "x": 916.5000000000001,
+          "y": 456.25
+        },
+        "district:kiln": {
+          "x": 1090.5,
+          "y": 543.25
+        },
+        "district:lanternfish": {
+          "x": 1264.5,
+          "y": 630.25
+        },
+        "district:orchard": {
+          "x": 771.5000000000001,
+          "y": 528.75
+        },
+        "district:quillmark": {
+          "x": 1119.5,
+          "y": 702.75
+        },
+        "district:tidepool": {
+          "x": 626.5000000000001,
+          "y": 601.25
+        },
+        "fountain": {
+          "x": 960.0000000000001,
+          "y": 623
+        },
+        "library": {
+          "x": 858.5000000000001,
+          "y": 615.75
+        },
+        "plant": {
+          "x": 945.5000000000001,
+          "y": 572.25
+        },
+        "tower:tracker": {
+          "x": 960.0000000000001,
+          "y": 391
+        },
+        "tower:weather": {
+          "x": 1018.0000000000001,
+          "y": 420
+        }
+      }
     },
     {
       "id": "metropolis/overview",
@@ -70,7 +916,85 @@
       "description": "Twelve districts in the early evening, a team camp, trains for every model, and the day's finished sessions resting on their lots.",
       "width": 1920,
       "height": 1080,
-      "image": "metropolis-overview"
+      "image": "metropolis-overview",
+      "anchors": {
+        "clinic": {
+          "x": 970.2352941176471,
+          "y": 636.6470588235295
+        },
+        "depot": {
+          "x": 458.4705882352941,
+          "y": 636.6470588235295
+        },
+        "district:beacon": {
+          "x": 949.7647058823529,
+          "y": 493.3529411764706
+        },
+        "district:copperleaf": {
+          "x": 1072.5882352941176,
+          "y": 554.7647058823529
+        },
+        "district:driftwood": {
+          "x": 1205.6470588235295,
+          "y": 621.2941176470589
+        },
+        "district:ferrylight": {
+          "x": 847.4117647058823,
+          "y": 544.529411764706
+        },
+        "district:kiln": {
+          "x": 1103.2941176470588,
+          "y": 672.4705882352941
+        },
+        "district:lanternfish": {
+          "x": 745.0588235294117,
+          "y": 595.7058823529412
+        },
+        "district:millrace": {
+          "x": 867.8823529411765,
+          "y": 657.1176470588235
+        },
+        "district:orchard": {
+          "x": 1000.9411764705883,
+          "y": 723.6470588235295
+        },
+        "district:quillmark": {
+          "x": 939.5294117647059,
+          "y": 406.3529411764706
+        },
+        "district:saltmarsh": {
+          "x": 1031.6470588235295,
+          "y": 452.4117647058824
+        },
+        "district:thistledown": {
+          "x": 1154.4705882352941,
+          "y": 513.8235294117648
+        },
+        "district:tidepool": {
+          "x": 1287.5294117647059,
+          "y": 580.3529411764706
+        },
+        "fountain": {
+          "x": 980.4705882352941,
+          "y": 611.0588235294118
+        },
+        "library": {
+          "x": 908.8235294117648,
+          "y": 605.9411764705883
+        },
+        "plant": {
+          "x": 970.2352941176471,
+          "y": 575.2352941176471
+        },
+        "tower:tracker": {
+          "x": 980.4705882352941,
+          "y": 365.4117647058824
+        },
+        "tower:weather": {
+          "x": 1021.4117647058823,
+          "y": 385.8823529411765
+        }
+      }
     },
     {
       "id": "metropolis/hero",
@@ -80,7 +1004,173 @@
       "description": "A dozen districts, interface hidden.",
       "width": 1920,
       "height": 1080,
-      "image": "metropolis-hero"
+      "image": "metropolis-hero",
+      "anchors": {
+        "clinic": {
+          "x": 973.5294117647057,
+          "y": 519.7058823529412
+        },
+        "depot": {
+          "x": 297.05882352941165,
+          "y": 519.7058823529412
+        },
+        "district:beacon": {
+          "x": 946.4705882352939,
+          "y": 330.29411764705884
+        },
+        "district:copperleaf": {
+          "x": 1108.8235294117646,
+          "y": 411.47058823529414
+        },
+        "district:driftwood": {
+          "x": 1284.705882352941,
+          "y": 499.4117647058824
+        },
+        "district:ferrylight": {
+          "x": 811.1764705882351,
+          "y": 397.94117647058823
+        },
+        "district:kiln": {
+          "x": 1149.4117647058822,
+          "y": 567.0588235294118
+        },
+        "district:lanternfish": {
+          "x": 675.8823529411764,
+          "y": 465.5882352941177
+        },
+        "district:millrace": {
+          "x": 838.235294117647,
+          "y": 546.7647058823529
+        },
+        "district:orchard": {
+          "x": 1014.1176470588234,
+          "y": 634.7058823529412
+        },
+        "district:quillmark": {
+          "x": 932.9411764705881,
+          "y": 215.29411764705884
+        },
+        "district:saltmarsh": {
+          "x": 1054.705882352941,
+          "y": 276.1764705882353
+        },
+        "district:thistledown": {
+          "x": 1217.0588235294117,
+          "y": 357.3529411764706
+        },
+        "district:tidepool": {
+          "x": 1392.941176470588,
+          "y": 445.29411764705884
+        },
+        "fountain": {
+          "x": 987.0588235294116,
+          "y": 485.88235294117646
+        },
+        "library": {
+          "x": 892.3529411764705,
+          "y": 479.11764705882354
+        },
+        "plant": {
+          "x": 973.5294117647057,
+          "y": 438.5294117647059
+        },
+        "tower:tracker": {
+          "x": 987.0588235294116,
+          "y": 161.1764705882353
+        },
+        "tower:weather": {
+          "x": 1041.1764705882351,
+          "y": 188.23529411764707
+        }
+      }
+    },
+    {
+      "id": "metropolis/card",
+      "scenario": "metropolis",
+      "shot": "card",
+      "title": "Botropolis",
+      "description": "The metropolis framed for a link preview, interface hidden.",
+      "width": 1200,
+      "height": 630,
+      "image": "metropolis-card",
+      "anchors": {
+        "clinic": {
+          "x": 607.5,
+          "y": 283.75
+        },
+        "depot": {
+          "x": 232.5,
+          "y": 283.75
+        },
+        "district:beacon": {
+          "x": 592.5,
+          "y": 178.75
+        },
+        "district:copperleaf": {
+          "x": 682.5,
+          "y": 223.75
+        },
+        "district:driftwood": {
+          "x": 780,
+          "y": 272.5
+        },
+        "district:ferrylight": {
+          "x": 517.5,
+          "y": 216.25
+        },
+        "district:kiln": {
+          "x": 705,
+          "y": 310
+        },
+        "district:lanternfish": {
+          "x": 442.5,
+          "y": 253.75
+        },
+        "district:millrace": {
+          "x": 532.5,
+          "y": 298.75
+        },
+        "district:orchard": {
+          "x": 630,
+          "y": 347.5
+        },
+        "district:quillmark": {
+          "x": 585,
+          "y": 115
+        },
+        "district:saltmarsh": {
+          "x": 652.5,
+          "y": 148.75
+        },
+        "district:thistledown": {
+          "x": 742.5,
+          "y": 193.75
+        },
+        "district:tidepool": {
+          "x": 840,
+          "y": 242.5
+        },
+        "fountain": {
+          "x": 615,
+          "y": 265
+        },
+        "library": {
+          "x": 562.5,
+          "y": 261.25
+        },
+        "plant": {
+          "x": 607.5,
+          "y": 238.75
+        },
+        "tower:tracker": {
+          "x": 615,
+          "y": 85
+        },
+        "tower:weather": {
+          "x": 645,
+          "y": 100
+        }
+      }
     },
     {
       "id": "metropolis/plain",
@@ -90,7 +1180,85 @@
       "description": "The same city with the scenery dropped, for reading at a glance.",
       "width": 1920,
       "height": 1080,
-      "image": "metropolis-plain"
+      "image": "metropolis-plain",
+      "anchors": {
+        "clinic": {
+          "x": 970.2352941176471,
+          "y": 636.6470588235295
+        },
+        "depot": {
+          "x": 458.4705882352941,
+          "y": 636.6470588235295
+        },
+        "district:beacon": {
+          "x": 949.7647058823529,
+          "y": 493.3529411764706
+        },
+        "district:copperleaf": {
+          "x": 1072.5882352941176,
+          "y": 554.7647058823529
+        },
+        "district:driftwood": {
+          "x": 1205.6470588235295,
+          "y": 621.2941176470589
+        },
+        "district:ferrylight": {
+          "x": 847.4117647058823,
+          "y": 544.529411764706
+        },
+        "district:kiln": {
+          "x": 1103.2941176470588,
+          "y": 672.4705882352941
+        },
+        "district:lanternfish": {
+          "x": 745.0588235294117,
+          "y": 595.7058823529412
+        },
+        "district:millrace": {
+          "x": 867.8823529411765,
+          "y": 657.1176470588235
+        },
+        "district:orchard": {
+          "x": 1000.9411764705883,
+          "y": 723.6470588235295
+        },
+        "district:quillmark": {
+          "x": 939.5294117647059,
+          "y": 406.3529411764706
+        },
+        "district:saltmarsh": {
+          "x": 1031.6470588235295,
+          "y": 452.4117647058824
+        },
+        "district:thistledown": {
+          "x": 1154.4705882352941,
+          "y": 513.8235294117648
+        },
+        "district:tidepool": {
+          "x": 1287.5294117647059,
+          "y": 580.3529411764706
+        },
+        "fountain": {
+          "x": 980.4705882352941,
+          "y": 611.0588235294118
+        },
+        "library": {
+          "x": 908.8235294117648,
+          "y": 605.9411764705883
+        },
+        "plant": {
+          "x": 970.2352941176471,
+          "y": 575.2352941176471
+        },
+        "tower:tracker": {
+          "x": 980.4705882352941,
+          "y": 365.4117647058824
+        },
+        "tower:weather": {
+          "x": 1021.4117647058823,
+          "y": 385.8823529411765
+        }
+      }
     },
     {
       "id": "metropolis/sidebar",
@@ -100,7 +1268,373 @@
       "description": "The sidebar lists every session by district and state.",
       "width": 1920,
       "height": 1080,
-      "image": "metropolis-sidebar"
+      "image": "metropolis-sidebar",
+      "anchors": {
+        "clinic": {
+          "x": 1114.235294117647,
+          "y": 636.6470588235295
+        },
+        "depot": {
+          "x": 602.4705882352941,
+          "y": 636.6470588235295
+        },
+        "district:beacon": {
+          "x": 1093.764705882353,
+          "y": 493.3529411764706
+        },
+        "district:copperleaf": {
+          "x": 1216.5882352941176,
+          "y": 554.7647058823529
+        },
+        "district:driftwood": {
+          "x": 1349.6470588235295,
+          "y": 621.2941176470589
+        },
+        "district:ferrylight": {
+          "x": 991.4117647058823,
+          "y": 544.529411764706
+        },
+        "district:kiln": {
+          "x": 1247.2941176470588,
+          "y": 672.4705882352941
+        },
+        "district:lanternfish": {
+          "x": 889.0588235294118,
+          "y": 595.7058823529412
+        },
+        "district:millrace": {
+          "x": 1011.8823529411765,
+          "y": 657.1176470588235
+        },
+        "district:orchard": {
+          "x": 1144.9411764705883,
+          "y": 723.6470588235295
+        },
+        "district:quillmark": {
+          "x": 1083.5294117647059,
+          "y": 406.3529411764706
+        },
+        "district:saltmarsh": {
+          "x": 1175.6470588235295,
+          "y": 452.4117647058824
+        },
+        "district:thistledown": {
+          "x": 1298.4705882352941,
+          "y": 513.8235294117648
+        },
+        "district:tidepool": {
+          "x": 1431.5294117647059,
+          "y": 580.3529411764706
+        },
+        "fountain": {
+          "x": 1124.4705882352941,
+          "y": 611.0588235294118
+        },
+        "library": {
+          "x": 1052.8235294117646,
+          "y": 605.9411764705883
+        },
+        "plant": {
+          "x": 1114.235294117647,
+          "y": 575.2352941176471
+        },
+        "tower:tracker": {
+          "x": 1124.4705882352941,
+          "y": 365.4117647058824
+        },
+        "tower:weather": {
+          "x": 1165.4117647058824,
+          "y": 385.8823529411765
+        }
+      }
+    },
+    {
+      "id": "stalls/residential",
+      "scenario": "stalls",
+      "shot": "residential",
+      "title": "Stalls in a residential district",
+      "description": "Every district here is residential, and each scripted run stands beside the houses as a hot-dog cart.",
+      "width": 1920,
+      "height": 1080,
+      "image": "stalls-residential",
+      "anchors": {
+        "clinic": {
+          "x": 898.1333333333332,
+          "y": 682.9333333333333
+        },
+        "district:kiln": {
+          "x": 867.1999999999998,
+          "y": 466.4
+        },
+        "district:lanternfish": {
+          "x": 1052.8,
+          "y": 559.1999999999999
+        },
+        "district:quillmark": {
+          "x": 1238.3999999999999,
+          "y": 652
+        },
+        "district:tidepool": {
+          "x": 712.5333333333332,
+          "y": 543.7333333333333
+        },
+        "fountain": {
+          "x": 913.5999999999999,
+          "y": 644.2666666666667
+        },
+        "library": {
+          "x": 805.3333333333331,
+          "y": 636.5333333333333
+        },
+        "plant": {
+          "x": 898.1333333333332,
+          "y": 590.1333333333333
+        },
+        "tower:tracker": {
+          "x": 913.5999999999999,
+          "y": 396.79999999999995
+        }
+      }
+    },
+    {
+      "id": "stalls/shopping",
+      "scenario": "stalls",
+      "shot": "shopping",
+      "title": "Stalls in a shopping district",
+      "description": "Every district here is for shopping, and each scripted run is a market stall under a striped awning.",
+      "width": 1920,
+      "height": 1080,
+      "image": "stalls-shopping",
+      "anchors": {
+        "clinic": {
+          "x": 898.1333333333332,
+          "y": 682.9333333333333
+        },
+        "district:kiln": {
+          "x": 867.1999999999998,
+          "y": 466.4
+        },
+        "district:lanternfish": {
+          "x": 1052.8,
+          "y": 559.1999999999999
+        },
+        "district:quillmark": {
+          "x": 1238.3999999999999,
+          "y": 652
+        },
+        "district:tidepool": {
+          "x": 712.5333333333332,
+          "y": 543.7333333333333
+        },
+        "fountain": {
+          "x": 913.5999999999999,
+          "y": 644.2666666666667
+        },
+        "library": {
+          "x": 805.3333333333331,
+          "y": 636.5333333333333
+        },
+        "plant": {
+          "x": 898.1333333333332,
+          "y": 590.1333333333333
+        },
+        "tower:tracker": {
+          "x": 913.5999999999999,
+          "y": 396.79999999999995
+        }
+      }
+    },
+    {
+      "id": "stalls/office",
+      "scenario": "stalls",
+      "shot": "office",
+      "title": "Stalls in an office district",
+      "description": "Every district here is offices, and each scripted run is a coffee kiosk.",
+      "width": 1920,
+      "height": 1080,
+      "image": "stalls-office",
+      "anchors": {
+        "clinic": {
+          "x": 898.1333333333332,
+          "y": 682.9333333333333
+        },
+        "district:kiln": {
+          "x": 867.1999999999998,
+          "y": 466.4
+        },
+        "district:lanternfish": {
+          "x": 1052.8,
+          "y": 559.1999999999999
+        },
+        "district:quillmark": {
+          "x": 1238.3999999999999,
+          "y": 652
+        },
+        "district:tidepool": {
+          "x": 712.5333333333332,
+          "y": 543.7333333333333
+        },
+        "fountain": {
+          "x": 913.5999999999999,
+          "y": 644.2666666666667
+        },
+        "library": {
+          "x": 805.3333333333331,
+          "y": 636.5333333333333
+        },
+        "plant": {
+          "x": 898.1333333333332,
+          "y": 590.1333333333333
+        },
+        "tower:tracker": {
+          "x": 913.5999999999999,
+          "y": 396.79999999999995
+        }
+      }
+    },
+    {
+      "id": "stalls/industrial",
+      "scenario": "stalls",
+      "shot": "industrial",
+      "title": "Stalls in an industrial district",
+      "description": "Every district here is industrial, and each scripted run is a food trailer.",
+      "width": 1920,
+      "height": 1080,
+      "image": "stalls-industrial",
+      "anchors": {
+        "clinic": {
+          "x": 898.1333333333332,
+          "y": 682.9333333333333
+        },
+        "district:kiln": {
+          "x": 867.1999999999998,
+          "y": 466.4
+        },
+        "district:lanternfish": {
+          "x": 1052.8,
+          "y": 559.1999999999999
+        },
+        "district:quillmark": {
+          "x": 1238.3999999999999,
+          "y": 652
+        },
+        "district:tidepool": {
+          "x": 712.5333333333332,
+          "y": 543.7333333333333
+        },
+        "fountain": {
+          "x": 913.5999999999999,
+          "y": 644.2666666666667
+        },
+        "library": {
+          "x": 805.3333333333331,
+          "y": 636.5333333333333
+        },
+        "plant": {
+          "x": 898.1333333333332,
+          "y": 590.1333333333333
+        },
+        "tower:tracker": {
+          "x": 913.5999999999999,
+          "y": 396.79999999999995
+        }
+      }
+    },
+    {
+      "id": "stalls/night",
+      "scenario": "stalls",
+      "shot": "night",
+      "title": "Stalls at night",
+      "description": "The same streets late in the evening, each stall in its district's own kind.",
+      "width": 1920,
+      "height": 1080,
+      "image": "stalls-night",
+      "anchors": {
+        "clinic": {
+          "x": 898.1333333333332,
+          "y": 682.9333333333333
+        },
+        "district:kiln": {
+          "x": 867.1999999999998,
+          "y": 466.4
+        },
+        "district:lanternfish": {
+          "x": 1052.8,
+          "y": 559.1999999999999
+        },
+        "district:quillmark": {
+          "x": 1238.3999999999999,
+          "y": 652
+        },
+        "district:tidepool": {
+          "x": 712.5333333333332,
+          "y": 543.7333333333333
+        },
+        "fountain": {
+          "x": 913.5999999999999,
+          "y": 644.2666666666667
+        },
+        "library": {
+          "x": 805.3333333333331,
+          "y": 636.5333333333333
+        },
+        "plant": {
+          "x": 898.1333333333332,
+          "y": 590.1333333333333
+        },
+        "tower:tracker": {
+          "x": 913.5999999999999,
+          "y": 396.79999999999995
+        }
+      }
+    },
+    {
+      "id": "stalls/hidden",
+      "scenario": "stalls",
+      "shot": "hidden",
+      "title": "Scripted runs hidden",
+      "description": "The default, with scripted runs off the map; their tokens and spend still count in the power plant.",
+      "width": 1920,
+      "height": 1080,
+      "image": "stalls-hidden",
+      "anchors": {
+        "clinic": {
+          "x": 895.2558139534883,
+          "y": 684.3720930232558
+        },
+        "district:kiln": {
+          "x": 879.0697674418603,
+          "y": 465.86046511627904
+        },
+        "district:lanternfish": {
+          "x": 1057.1162790697674,
+          "y": 554.8837209302326
+        },
+        "district:quillmark": {
+          "x": 1235.1627906976744,
+          "y": 643.9069767441861
+        },
+        "district:tidepool": {
+          "x": 717.2093023255813,
+          "y": 546.7906976744185
+        },
+        "fountain": {
+          "x": 911.4418604651162,
+          "y": 643.9069767441861
+        },
+        "library": {
+          "x": 798.1395348837209,
+          "y": 635.813953488372
+        },
+        "plant": {
+          "x": 895.2558139534883,
+          "y": 587.2558139534883
+        },
+        "tower:tracker": {
+          "x": 943.813953488372,
+          "y": 401.1162790697674
+        }
+      }
     },
     {
       "id": "timelapse/start",
@@ -110,7 +1644,37 @@
       "description": "Two projects with yesterday's sessions resting on their own lots.",
       "width": 1920,
       "height": 1080,
-      "image": "timelapse-start"
+      "image": "timelapse-start",
+      "anchors": {
+        "clinic": {
+          "x": 895.2558139534883,
+          "y": 684.3720930232558
+        },
+        "district:kiln": {
+          "x": 879.0697674418603,
+          "y": 465.86046511627904
+        },
+        "district:tidepool": {
+          "x": 1057.1162790697674,
+          "y": 554.8837209302326
+        },
+        "fountain": {
+          "x": 911.4418604651162,
+          "y": 643.9069767441861
+        },
+        "library": {
+          "x": 798.1395348837209,
+          "y": 635.813953488372
+        },
+        "plant": {
+          "x": 895.2558139534883,
+          "y": 587.2558139534883
+        },
+        "tower:tracker": {
+          "x": 943.813953488372,
+          "y": 401.1162790697674
+        }
+      }
     },
     {
       "id": "workday/start",
@@ -120,7 +1684,45 @@
       "description": "Three sessions at work before the others arrive.",
       "width": 1920,
       "height": 1080,
-      "image": "workday-start"
+      "image": "workday-start",
+      "anchors": {
+        "clinic": {
+          "x": 898.1333333333332,
+          "y": 682.9333333333333
+        },
+        "district:kiln": {
+          "x": 867.1999999999998,
+          "y": 466.4
+        },
+        "district:lanternfish": {
+          "x": 1052.8,
+          "y": 559.1999999999999
+        },
+        "district:tidepool": {
+          "x": 1238.3999999999999,
+          "y": 652
+        },
+        "fountain": {
+          "x": 913.5999999999999,
+          "y": 644.2666666666667
+        },
+        "library": {
+          "x": 805.3333333333331,
+          "y": 636.5333333333333
+        },
+        "plant": {
+          "x": 898.1333333333332,
+          "y": 590.1333333333333
+        },
+        "tower:tracker": {
+          "x": 913.5999999999999,
+          "y": 396.79999999999995
+        },
+        "tower:weather": {
+          "x": 975.4666666666665,
+          "y": 427.7333333333333
+        }
+      }
     },
     {
       "id": "workshop/overview",
@@ -130,7 +1732,53 @@
       "description": "Four projects; sessions working, waiting, running unattended and resting, with the plan's usage on the river.",
       "width": 1920,
       "height": 1080,
-      "image": "workshop-overview"
+      "image": "workshop-overview",
+      "anchors": {
+        "clinic": {
+          "x": 946.0799999999999,
+          "y": 645.04
+        },
+        "depot": {
+          "x": 500.64,
+          "y": 631.12
+        },
+        "district:kiln": {
+          "x": 918.24,
+          "y": 450.15999999999997
+        },
+        "district:lanternfish": {
+          "x": 1085.28,
+          "y": 533.68
+        },
+        "district:quillmark": {
+          "x": 1266.24,
+          "y": 624.16
+        },
+        "district:tidepool": {
+          "x": 779.04,
+          "y": 519.76
+        },
+        "fountain": {
+          "x": 960,
+          "y": 610.24
+        },
+        "library": {
+          "x": 862.56,
+          "y": 603.28
+        },
+        "plant": {
+          "x": 946.0799999999999,
+          "y": 561.52
+        },
+        "tower:tracker": {
+          "x": 960,
+          "y": 387.52
+        },
+        "tower:weather": {
+          "x": 1015.68,
+          "y": 415.35999999999996
+        }
+      }
     },
     {
       "id": "workshop/needs-you",
@@ -140,7 +1788,53 @@
       "description": "Tab jumps to the next session waiting on an answer and opens its card.",
       "width": 1920,
       "height": 1080,
-      "image": "workshop-needs-you"
+      "image": "workshop-needs-you",
+      "anchors": {
+        "clinic": {
+          "x": 1162.4,
+          "y": 777.4666666666668
+        },
+        "depot": {
+          "x": 573.6,
+          "y": 759.0666666666668
+        },
+        "district:kiln": {
+          "x": 1125.6,
+          "y": 519.8666666666668
+        },
+        "district:lanternfish": {
+          "x": 1346.4,
+          "y": 630.2666666666668
+        },
+        "district:quillmark": {
+          "x": 1585.6000000000001,
+          "y": 749.8666666666668
+        },
+        "district:tidepool": {
+          "x": 941.6,
+          "y": 611.8666666666668
+        },
+        "fountain": {
+          "x": 1180.8,
+          "y": 731.4666666666668
+        },
+        "library": {
+          "x": 1052,
+          "y": 722.2666666666668
+        },
+        "plant": {
+          "x": 1162.4,
+          "y": 667.0666666666668
+        },
+        "tower:tracker": {
+          "x": 1180.8,
+          "y": 437.0666666666667
+        },
+        "tower:weather": {
+          "x": 1254.4,
+          "y": 473.86666666666673
+        }
+      }
     },
     {
       "id": "workshop/power",
@@ -150,7 +1844,53 @@
       "description": "The power plant's breakdown of the last day's tokens and spend.",
       "width": 1920,
       "height": 1080,
-      "image": "workshop-power"
+      "image": "workshop-power",
+      "anchors": {
+        "clinic": {
+          "x": 946.0799999999999,
+          "y": 645.04
+        },
+        "depot": {
+          "x": 500.64,
+          "y": 631.12
+        },
+        "district:kiln": {
+          "x": 918.24,
+          "y": 450.15999999999997
+        },
+        "district:lanternfish": {
+          "x": 1085.28,
+          "y": 533.68
+        },
+        "district:quillmark": {
+          "x": 1266.24,
+          "y": 624.16
+        },
+        "district:tidepool": {
+          "x": 779.04,
+          "y": 519.76
+        },
+        "fountain": {
+          "x": 960,
+          "y": 610.24
+        },
+        "library": {
+          "x": 862.56,
+          "y": 603.28
+        },
+        "plant": {
+          "x": 946.0799999999999,
+          "y": 561.52
+        },
+        "tower:tracker": {
+          "x": 960,
+          "y": 387.52
+        },
+        "tower:weather": {
+          "x": 1015.68,
+          "y": 415.35999999999996
+        }
+      }
     },
     {
       "id": "workshop/plan",
@@ -160,7 +1900,53 @@
       "description": "One notch out past Skyline, the City Plan shows every district as a badge.",
       "width": 1920,
       "height": 1080,
-      "image": "workshop-plan"
+      "image": "workshop-plan",
+      "anchors": {
+        "clinic": {
+          "x": 941.6,
+          "y": 562.8000000000001
+        },
+        "depot": {
+          "x": 352.79999999999995,
+          "y": 544.4000000000001
+        },
+        "district:kiln": {
+          "x": 825.8013207439833,
+          "y": 280.83846198143
+        },
+        "district:lanternfish": {
+          "x": 1049.9487141066463,
+          "y": 504.9858553440931
+        },
+        "district:quillmark": {
+          "x": 1292.775056916198,
+          "y": 747.8121981536447
+        },
+        "district:tidepool": {
+          "x": 639.0118262750974,
+          "y": 467.6279564503159
+        },
+        "fountain": {
+          "x": 960,
+          "y": 516.8000000000001
+        },
+        "library": {
+          "x": 831.2,
+          "y": 507.6000000000001
+        },
+        "plant": {
+          "x": 941.6,
+          "y": 452.4000000000001
+        },
+        "tower:tracker": {
+          "x": 960,
+          "y": 222.40000000000006
+        },
+        "tower:weather": {
+          "x": 1033.6,
+          "y": 259.20000000000005
+        }
+      }
     }
   ],
   "clips": [
@@ -178,15 +1964,15 @@
       "sources": [
         {
           "type": "video/webm",
-          "url": "https://media.botropolis.city/05eaeea6ee761829.webm",
+          "url": "https://media.botropolis.city/21af0379892b3ca3.webm",
           "file": "buildings/residential.webm",
-          "name": "05eaeea6ee761829.webm"
+          "name": "21af0379892b3ca3.webm"
         },
         {
           "type": "video/mp4",
-          "url": "https://media.botropolis.city/dd73c80b9241de68.mp4",
+          "url": "https://media.botropolis.city/48c149cb74cc0af4.mp4",
           "file": "buildings/residential.mp4",
-          "name": "dd73c80b9241de68.mp4"
+          "name": "48c149cb74cc0af4.mp4"
         }
       ]
     },
@@ -204,15 +1990,15 @@
       "sources": [
         {
           "type": "video/webm",
-          "url": "https://media.botropolis.city/947c2462e0355f5b.webm",
+          "url": "https://media.botropolis.city/dd3be01ecdc40bf2.webm",
           "file": "buildings/shopping.webm",
-          "name": "947c2462e0355f5b.webm"
+          "name": "dd3be01ecdc40bf2.webm"
         },
         {
           "type": "video/mp4",
-          "url": "https://media.botropolis.city/81b16e558648cbe4.mp4",
+          "url": "https://media.botropolis.city/639b25899194d3ad.mp4",
           "file": "buildings/shopping.mp4",
-          "name": "81b16e558648cbe4.mp4"
+          "name": "639b25899194d3ad.mp4"
         }
       ]
     },
@@ -230,15 +2016,15 @@
       "sources": [
         {
           "type": "video/webm",
-          "url": "https://media.botropolis.city/21bf68ab8d3a78bd.webm",
+          "url": "https://media.botropolis.city/b4caecb428b8e070.webm",
           "file": "buildings/office.webm",
-          "name": "21bf68ab8d3a78bd.webm"
+          "name": "b4caecb428b8e070.webm"
         },
         {
           "type": "video/mp4",
-          "url": "https://media.botropolis.city/6112294e66cee6b3.mp4",
+          "url": "https://media.botropolis.city/cad156306f2911a6.mp4",
           "file": "buildings/office.mp4",
-          "name": "6112294e66cee6b3.mp4"
+          "name": "cad156306f2911a6.mp4"
         }
       ]
     },
@@ -256,15 +2042,15 @@
       "sources": [
         {
           "type": "video/webm",
-          "url": "https://media.botropolis.city/e11e8b4b621a1de5.webm",
+          "url": "https://media.botropolis.city/0b87eeed69876621.webm",
           "file": "buildings/industrial.webm",
-          "name": "e11e8b4b621a1de5.webm"
+          "name": "0b87eeed69876621.webm"
         },
         {
           "type": "video/mp4",
-          "url": "https://media.botropolis.city/58b859c14b727e15.mp4",
+          "url": "https://media.botropolis.city/f4fc624382c0f9a2.mp4",
           "file": "buildings/industrial.mp4",
-          "name": "58b859c14b727e15.mp4"
+          "name": "f4fc624382c0f9a2.mp4"
         }
       ]
     },
@@ -282,15 +2068,15 @@
       "sources": [
         {
           "type": "video/webm",
-          "url": "https://media.botropolis.city/76df510bc662ea25.webm",
+          "url": "https://media.botropolis.city/a6e6b613635afd2c.webm",
           "file": "hamlet/drift.webm",
-          "name": "76df510bc662ea25.webm"
+          "name": "a6e6b613635afd2c.webm"
         },
         {
           "type": "video/mp4",
-          "url": "https://media.botropolis.city/a34eea53d53363d4.mp4",
+          "url": "https://media.botropolis.city/1b9147f2f7dad120.mp4",
           "file": "hamlet/drift.mp4",
-          "name": "a34eea53d53363d4.mp4"
+          "name": "1b9147f2f7dad120.mp4"
         }
       ]
     },
@@ -308,17 +2094,65 @@
       "sources": [
         {
           "type": "video/webm",
-          "url": "https://media.botropolis.city/3cb425cc80fda7ad.webm",
+          "url": "https://media.botropolis.city/ca49783470dd6608.webm",
           "file": "layers/views.webm",
-          "name": "3cb425cc80fda7ad.webm"
+          "name": "ca49783470dd6608.webm"
         },
         {
           "type": "video/mp4",
-          "url": "https://media.botropolis.city/b44609b9ec9be207.mp4",
+          "url": "https://media.botropolis.city/d11b978f11d2372c.mp4",
           "file": "layers/views.mp4",
-          "name": "b44609b9ec9be207.mp4"
+          "name": "d11b978f11d2372c.mp4"
         }
       ]
+    },
+    {
+      "id": "metropolis/loop",
+      "scenario": "metropolis",
+      "shot": "loop",
+      "title": "The metropolis, drifting",
+      "description": "A slow drift over the districts and back, interface hidden, that plays on without a seam.",
+      "width": 1920,
+      "height": 1080,
+      "seconds": 15,
+      "poster": "metropolis-loop",
+      "posterFile": "metropolis/loop.png",
+      "sources": [
+        {
+          "type": "video/webm",
+          "url": "https://media.botropolis.city/50f959d18737a314.webm",
+          "file": "metropolis/loop.webm",
+          "name": "50f959d18737a314.webm"
+        },
+        {
+          "type": "video/mp4",
+          "url": "https://media.botropolis.city/9a4d0d6cb5259f0d.mp4",
+          "file": "metropolis/loop.mp4",
+          "name": "9a4d0d6cb5259f0d.mp4"
+        }
+      ],
+      "crops": {
+        "4:5": {
+          "width": 864,
+          "height": 1080,
+          "poster": "metropolis-loop-4x5",
+          "posterFile": "metropolis/loop-4x5.png",
+          "sources": [
+            {
+              "type": "video/webm",
+              "url": "https://media.botropolis.city/3dc51fc9c61640e2.webm",
+              "file": "metropolis/loop-4x5.webm",
+              "name": "3dc51fc9c61640e2.webm"
+            },
+            {
+              "type": "video/mp4",
+              "url": "https://media.botropolis.city/f83202e74f393aa5.mp4",
+              "file": "metropolis/loop-4x5.mp4",
+              "name": "f83202e74f393aa5.mp4"
+            }
+          ]
+        }
+      }
     },
     {
       "id": "metropolis/flyover",
@@ -334,15 +2168,93 @@
       "sources": [
         {
           "type": "video/webm",
-          "url": "https://media.botropolis.city/5b933060ea3bc84f.webm",
+          "url": "https://media.botropolis.city/afcd3e26ab61c8d6.webm",
           "file": "metropolis/flyover.webm",
-          "name": "5b933060ea3bc84f.webm"
+          "name": "afcd3e26ab61c8d6.webm"
         },
         {
           "type": "video/mp4",
-          "url": "https://media.botropolis.city/99c773218463ff09.mp4",
+          "url": "https://media.botropolis.city/824dd5a65d89ebee.mp4",
           "file": "metropolis/flyover.mp4",
-          "name": "99c773218463ff09.mp4"
+          "name": "824dd5a65d89ebee.mp4"
+        }
+      ]
+    },
+    {
+      "id": "stalls/queue",
+      "scenario": "stalls",
+      "shot": "queue",
+      "title": "A queue at a stall",
+      "description": "A scripted run arrives as a stall, and a customer joins its queue for each subagent it sets to work.",
+      "width": 1920,
+      "height": 1080,
+      "seconds": 16,
+      "poster": "stalls-queue",
+      "posterFile": "stalls/queue.png",
+      "sources": [
+        {
+          "type": "video/webm",
+          "url": "https://media.botropolis.city/fc96c4f64a553a0f.webm",
+          "file": "stalls/queue.webm",
+          "name": "fc96c4f64a553a0f.webm"
+        },
+        {
+          "type": "video/mp4",
+          "url": "https://media.botropolis.city/a26f8e07c0214ded.mp4",
+          "file": "stalls/queue.mp4",
+          "name": "a26f8e07c0214ded.mp4"
+        }
+      ]
+    },
+    {
+      "id": "team/team-vans",
+      "scenario": "team",
+      "shot": "team-vans",
+      "title": "A team's messages as vans",
+      "description": "A lead and its teammate in two districts. Each message between them drives along the road as a van.",
+      "width": 1920,
+      "height": 1080,
+      "seconds": 18,
+      "poster": "team-team-vans",
+      "posterFile": "team/team-vans.png",
+      "sources": [
+        {
+          "type": "video/webm",
+          "url": "https://media.botropolis.city/2ed85f4d16438630.webm",
+          "file": "team/team-vans.webm",
+          "name": "2ed85f4d16438630.webm"
+        },
+        {
+          "type": "video/mp4",
+          "url": "https://media.botropolis.city/38dd2e29b2eb6599.mp4",
+          "file": "team/team-vans.mp4",
+          "name": "38dd2e29b2eb6599.mp4"
+        }
+      ]
+    },
+    {
+      "id": "team/team-train",
+      "scenario": "team",
+      "shot": "team-train",
+      "title": "A team's messages along its line",
+      "description": "The same team with its group's line drawn. Each message between them rides the line as a carriage from one station to the other.",
+      "width": 1920,
+      "height": 1080,
+      "seconds": 18,
+      "poster": "team-team-train",
+      "posterFile": "team/team-train.png",
+      "sources": [
+        {
+          "type": "video/webm",
+          "url": "https://media.botropolis.city/7d467a345afa0aab.webm",
+          "file": "team/team-train.webm",
+          "name": "7d467a345afa0aab.webm"
+        },
+        {
+          "type": "video/mp4",
+          "url": "https://media.botropolis.city/5e94eea77303e945.mp4",
+          "file": "team/team-train.mp4",
+          "name": "5e94eea77303e945.mp4"
         }
       ]
     },
@@ -360,15 +2272,15 @@
       "sources": [
         {
           "type": "video/webm",
-          "url": "https://media.botropolis.city/dc3166b5f78e9b0f.webm",
+          "url": "https://media.botropolis.city/7142a3969a7cb973.webm",
           "file": "timelapse/day.webm",
-          "name": "dc3166b5f78e9b0f.webm"
+          "name": "7142a3969a7cb973.webm"
         },
         {
           "type": "video/mp4",
-          "url": "https://media.botropolis.city/3d4d527c04dac308.mp4",
+          "url": "https://media.botropolis.city/4ac96f5e3803d283.mp4",
           "file": "timelapse/day.mp4",
-          "name": "3d4d527c04dac308.mp4"
+          "name": "4ac96f5e3803d283.mp4"
         }
       ]
     },
@@ -386,15 +2298,15 @@
       "sources": [
         {
           "type": "video/webm",
-          "url": "https://media.botropolis.city/c9d32f8125fdf4f8.webm",
+          "url": "https://media.botropolis.city/4303cfe50c9a1fc7.webm",
           "file": "workday/morning.webm",
-          "name": "c9d32f8125fdf4f8.webm"
+          "name": "4303cfe50c9a1fc7.webm"
         },
         {
           "type": "video/mp4",
-          "url": "https://media.botropolis.city/df24cee95aafcf62.mp4",
+          "url": "https://media.botropolis.city/6f9c74344e8e4dcf.mp4",
           "file": "workday/morning.mp4",
-          "name": "df24cee95aafcf62.mp4"
+          "name": "6f9c74344e8e4dcf.mp4"
         }
       ]
     },
@@ -412,15 +2324,15 @@
       "sources": [
         {
           "type": "video/webm",
-          "url": "https://media.botropolis.city/482297cdc251dc11.webm",
+          "url": "https://media.botropolis.city/7ff5b5cfbb60caa4.webm",
           "file": "workshop/tour.webm",
-          "name": "482297cdc251dc11.webm"
+          "name": "7ff5b5cfbb60caa4.webm"
         },
         {
           "type": "video/mp4",
-          "url": "https://media.botropolis.city/e22f8593f6114330.mp4",
+          "url": "https://media.botropolis.city/8ef9932043da064f.mp4",
           "file": "workshop/tour.mp4",
-          "name": "e22f8593f6114330.mp4"
+          "name": "8ef9932043da064f.mp4"
         }
       ]
     }
@@ -432,43 +2344,43 @@
         "name": "Attention",
         "key": "1",
         "question": "Which sessions are waiting for you, and which are working.",
-        "image": "views-attention"
+        "image": "layers-attention"
       },
       {
         "name": "Work",
         "key": "2",
         "question": "Each piece of work and whose move it is: yours, the agents', or someone else's.",
-        "image": "views-work"
+        "image": "layers-groups"
       },
       {
         "name": "Cost",
         "key": "3",
         "question": "What each session has spent, and on which models.",
-        "image": "views-cost"
+        "image": "layers-spend"
       },
       {
         "name": "Capacity",
         "key": "4",
         "question": "How full each session's context is, and how many subagents it has running.",
-        "image": "views-capacity"
+        "image": "layers-pressure"
       },
       {
         "name": "Health",
         "key": "5",
         "question": "Errors, pull requests, and sessions that have gone quiet.",
-        "image": "views-health"
+        "image": "layers-health"
       },
       {
         "name": "Connections",
         "key": "6",
         "question": "Which MCP servers each session calls, and which projects talk to each other.",
-        "image": "views-connections"
+        "image": "layers-servers"
       },
       {
         "name": "Night",
         "key": "n",
         "question": "Lit windows mark the sessions that are awake.",
-        "image": "views-night"
+        "image": "layers-night"
       }
     ]
   }
