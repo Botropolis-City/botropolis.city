@@ -89,7 +89,7 @@ export const hotspots: Hotspot[] = place([
     py: 481,
     tone: "var(--unattended)",
   }),
-  spot({ title: "road", line: "A road joins two projects that sessions crossed between, by messages or by files.", source: kinds, on: "object", px: 1330, py: 545, tone: "var(--dim)" }),
+  spot({ title: "road", line: "A road joins two projects that sessions crossed between, by messages, by files or by subagents.", source: kinds, on: "object", px: 1330, py: 545, tone: "var(--dim)" }),
   spot({ title: "depot", line: "where packed-up sessions are kept", source: "pkg/city/depot.go", on: "object", px: 300, py: 515, tone: "var(--resting)", anchor: { name: "depot", dx: 3, dy: -5 } }),
   spot({
     title: "river",
