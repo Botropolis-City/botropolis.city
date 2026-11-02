@@ -69,7 +69,7 @@ The media is filmed in the botropolis repo by `make demo-media`, from demo sessi
 
 ```
 make media-import    # DEMO_DIR=../botropolis/dist/demo by default
-make media-upload    # clips to R2; already-uploaded ones are skipped
+make media-upload    # clips to R2 (skipping what the bucket has), then purges their URLs
 ```
 
 The import writes stills to `src/assets/media/` and clips to `.media/` (gitignored) under content-hashed names, and describes all of it in `src/data/media.json`.
