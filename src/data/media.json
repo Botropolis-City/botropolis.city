@@ -1,6 +1,6 @@
 {
-  "version": "0.3.5",
-  "generated": "2026-11-02T13:46:54.519703933Z",
+  "version": "0.4.0",
+  "generated": "2026-11-03T15:45:35.569993145Z",
   "stills": [
     {
       "id": "buildings/types",
@@ -1637,6 +1637,286 @@
       }
     },
     {
+      "id": "tidy/walk-start",
+      "scenario": "tidy",
+      "shot": "walk-start",
+      "title": "Tidy up, the first card",
+      "description": "Start clean, Walk through it, or Later.",
+      "width": 1920,
+      "height": 1080,
+      "image": "tidy-walk-start",
+      "anchors": {
+        "clinic": {
+          "x": 980.7323943661972,
+          "y": 621.6338028169015
+        },
+        "depot": {
+          "x": 420.95774647887333,
+          "y": 600.9014084507043
+        },
+        "district:beacon": {
+          "x": 960.0000000000001,
+          "y": 476.5070422535212
+        },
+        "district:brackenford": {
+          "x": 1084.3943661971832,
+          "y": 538.7042253521128
+        },
+        "district:copperleaf": {
+          "x": 1208.7887323943662,
+          "y": 600.9014084507043
+        },
+        "district:driftwood": {
+          "x": 856.3380281690141,
+          "y": 528.3380281690141
+        },
+        "district:fernhollow": {
+          "x": 1105.1267605633805,
+          "y": 652.7323943661972
+        },
+        "district:ferrylight": {
+          "x": 752.6760563380283,
+          "y": 580.1690140845071
+        },
+        "district:kiln": {
+          "x": 877.0704225352114,
+          "y": 642.3661971830986
+        },
+        "district:lanternfish": {
+          "x": 1001.4647887323945,
+          "y": 704.5633802816902
+        },
+        "district:millrace": {
+          "x": 928.9014084507044,
+          "y": 378.0281690140846
+        },
+        "district:oldmill": {
+          "x": 1042.9295774647887,
+          "y": 435.04225352112684
+        },
+        "district:orchard": {
+          "x": 1167.323943661972,
+          "y": 497.2394366197184
+        },
+        "district:quillmark": {
+          "x": 1291.7183098591552,
+          "y": 559.4366197183099
+        },
+        "district:rookery": {
+          "x": 1395.3802816901411,
+          "y": 611.2676056338029
+        },
+        "district:saltmarsh": {
+          "x": 845.9718309859156,
+          "y": 419.49295774647896
+        },
+        "district:thistledown": {
+          "x": 1312.4507042253524,
+          "y": 652.7323943661972
+        },
+        "district:tidepool": {
+          "x": 742.3098591549297,
+          "y": 471.3239436619719
+        },
+        "district:wickham": {
+          "x": 1208.7887323943662,
+          "y": 704.5633802816902
+        },
+        "fountain": {
+          "x": 991.0985915492959,
+          "y": 595.7183098591549
+        },
+        "library": {
+          "x": 918.5352112676057,
+          "y": 590.5352112676057
+        },
+        "plant": {
+          "x": 980.7323943661972,
+          "y": 559.4366197183099
+        },
+        "tower:tracker": {
+          "x": 949.6338028169015,
+          "y": 326.1971830985916
+        },
+        "tower:weather": {
+          "x": 991.0985915492959,
+          "y": 346.9295774647888
+        }
+      }
+    },
+    {
+      "id": "tidy/walk-group",
+      "scenario": "tidy",
+      "shot": "walk-group",
+      "title": "Tidy up, a group's card",
+      "description": "The strongest group, its members listed, the camera on its line.",
+      "width": 1920,
+      "height": 1080,
+      "image": "tidy-walk-group",
+      "anchors": {
+        "clinic": {
+          "x": 1654.0000000000002,
+          "y": 1034.0000000000002
+        },
+        "district:beacon": {
+          "x": 1588.0000000000002,
+          "y": 572.0000000000002
+        },
+        "district:driftwood": {
+          "x": 1258.0000000000002,
+          "y": 737.0000000000002
+        },
+        "district:ferrylight": {
+          "x": 928.0000000000002,
+          "y": 902.0000000000002
+        },
+        "district:millrace": {
+          "x": 1489.0000000000002,
+          "y": 258.50000000000017
+        },
+        "district:oldmill": {
+          "x": 1852.0000000000002,
+          "y": 440.00000000000017
+        },
+        "district:saltmarsh": {
+          "x": 1225.0000000000002,
+          "y": 390.50000000000017
+        },
+        "district:tidepool": {
+          "x": 895.0000000000002,
+          "y": 555.5000000000002
+        },
+        "fountain": {
+          "x": 1687.0000000000002,
+          "y": 951.5000000000002
+        },
+        "library": {
+          "x": 1456.0000000000002,
+          "y": 935.0000000000002
+        },
+        "plant": {
+          "x": 1654.0000000000002,
+          "y": 836.0000000000002
+        },
+        "tower:tracker": {
+          "x": 1555.0000000000002,
+          "y": 93.50000000000017
+        },
+        "tower:weather": {
+          "x": 1687.0000000000002,
+          "y": 159.50000000000017
+        }
+      }
+    },
+    {
+      "id": "tidy/walk-quiet",
+      "scenario": "tidy",
+      "shot": "walk-quiet",
+      "title": "Tidy up, the quiet card",
+      "description": "The sessions in no group quiet for a week, answered pack them up.",
+      "width": 1920,
+      "height": 1080,
+      "image": "tidy-walk-quiet",
+      "anchors": {
+        "clinic": {
+          "x": 980.7323943661972,
+          "y": 621.6338028169015
+        },
+        "depot": {
+          "x": 420.95774647887333,
+          "y": 600.9014084507043
+        },
+        "district:beacon": {
+          "x": 960.0000000000001,
+          "y": 476.5070422535212
+        },
+        "district:brackenford": {
+          "x": 1084.3943661971832,
+          "y": 538.7042253521128
+        },
+        "district:copperleaf": {
+          "x": 1208.7887323943662,
+          "y": 600.9014084507043
+        },
+        "district:driftwood": {
+          "x": 856.3380281690141,
+          "y": 528.3380281690141
+        },
+        "district:fernhollow": {
+          "x": 1105.1267605633805,
+          "y": 652.7323943661972
+        },
+        "district:ferrylight": {
+          "x": 752.6760563380283,
+          "y": 580.1690140845071
+        },
+        "district:kiln": {
+          "x": 877.0704225352114,
+          "y": 642.3661971830986
+        },
+        "district:lanternfish": {
+          "x": 1001.4647887323945,
+          "y": 704.5633802816902
+        },
+        "district:millrace": {
+          "x": 928.9014084507044,
+          "y": 378.0281690140846
+        },
+        "district:oldmill": {
+          "x": 1042.9295774647887,
+          "y": 435.04225352112684
+        },
+        "district:orchard": {
+          "x": 1167.323943661972,
+          "y": 497.2394366197184
+        },
+        "district:quillmark": {
+          "x": 1291.7183098591552,
+          "y": 559.4366197183099
+        },
+        "district:rookery": {
+          "x": 1395.3802816901411,
+          "y": 611.2676056338029
+        },
+        "district:saltmarsh": {
+          "x": 845.9718309859156,
+          "y": 419.49295774647896
+        },
+        "district:thistledown": {
+          "x": 1312.4507042253524,
+          "y": 652.7323943661972
+        },
+        "district:tidepool": {
+          "x": 742.3098591549297,
+          "y": 471.3239436619719
+        },
+        "district:wickham": {
+          "x": 1208.7887323943662,
+          "y": 704.5633802816902
+        },
+        "fountain": {
+          "x": 991.0985915492959,
+          "y": 595.7183098591549
+        },
+        "library": {
+          "x": 918.5352112676057,
+          "y": 590.5352112676057
+        },
+        "plant": {
+          "x": 980.7323943661972,
+          "y": 559.4366197183099
+        },
+        "tower:tracker": {
+          "x": 949.6338028169015,
+          "y": 326.1971830985916
+        },
+        "tower:weather": {
+          "x": 991.0985915492959,
+          "y": 346.9295774647888
+        }
+      }
+    },
+    {
       "id": "timelapse/start",
       "scenario": "timelapse",
       "shot": "start",
@@ -1964,15 +2244,15 @@
       "sources": [
         {
           "type": "video/webm",
-          "url": "https://media.botropolis.city/b4305b52d6afea54.webm",
+          "url": "https://media.botropolis.city/dec12d68f755c59c.webm",
           "file": "buildings/residential.webm",
-          "name": "b4305b52d6afea54.webm"
+          "name": "dec12d68f755c59c.webm"
         },
         {
           "type": "video/mp4",
-          "url": "https://media.botropolis.city/2597d06d0e7c70be.mp4",
+          "url": "https://media.botropolis.city/7b6d34a4f59c6f24.mp4",
           "file": "buildings/residential.mp4",
-          "name": "2597d06d0e7c70be.mp4"
+          "name": "7b6d34a4f59c6f24.mp4"
         }
       ]
     },
@@ -1990,15 +2270,15 @@
       "sources": [
         {
           "type": "video/webm",
-          "url": "https://media.botropolis.city/b88162e339086d72.webm",
+          "url": "https://media.botropolis.city/1f6b4402e9c016d0.webm",
           "file": "buildings/shopping.webm",
-          "name": "b88162e339086d72.webm"
+          "name": "1f6b4402e9c016d0.webm"
         },
         {
           "type": "video/mp4",
-          "url": "https://media.botropolis.city/254fb7123ba43304.mp4",
+          "url": "https://media.botropolis.city/6d2c09e69ccb1762.mp4",
           "file": "buildings/shopping.mp4",
-          "name": "254fb7123ba43304.mp4"
+          "name": "6d2c09e69ccb1762.mp4"
         }
       ]
     },
@@ -2016,15 +2296,15 @@
       "sources": [
         {
           "type": "video/webm",
-          "url": "https://media.botropolis.city/d3dc9d1b3c9a408a.webm",
+          "url": "https://media.botropolis.city/bc6945f5afeca5b3.webm",
           "file": "buildings/office.webm",
-          "name": "d3dc9d1b3c9a408a.webm"
+          "name": "bc6945f5afeca5b3.webm"
         },
         {
           "type": "video/mp4",
-          "url": "https://media.botropolis.city/094edbdb26217354.mp4",
+          "url": "https://media.botropolis.city/36457a05240ff20c.mp4",
           "file": "buildings/office.mp4",
-          "name": "094edbdb26217354.mp4"
+          "name": "36457a05240ff20c.mp4"
         }
       ]
     },
@@ -2042,15 +2322,15 @@
       "sources": [
         {
           "type": "video/webm",
-          "url": "https://media.botropolis.city/f9a86eeeede384cd.webm",
+          "url": "https://media.botropolis.city/c3108ffec1d566bc.webm",
           "file": "buildings/industrial.webm",
-          "name": "f9a86eeeede384cd.webm"
+          "name": "c3108ffec1d566bc.webm"
         },
         {
           "type": "video/mp4",
-          "url": "https://media.botropolis.city/af0c64107846d16e.mp4",
+          "url": "https://media.botropolis.city/11016bcf23cab4a6.mp4",
           "file": "buildings/industrial.mp4",
-          "name": "af0c64107846d16e.mp4"
+          "name": "11016bcf23cab4a6.mp4"
         }
       ]
     },
@@ -2068,15 +2348,15 @@
       "sources": [
         {
           "type": "video/webm",
-          "url": "https://media.botropolis.city/dc089814da16376b.webm",
+          "url": "https://media.botropolis.city/8c42f4f37951bf53.webm",
           "file": "hamlet/drift.webm",
-          "name": "dc089814da16376b.webm"
+          "name": "8c42f4f37951bf53.webm"
         },
         {
           "type": "video/mp4",
-          "url": "https://media.botropolis.city/0459542c02d1330d.mp4",
+          "url": "https://media.botropolis.city/33f0c101d99e8639.mp4",
           "file": "hamlet/drift.mp4",
-          "name": "0459542c02d1330d.mp4"
+          "name": "33f0c101d99e8639.mp4"
         }
       ]
     },
@@ -2094,15 +2374,15 @@
       "sources": [
         {
           "type": "video/webm",
-          "url": "https://media.botropolis.city/a4a14aaf05863aac.webm",
+          "url": "https://media.botropolis.city/821c2e445a9c59e3.webm",
           "file": "layers/views.webm",
-          "name": "a4a14aaf05863aac.webm"
+          "name": "821c2e445a9c59e3.webm"
         },
         {
           "type": "video/mp4",
-          "url": "https://media.botropolis.city/c211f50f850f5ab0.mp4",
+          "url": "https://media.botropolis.city/c589418abdbc2174.mp4",
           "file": "layers/views.mp4",
-          "name": "c211f50f850f5ab0.mp4"
+          "name": "c589418abdbc2174.mp4"
         }
       ]
     },
@@ -2120,9 +2400,9 @@
       "sources": [
         {
           "type": "video/webm",
-          "url": "https://media.botropolis.city/a36de9ec207d268c.webm",
+          "url": "https://media.botropolis.city/91e43e17724bb4cd.webm",
           "file": "metropolis/loop.webm",
-          "name": "a36de9ec207d268c.webm"
+          "name": "91e43e17724bb4cd.webm"
         },
         {
           "type": "video/mp4",
@@ -2140,9 +2420,9 @@
           "sources": [
             {
               "type": "video/webm",
-              "url": "https://media.botropolis.city/93af3514899080ca.webm",
+              "url": "https://media.botropolis.city/32555aa300355b81.webm",
               "file": "metropolis/loop-4x5.webm",
-              "name": "93af3514899080ca.webm"
+              "name": "32555aa300355b81.webm"
             },
             {
               "type": "video/mp4",
@@ -2168,15 +2448,15 @@
       "sources": [
         {
           "type": "video/webm",
-          "url": "https://media.botropolis.city/31fb4032f819b2db.webm",
+          "url": "https://media.botropolis.city/9768ede364a9d747.webm",
           "file": "metropolis/flyover.webm",
-          "name": "31fb4032f819b2db.webm"
+          "name": "9768ede364a9d747.webm"
         },
         {
           "type": "video/mp4",
-          "url": "https://media.botropolis.city/9108502a1d328f9b.mp4",
+          "url": "https://media.botropolis.city/733ea3558ded54f6.mp4",
           "file": "metropolis/flyover.mp4",
-          "name": "9108502a1d328f9b.mp4"
+          "name": "733ea3558ded54f6.mp4"
         }
       ]
     },
@@ -2194,15 +2474,15 @@
       "sources": [
         {
           "type": "video/webm",
-          "url": "https://media.botropolis.city/48269bb4350e22a9.webm",
+          "url": "https://media.botropolis.city/8504b1c8d2d38387.webm",
           "file": "stalls/queue.webm",
-          "name": "48269bb4350e22a9.webm"
+          "name": "8504b1c8d2d38387.webm"
         },
         {
           "type": "video/mp4",
-          "url": "https://media.botropolis.city/4e17c46dd414815c.mp4",
+          "url": "https://media.botropolis.city/96c3ee5ef4dd8e76.mp4",
           "file": "stalls/queue.mp4",
-          "name": "4e17c46dd414815c.mp4"
+          "name": "96c3ee5ef4dd8e76.mp4"
         }
       ]
     },
@@ -2220,15 +2500,15 @@
       "sources": [
         {
           "type": "video/webm",
-          "url": "https://media.botropolis.city/983d229ff434b968.webm",
+          "url": "https://media.botropolis.city/d0464fe93d699587.webm",
           "file": "team/team-vans.webm",
-          "name": "983d229ff434b968.webm"
+          "name": "d0464fe93d699587.webm"
         },
         {
           "type": "video/mp4",
-          "url": "https://media.botropolis.city/b017e00e9b2ff841.mp4",
+          "url": "https://media.botropolis.city/720f552dc2d98b4b.mp4",
           "file": "team/team-vans.mp4",
-          "name": "b017e00e9b2ff841.mp4"
+          "name": "720f552dc2d98b4b.mp4"
         }
       ]
     },
@@ -2246,15 +2526,55 @@
       "sources": [
         {
           "type": "video/webm",
-          "url": "https://media.botropolis.city/0f55a18292e70fc1.webm",
+          "url": "https://media.botropolis.city/591c2d78a8aa6606.webm",
           "file": "team/team-line.webm",
-          "name": "0f55a18292e70fc1.webm"
+          "name": "591c2d78a8aa6606.webm"
         },
         {
           "type": "video/mp4",
-          "url": "https://media.botropolis.city/3b261d408aa8121c.mp4",
+          "url": "https://media.botropolis.city/40db62bf19d9ac3b.mp4",
           "file": "team/team-line.mp4",
-          "name": "3b261d408aa8121c.mp4"
+          "name": "40db62bf19d9ac3b.mp4"
+        }
+      ]
+    },
+    {
+      "id": "tidy/close-group",
+      "scenario": "tidy",
+      "shot": "close-group",
+      "title": "Closing a group",
+      "description": "Close group on City Hall's board packs the group's sessions into the depot as a convoy.",
+      "width": 1920,
+      "height": 1080,
+      "seconds": 16,
+      "poster": "tidy-close-group",
+      "posterFile": "tidy/close-group.png",
+      "sources": [
+        {
+          "type": "video/mp4",
+          "url": "https://media.botropolis.city/c54e3c3694bf787b.mp4",
+          "file": "tidy/close-group.mp4",
+          "name": "c54e3c3694bf787b.mp4"
+        }
+      ]
+    },
+    {
+      "id": "tidy/walk",
+      "scenario": "tidy",
+      "shot": "walk",
+      "title": "Tidy up, end to end",
+      "description": "Walk through it, keep the group, pack up the quiet sessions, and the journal.",
+      "width": 1920,
+      "height": 1080,
+      "seconds": 18,
+      "poster": "tidy-walk",
+      "posterFile": "tidy/walk.png",
+      "sources": [
+        {
+          "type": "video/mp4",
+          "url": "https://media.botropolis.city/61a7cc77edcdcb59.mp4",
+          "file": "tidy/walk.mp4",
+          "name": "61a7cc77edcdcb59.mp4"
         }
       ]
     },
@@ -2272,15 +2592,15 @@
       "sources": [
         {
           "type": "video/webm",
-          "url": "https://media.botropolis.city/1a82a8602861e6cb.webm",
+          "url": "https://media.botropolis.city/385126e32768b8b2.webm",
           "file": "timelapse/day.webm",
-          "name": "1a82a8602861e6cb.webm"
+          "name": "385126e32768b8b2.webm"
         },
         {
           "type": "video/mp4",
-          "url": "https://media.botropolis.city/8d5e3aa94dc46437.mp4",
+          "url": "https://media.botropolis.city/281cc6f406ac10df.mp4",
           "file": "timelapse/day.mp4",
-          "name": "8d5e3aa94dc46437.mp4"
+          "name": "281cc6f406ac10df.mp4"
         }
       ]
     },
@@ -2298,15 +2618,15 @@
       "sources": [
         {
           "type": "video/webm",
-          "url": "https://media.botropolis.city/3c7582203f15c8dc.webm",
+          "url": "https://media.botropolis.city/7fcbe6537c8af781.webm",
           "file": "workday/morning.webm",
-          "name": "3c7582203f15c8dc.webm"
+          "name": "7fcbe6537c8af781.webm"
         },
         {
           "type": "video/mp4",
-          "url": "https://media.botropolis.city/6e334554a34a7d44.mp4",
+          "url": "https://media.botropolis.city/a4f89de7c60d987b.mp4",
           "file": "workday/morning.mp4",
-          "name": "6e334554a34a7d44.mp4"
+          "name": "a4f89de7c60d987b.mp4"
         }
       ]
     },
@@ -2324,9 +2644,9 @@
       "sources": [
         {
           "type": "video/webm",
-          "url": "https://media.botropolis.city/66c500f34d388db9.webm",
+          "url": "https://media.botropolis.city/97eeea840da84ef2.webm",
           "file": "workshop/tour.webm",
-          "name": "66c500f34d388db9.webm"
+          "name": "97eeea840da84ef2.webm"
         },
         {
           "type": "video/mp4",
