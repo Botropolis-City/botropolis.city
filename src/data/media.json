@@ -1,6 +1,6 @@
 {
-  "version": "0.4.0",
-  "generated": "2026-11-03T15:45:35.569993145Z",
+  "version": "0.4.1",
+  "generated": "2026-11-06T17:50:37.020270512Z",
   "stills": [
     {
       "id": "buildings/types",
@@ -2244,15 +2244,15 @@
       "sources": [
         {
           "type": "video/webm",
-          "url": "https://media.botropolis.city/dec12d68f755c59c.webm",
+          "url": "https://media.botropolis.city/2a3be659140ebb4d.webm",
           "file": "buildings/residential.webm",
-          "name": "dec12d68f755c59c.webm"
+          "name": "2a3be659140ebb4d.webm"
         },
         {
           "type": "video/mp4",
-          "url": "https://media.botropolis.city/7b6d34a4f59c6f24.mp4",
+          "url": "https://media.botropolis.city/bc85576e6069a4d2.mp4",
           "file": "buildings/residential.mp4",
-          "name": "7b6d34a4f59c6f24.mp4"
+          "name": "bc85576e6069a4d2.mp4"
         }
       ]
     },
@@ -2270,15 +2270,15 @@
       "sources": [
         {
           "type": "video/webm",
-          "url": "https://media.botropolis.city/1f6b4402e9c016d0.webm",
+          "url": "https://media.botropolis.city/ecdd7dbbb24267ca.webm",
           "file": "buildings/shopping.webm",
-          "name": "1f6b4402e9c016d0.webm"
+          "name": "ecdd7dbbb24267ca.webm"
         },
         {
           "type": "video/mp4",
-          "url": "https://media.botropolis.city/6d2c09e69ccb1762.mp4",
+          "url": "https://media.botropolis.city/c384888546297077.mp4",
           "file": "buildings/shopping.mp4",
-          "name": "6d2c09e69ccb1762.mp4"
+          "name": "c384888546297077.mp4"
         }
       ]
     },
@@ -2296,15 +2296,15 @@
       "sources": [
         {
           "type": "video/webm",
-          "url": "https://media.botropolis.city/bc6945f5afeca5b3.webm",
+          "url": "https://media.botropolis.city/e0dab0782bfc7224.webm",
           "file": "buildings/office.webm",
-          "name": "bc6945f5afeca5b3.webm"
+          "name": "e0dab0782bfc7224.webm"
         },
         {
           "type": "video/mp4",
-          "url": "https://media.botropolis.city/36457a05240ff20c.mp4",
+          "url": "https://media.botropolis.city/b209c23f7f9a3eb8.mp4",
           "file": "buildings/office.mp4",
-          "name": "36457a05240ff20c.mp4"
+          "name": "b209c23f7f9a3eb8.mp4"
         }
       ]
     },
@@ -2322,15 +2322,15 @@
       "sources": [
         {
           "type": "video/webm",
-          "url": "https://media.botropolis.city/c3108ffec1d566bc.webm",
+          "url": "https://media.botropolis.city/0f5f86c00303f486.webm",
           "file": "buildings/industrial.webm",
-          "name": "c3108ffec1d566bc.webm"
+          "name": "0f5f86c00303f486.webm"
         },
         {
           "type": "video/mp4",
-          "url": "https://media.botropolis.city/11016bcf23cab4a6.mp4",
+          "url": "https://media.botropolis.city/45d821584b6b5299.mp4",
           "file": "buildings/industrial.mp4",
-          "name": "11016bcf23cab4a6.mp4"
+          "name": "45d821584b6b5299.mp4"
         }
       ]
     },
@@ -2348,15 +2348,15 @@
       "sources": [
         {
           "type": "video/webm",
-          "url": "https://media.botropolis.city/8c42f4f37951bf53.webm",
+          "url": "https://media.botropolis.city/feb81d11c0cd8f9c.webm",
           "file": "hamlet/drift.webm",
-          "name": "8c42f4f37951bf53.webm"
+          "name": "feb81d11c0cd8f9c.webm"
         },
         {
           "type": "video/mp4",
-          "url": "https://media.botropolis.city/33f0c101d99e8639.mp4",
+          "url": "https://media.botropolis.city/aae96b7fbe5435e5.mp4",
           "file": "hamlet/drift.mp4",
-          "name": "33f0c101d99e8639.mp4"
+          "name": "aae96b7fbe5435e5.mp4"
         }
       ]
     },
@@ -2374,15 +2374,15 @@
       "sources": [
         {
           "type": "video/webm",
-          "url": "https://media.botropolis.city/821c2e445a9c59e3.webm",
+          "url": "https://media.botropolis.city/b41f0e21b5c30ae6.webm",
           "file": "layers/views.webm",
-          "name": "821c2e445a9c59e3.webm"
+          "name": "b41f0e21b5c30ae6.webm"
         },
         {
           "type": "video/mp4",
-          "url": "https://media.botropolis.city/c589418abdbc2174.mp4",
+          "url": "https://media.botropolis.city/2b5c6122efee55c3.mp4",
           "file": "layers/views.mp4",
-          "name": "c589418abdbc2174.mp4"
+          "name": "2b5c6122efee55c3.mp4"
         }
       ]
     },
@@ -2400,9 +2400,9 @@
       "sources": [
         {
           "type": "video/webm",
-          "url": "https://media.botropolis.city/91e43e17724bb4cd.webm",
+          "url": "https://media.botropolis.city/432750cdd3b5b040.webm",
           "file": "metropolis/loop.webm",
-          "name": "91e43e17724bb4cd.webm"
+          "name": "432750cdd3b5b040.webm"
         },
         {
           "type": "video/mp4",
@@ -2420,9 +2420,9 @@
           "sources": [
             {
               "type": "video/webm",
-              "url": "https://media.botropolis.city/32555aa300355b81.webm",
+              "url": "https://media.botropolis.city/c97a0e56a8a77a46.webm",
               "file": "metropolis/loop-4x5.webm",
-              "name": "32555aa300355b81.webm"
+              "name": "c97a0e56a8a77a46.webm"
             },
             {
               "type": "video/mp4",
@@ -2448,15 +2448,15 @@
       "sources": [
         {
           "type": "video/webm",
-          "url": "https://media.botropolis.city/9768ede364a9d747.webm",
+          "url": "https://media.botropolis.city/45027b3744b94e92.webm",
           "file": "metropolis/flyover.webm",
-          "name": "9768ede364a9d747.webm"
+          "name": "45027b3744b94e92.webm"
         },
         {
           "type": "video/mp4",
-          "url": "https://media.botropolis.city/733ea3558ded54f6.mp4",
+          "url": "https://media.botropolis.city/7990e0479012c25d.mp4",
           "file": "metropolis/flyover.mp4",
-          "name": "733ea3558ded54f6.mp4"
+          "name": "7990e0479012c25d.mp4"
         }
       ]
     },
@@ -2474,15 +2474,15 @@
       "sources": [
         {
           "type": "video/webm",
-          "url": "https://media.botropolis.city/8504b1c8d2d38387.webm",
+          "url": "https://media.botropolis.city/e58cb808159bf3eb.webm",
           "file": "stalls/queue.webm",
-          "name": "8504b1c8d2d38387.webm"
+          "name": "e58cb808159bf3eb.webm"
         },
         {
           "type": "video/mp4",
-          "url": "https://media.botropolis.city/96c3ee5ef4dd8e76.mp4",
+          "url": "https://media.botropolis.city/86022e2b4031ca78.mp4",
           "file": "stalls/queue.mp4",
-          "name": "96c3ee5ef4dd8e76.mp4"
+          "name": "86022e2b4031ca78.mp4"
         }
       ]
     },
@@ -2500,15 +2500,15 @@
       "sources": [
         {
           "type": "video/webm",
-          "url": "https://media.botropolis.city/d0464fe93d699587.webm",
+          "url": "https://media.botropolis.city/4503b2692af8c62d.webm",
           "file": "team/team-vans.webm",
-          "name": "d0464fe93d699587.webm"
+          "name": "4503b2692af8c62d.webm"
         },
         {
           "type": "video/mp4",
-          "url": "https://media.botropolis.city/720f552dc2d98b4b.mp4",
+          "url": "https://media.botropolis.city/b086908224dee608.mp4",
           "file": "team/team-vans.mp4",
-          "name": "720f552dc2d98b4b.mp4"
+          "name": "b086908224dee608.mp4"
         }
       ]
     },
@@ -2526,15 +2526,15 @@
       "sources": [
         {
           "type": "video/webm",
-          "url": "https://media.botropolis.city/591c2d78a8aa6606.webm",
+          "url": "https://media.botropolis.city/f01ca4b504a6f446.webm",
           "file": "team/team-line.webm",
-          "name": "591c2d78a8aa6606.webm"
+          "name": "f01ca4b504a6f446.webm"
         },
         {
           "type": "video/mp4",
-          "url": "https://media.botropolis.city/40db62bf19d9ac3b.mp4",
+          "url": "https://media.botropolis.city/3cb59b1bfd29800f.mp4",
           "file": "team/team-line.mp4",
-          "name": "40db62bf19d9ac3b.mp4"
+          "name": "3cb59b1bfd29800f.mp4"
         }
       ]
     },
@@ -2552,9 +2552,9 @@
       "sources": [
         {
           "type": "video/mp4",
-          "url": "https://media.botropolis.city/c54e3c3694bf787b.mp4",
+          "url": "https://media.botropolis.city/0a2f08324ea5a45d.mp4",
           "file": "tidy/close-group.mp4",
-          "name": "c54e3c3694bf787b.mp4"
+          "name": "0a2f08324ea5a45d.mp4"
         }
       ]
     },
@@ -2572,9 +2572,9 @@
       "sources": [
         {
           "type": "video/mp4",
-          "url": "https://media.botropolis.city/61a7cc77edcdcb59.mp4",
+          "url": "https://media.botropolis.city/c1b0260816686c9c.mp4",
           "file": "tidy/walk.mp4",
-          "name": "61a7cc77edcdcb59.mp4"
+          "name": "c1b0260816686c9c.mp4"
         }
       ]
     },
@@ -2592,15 +2592,15 @@
       "sources": [
         {
           "type": "video/webm",
-          "url": "https://media.botropolis.city/385126e32768b8b2.webm",
+          "url": "https://media.botropolis.city/5712837d90adcc3d.webm",
           "file": "timelapse/day.webm",
-          "name": "385126e32768b8b2.webm"
+          "name": "5712837d90adcc3d.webm"
         },
         {
           "type": "video/mp4",
-          "url": "https://media.botropolis.city/281cc6f406ac10df.mp4",
+          "url": "https://media.botropolis.city/147776f84f9bb521.mp4",
           "file": "timelapse/day.mp4",
-          "name": "281cc6f406ac10df.mp4"
+          "name": "147776f84f9bb521.mp4"
         }
       ]
     },
@@ -2618,15 +2618,15 @@
       "sources": [
         {
           "type": "video/webm",
-          "url": "https://media.botropolis.city/7fcbe6537c8af781.webm",
+          "url": "https://media.botropolis.city/55da72c6da63e20b.webm",
           "file": "workday/morning.webm",
-          "name": "7fcbe6537c8af781.webm"
+          "name": "55da72c6da63e20b.webm"
         },
         {
           "type": "video/mp4",
-          "url": "https://media.botropolis.city/a4f89de7c60d987b.mp4",
+          "url": "https://media.botropolis.city/130950f78cf0b26c.mp4",
           "file": "workday/morning.mp4",
-          "name": "a4f89de7c60d987b.mp4"
+          "name": "130950f78cf0b26c.mp4"
         }
       ]
     },
@@ -2644,15 +2644,15 @@
       "sources": [
         {
           "type": "video/webm",
-          "url": "https://media.botropolis.city/97eeea840da84ef2.webm",
+          "url": "https://media.botropolis.city/064b5c1e1ad257bd.webm",
           "file": "workshop/tour.webm",
-          "name": "97eeea840da84ef2.webm"
+          "name": "064b5c1e1ad257bd.webm"
         },
         {
           "type": "video/mp4",
-          "url": "https://media.botropolis.city/7723304d8cc99342.mp4",
+          "url": "https://media.botropolis.city/f286df9152247367.mp4",
           "file": "workshop/tour.mp4",
-          "name": "7723304d8cc99342.mp4"
+          "name": "f286df9152247367.mp4"
         }
       ]
     }
