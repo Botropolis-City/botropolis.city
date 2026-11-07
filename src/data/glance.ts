@@ -56,7 +56,7 @@ const spot = (s: Spec) => s;
 // The offsets were measured on a film of the metropolis hero made with
 // anchors, against these hand placements, on 2026-10-25.
 export const hotspots: Hotspot[] = place([
-  spot({ title: "trains", line: "Each train on the loop is one model. Its length is that model's share of today's tokens.", source: kinds, on: "object", px: 915, py: 112, tone: "var(--plant)" }),
+  spot({ title: "trains", line: "Each train on the loop is one model. Its length is that model's share of today's tokens.", source: kinds, on: "object", px: 895, py: 130, tone: "var(--plant)" }),
   spot({ title: "radio towers", line: "Each radio tower is an MCP server.", source: kinds, on: "object", px: 988, py: 105, tone: "var(--dim)", anchor: { name: "tower:tracker", dx: 1, dy: -56 } }),
   spot({ title: "library", line: "The library holds the skills sessions have used, and how often.", source: kinds, on: "object", px: 885, py: 450, tone: "var(--plant)", anchor: { name: "library", dx: -7, dy: -29 } }),
   spot({ title: "power plant", line: "The power plant is the city's spend: tokens and cost across every session.", source: kinds, on: "object", px: 970, py: 405, tone: "var(--plant)", anchor: { name: "plant", dx: -4, dy: -34 } }),
@@ -75,8 +75,8 @@ export const hotspots: Hotspot[] = place([
     line: "A stopped session stays on its own lot: resting, then shuttered after a week of quiet and overgrown after a month, and its card says how long it has been quiet.",
     source: "README.md",
     on: "object",
-    px: 1067,
-    py: 355,
+    px: 1066,
+    py: 390,
     tone: "var(--resting)",
   }),
   spot({
@@ -89,7 +89,7 @@ export const hotspots: Hotspot[] = place([
     py: 481,
     tone: "var(--unattended)",
   }),
-  spot({ title: "road", line: "A road joins two projects that sessions crossed between, by messages, by files or by subagents.", source: kinds, on: "object", px: 1330, py: 545, tone: "var(--dim)" }),
+  spot({ title: "road", line: "A road joins two projects that sessions crossed between, by messages, by files or by subagents.", source: kinds, on: "object", px: 1400, py: 535, tone: "var(--dim)" }),
   spot({ title: "depot", line: "where packed-up sessions are kept", source: "pkg/city/depot.go", on: "object", px: 300, py: 515, tone: "var(--resting)", anchor: { name: "depot", dx: 3, dy: -5 } }),
   spot({
     title: "river",
