@@ -50,8 +50,8 @@ export const facts: Fact[] = [
   {
     id: "line",
     title: "the line",
-    line: "The line runs between buildings, not to dots floating beside them. A link into a site that waits on another is drawn dark, and one into a site joined on a guess is dashed.",
-    quote: "The line runs between buildings, not to dots floating beside them.",
+    line: "A link into a site that waits on another is drawn dark, and one into a site joined on a guess is dashed. Pointing at a link shows the group, the site and the route.",
+    quote: "A link into a site that waits on another is drawn dark, and one into a site joined on a guess is dashed.",
     source: changelog,
   },
   {

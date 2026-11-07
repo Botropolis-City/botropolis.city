@@ -15,6 +15,10 @@ const filmed = [...media.stills, ...media.clips].map((m) => m.id);
 // Item 360: groups shipped across 0.3.2 to 0.5.0 and the site never named
 // them, so the section says what each release made of them, in its words.
 describe("when the groups section is read", () => {
+  it("it should not say what the line used to be, \"not to dots\"", () => {
+    expect(facts.filter((f) => f.line.includes("not to dots")).map((f) => f.id)).toEqual([]);
+  });
+
   for (const id of ["what", "kerb"]) {
     describe(`and it is the ${id} fact`, () => {
       it("it should quote the app's kinds.go, not the changelog", () => {
