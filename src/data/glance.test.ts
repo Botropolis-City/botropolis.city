@@ -2,7 +2,7 @@ import { existsSync, readFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 import sharp from "sharp";
 import { beforeAll, describe, expect, it } from "vitest";
-import { classify, hotspots, place, still, type Spec } from "./glance.ts";
+import { classify, glossary, hotspots, place, still, type Spec } from "./glance.ts";
 
 const botropolis = resolve(process.env.BOTROPOLIS_DIR ?? "../botropolis");
 const live = existsSync(join(botropolis, "pkg/city/kinds.go"));
@@ -72,13 +72,19 @@ describe("when the hotspots are read", () => {
     expect(titles).not.toContain("fountain");
   });
 
-  for (const object of ["library", "power plant", "working", "resting", "unattended", "road", "trains"]) {
+  for (const object of ["library", "power plant", "working", "resting", "unattended", "road", "trains", "clinic", "group"]) {
     describe(`and it is the ${object}`, () => {
       it("it should have one", () => {
         expect(titles).toContain(object);
       });
     });
   }
+
+  describe("and it is the plaza", () => {
+    it("its line should name the clinic", () => {
+      expect(hotspots.find((h) => h.title === "plaza")?.line).toContain("the clinic");
+    });
+  });
 
   describe("and it is a district", () => {
     it("it should have exactly one district hotspot", () => {
@@ -119,4 +125,28 @@ describe("when the hotspots are read", () => {
       });
     });
   }
+});
+
+describe("when the glossary is read", () => {
+  const terms = glossary.map(([term]) => term);
+
+  for (const term of ["clinic", "kerb", "group's line"]) {
+    describe(`and it is the ${term}`, () => {
+      it("it should have a row", () => {
+        expect(terms).toContain(term);
+      });
+    });
+  }
+
+  describe("and it is the roads row", () => {
+    const roads = glossary.find(([term]) => term === "roads")?.[1] ?? "";
+
+    for (const vehicle of ["car", "van", "box truck", "motorbike"]) {
+      describe(`and it is the ${vehicle}`, () => {
+        it("it should name it", () => {
+          expect(roads).toContain(vehicle);
+        });
+      });
+    }
+  });
 });
