@@ -2,7 +2,7 @@ import { existsSync, readFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { describe, expect, it } from "vitest";
 import { cardActions, stateNames } from "./city.ts";
-import { actions } from "./drive.ts";
+import { menus } from "./drive.ts";
 import { states } from "./glance.ts";
 
 const stateSource = `package state
@@ -47,6 +47,21 @@ func (s *Scene) summaryActions() []ActionKind {
 }
 `;
 
+const lensSource = `package city
+
+const capacityFirst = ActionFork
+
+func (l Lens) first() ActionKind {
+	switch l {
+	case LensCost:
+		return ActionBreakdown
+	case LensCapacity:
+		return capacityFirst
+	}
+	return ActionAttach
+}
+`;
+
 const sceneWithRead = sceneSource.replace(`ActionStar     ActionKind = "star"`, `ActionStar     ActionKind = "star"\n\tActionRead     ActionKind = "read"`);
 
 describe("when the city's states are read", () => {
@@ -62,6 +77,19 @@ describe("when the actions a session card offers are read", () => {
 
   it("it should leave out actions only other cards offer", () => {
     expect(cardActions(sceneWithRead, recapSource)).not.toContain("restore");
+  });
+
+  describe("and each lens puts its own first verb on the card", () => {
+    const sceneWithFirsts = sceneWithRead.replace(`ActionStar     ActionKind = "star"`, `ActionStar     ActionKind = "star"\n\tActionBreakdown ActionKind = "breakdown"\n\tActionFork     ActionKind = "fork a fresh session"`);
+    const found = cardActions(sceneWithFirsts, recapSource, lensSource);
+
+    for (const verb of ["breakdown", "fork a fresh session"]) {
+      describe(`and it is ${verb}`, () => {
+        it("it should find it, by label", () => {
+          expect(found).toContain(verb);
+        });
+      });
+    }
   });
 });
 
@@ -80,7 +108,7 @@ describe("when the page's beacons are read", () => {
 
 describe("when the page's card actions are read", () => {
   liveIt(liveName("it should list only actions a session card offers"), () => {
-    const city = cardActions(read("pkg/city/scene.go"), read("pkg/city/recap.go"));
-    expect(actions.filter((a) => !city.includes(a))).toEqual([]);
+    const city = cardActions(read("pkg/city/scene.go"), read("pkg/city/recap.go"), read("pkg/city/lens.go"));
+    expect(menus.flatMap((m) => m.rows.map((r) => r.label)).filter((a) => !city.includes(a))).toEqual([]);
   });
 });

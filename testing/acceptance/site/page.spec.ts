@@ -1,6 +1,7 @@
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test, type Page } from "@playwright/test";
 import media from "../../../src/data/media.json" with { type: "json" };
+import { menus } from "../../../src/data/drive.ts";
 import { hotspots } from "../../../src/data/glance.ts";
 import { distros, shells } from "../../../src/data/install.ts";
 import { latest, news } from "../../../src/data/current.ts";
@@ -385,6 +386,24 @@ test.describe("when the reader reaches the map", () => {
       await page.goto("/");
       await expect(page.getByText("drag to see the city")).toBeVisible();
     });
+  });
+});
+
+test.describe("when the reader reaches the drive section", () => {
+  test.beforeEach(async ({ page }) => {
+    await page.goto("/");
+  });
+
+  for (const menu of menus) {
+    test.describe(`and it is the ${menu.name} menu`, () => {
+      test("it should show it", async ({ page }) => {
+        await expect(page.locator("#drive").getByRole("list", { name: `${menu.name} menu` })).toBeVisible();
+      });
+    });
+  }
+
+  test("it should not list the card's old row of buttons", async ({ page }) => {
+    await expect(page.locator("#drive").getByRole("list", { name: "Card actions" })).toHaveCount(0);
   });
 });
 

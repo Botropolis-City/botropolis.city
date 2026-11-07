@@ -1,7 +1,7 @@
 ---
 import { Picture } from "astro:assets";
 import { image, still } from "../data/catalog.ts";
-import { actions } from "../data/drive.ts";
+import { keys, menus } from "../data/drive.ts";
 import AppWindow from "./AppWindow.astro";
 import Keycap from "./Keycap.astro";
 
@@ -24,15 +24,44 @@ const power = still("workshop/power");
       </AppWindow>
       <div class="text">
         <h3>{needs.title}</h3>
-        <p><Keycap k="tab" /> jumps to the next session waiting on an answer and opens its card. <Keycap k="enter" /> attaches it.</p>
-        <ul class="chips" aria-label="Card actions">
-          {actions.map((a) => <li>{a}</li>)}
-        </ul>
+        <p><Keycap k="tab" /> jumps to the next session waiting on an answer and opens its card. <Keycap k="enter" /> runs the card's first button.</p>
+        <p>
+          The card's actions are one direct verb and three menus, <b>Session ⌄</b>, <b>Project ⌄</b> and <b>Group ⌄</b>. A menu lists each row with the key that runs it, and a
+          verb that does not apply is absent rather than greyed.
+        </p>
+        <div class="menus">
+          {
+            menus.map((m) => (
+              <div>
+                <h4><Keycap k={m.key} /> {m.name}</h4>
+                <ul class="chips" aria-label={`${m.name} menu`}>
+                  {m.rows.map((r) => (
+                    <li><kbd>{r.key}</kbd> {r.label}</li>
+                  ))}
+                </ul>
+              </div>
+            ))
+          }
+        </div>
         <p class="note">
           <b>read</b> opens the conversation inside the city, formatted. A card leads with the recap Claude Code writes when a session is left waiting; asking for a fresh one
           with <b>generate summary</b> is the only thing on the map that spends tokens, and only when you press it.
         </p>
       </div>
+    </div>
+
+    <div class="keys" aria-labelledby="keys-title">
+      <h3 id="keys-title">The keys</h3>
+      <ul>
+        {
+          keys.map((k) => (
+            <li>
+              {!k.bare && <span class="caps">{k.caps.map((c) => <Keycap k={c} />)}</span>}
+              <span>{k.line}</span>
+            </li>
+          ))
+        }
+      </ul>
     </div>
 
     <div class="row flip">
@@ -58,7 +87,8 @@ const power = still("workshop/power");
     gap: 40px;
     align-items: center;
   }
-  .row + .row {
+  .row + .row,
+  .keys + .row {
     margin-top: 72px;
   }
   .flip > :first-child {
@@ -80,9 +110,48 @@ const power = still("workshop/power");
     display: flex;
     flex-wrap: wrap;
     gap: 6px;
-    margin: 0 0 18px;
+    margin: 0;
     padding: 0;
     list-style: none;
+  }
+  .menus {
+    display: grid;
+    gap: 12px;
+    margin: 0 0 18px;
+  }
+  h4 {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin: 0 0 6px;
+    font-size: 14px;
+  }
+  .chips kbd {
+    color: var(--dim);
+    font: 500 12px/1 var(--mono);
+  }
+  .keys {
+    margin-top: 56px;
+  }
+  .keys ul {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr));
+    gap: 14px 40px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .keys li {
+    display: flex;
+    gap: 10px;
+    align-items: baseline;
+    color: var(--dim);
+    font-size: 15px;
+  }
+  .caps {
+    display: inline-flex;
+    flex: none;
+    gap: 4px;
   }
   .chips li {
     padding: 5px 9px;
