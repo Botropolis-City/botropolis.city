@@ -74,9 +74,9 @@ export const hotspots: Hotspot[] = place([
   }),
   spot({
     title: "group",
-    line: "A group's sessions sit together, inside a kerb. A low light kerb runs round each neighbourhood of two or more buildings, so a group is found without reading a badge.",
-    quote: "A low light kerb runs round each neighbourhood of two or more buildings, so a group is found without reading a badge.",
-    source: "CHANGELOG.md",
+    line: "A group's sessions sit together. A low kerb runs round a group's buildings where two or more stand side by side in one district, so a group is found without reading a badge.",
+    quote: "A low kerb runs round a group's buildings where two or more stand side by side in one district, so a group is found without reading a badge.",
+    source: kinds,
     on: "object",
     px: 1290,
     py: 489,
@@ -166,7 +166,7 @@ export const glossary = [
   ["library", "skills, ranked by use"],
   ["roads", "laid between projects whose sessions message each other or edit each other's files; a car is a session working in both, a van one message, a box truck one file edited and a motorbike one subagent sent there"],
   ["clinic", "what needs you, and what is in trouble"],
-  ["kerb", "a low light kerb round a group's sessions, which sit together as a neighbourhood"],
+  ["kerb", "a group's buildings side by side"],
   ["group's line", "drawn between a group's districts, with no stations; group_line_form draws it instead as outlines round its buildings with links between them, or from building to building"],
   ["freight loop", "the day's tokens: one train per model, a wagon per unit of spend"],
 ] as const;

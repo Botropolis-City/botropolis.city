@@ -20,6 +20,13 @@ const kinds = "pkg/city/kinds.go";
 // the changelog entry that shipped it.
 export const facts: Fact[] = [
   {
+    id: "what",
+    title: "a group",
+    line: "A group is the sessions working on one thing, however many projects they cross, drawn as a line between their districts by default.",
+    quote: "A group is the sessions working on one thing, however many projects they cross, drawn as a line between their districts by default.",
+    source: kinds,
+  },
+  {
     id: "how",
     title: "how one forms",
     line: "The city finds groups in what sessions share, such as files, a branch or a team. Timing still counts alongside other evidence, but it never links one session to the next down a stream of runs.",
@@ -36,9 +43,9 @@ export const facts: Fact[] = [
   {
     id: "kerb",
     title: "the kerb",
-    line: "A low light kerb runs round each neighbourhood of two or more buildings, so a group is found without reading a badge.",
-    quote: "A low light kerb runs round each neighbourhood of two or more buildings, so a group is found without reading a badge.",
-    source: changelog,
+    line: "A low kerb runs round a group's buildings where two or more stand side by side in one district, so a group is found without reading a badge.",
+    quote: "A low kerb runs round a group's buildings where two or more stand side by side in one district, so a group is found without reading a badge.",
+    source: kinds,
   },
   {
     id: "line",
@@ -121,7 +128,7 @@ export const facts: Fact[] = [
 
 // rows are the section's three pictures, each with the facts it shows.
 export const rows: Row[] = [
-  { title: "Sessions on one thing sit together", media: "metropolis/overview", kind: "still", facts: ["how", "neighbourhood", "kerb", "line", "form", "point"] },
+  { title: "Sessions on one thing sit together", media: "metropolis/overview", kind: "still", facts: ["what", "how", "neighbourhood", "kerb", "line", "form", "point"] },
   { title: "A team is one group", media: "team/team-line", kind: "clip", facts: ["teammate", "one"] },
   { title: "Keep them tidy", media: "tidy/walk", kind: "clip", facts: ["board", "move", "drop", "close", "tidy", "quiet"] },
 ];

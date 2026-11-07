@@ -80,6 +80,12 @@ describe("when the hotspots are read", () => {
     });
   }
 
+  describe("and it is the group", () => {
+    it("its quote should come from the app's kinds.go, not the changelog", () => {
+      expect(hotspots.find((h) => h.title === "group")?.source).toBe("pkg/city/kinds.go");
+    });
+  });
+
   describe("and it is the plaza", () => {
     it("its line should name the clinic", () => {
       expect(hotspots.find((h) => h.title === "plaza")?.line).toContain("the clinic");
@@ -137,6 +143,13 @@ describe("when the glossary is read", () => {
       });
     });
   }
+
+  describe("and it is the kerb row", () => {
+    liveIt(liveName("its definition should be the app's"), () => {
+      const def = glossary.find(([term]) => term === "kerb")?.[1];
+      expect(readFileSync(join(botropolis, "pkg/city/kinds.go"), "utf8")).toContain(`{"kerb", "${def}"`);
+    });
+  });
 
   describe("and it is the roads row", () => {
     const roads = glossary.find(([term]) => term === "roads")?.[1] ?? "";

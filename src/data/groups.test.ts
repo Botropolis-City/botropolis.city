@@ -9,15 +9,19 @@ const live = existsSync(join(botropolis, "CHANGELOG.md"));
 const liveIt = live ? it : it.skip;
 const liveName = (name: string) => (live ? name : `${name} (skipped: no botropolis checkout at ${botropolis})`);
 
-const ids = ["how", "neighbourhood", "kerb", "line", "form", "board", "move", "drop", "close", "teammate", "one", "point", "tidy", "quiet"];
+const ids = ["what", "how", "neighbourhood", "kerb", "line", "form", "board", "move", "drop", "close", "teammate", "one", "point", "tidy", "quiet"];
 const filmed = [...media.stills, ...media.clips].map((m) => m.id);
 
 // Item 360: groups shipped across 0.3.2 to 0.5.0 and the site never named
 // them, so the section says what each release made of them, in its words.
 describe("when the groups section is read", () => {
-  it("it should not quote the station-era definition of a group", () => {
-    expect(facts.map((f) => f.id)).not.toContain("what");
-  });
+  for (const id of ["what", "kerb"]) {
+    describe(`and it is the ${id} fact`, () => {
+      it("it should quote the app's kinds.go, not the changelog", () => {
+        expect(facts.find((f) => f.id === id)?.source).toBe("pkg/city/kinds.go");
+      });
+    });
+  }
 
   for (const id of ["teammate", "one"]) {
     describe(`and it is the ${id} fact`, () => {
