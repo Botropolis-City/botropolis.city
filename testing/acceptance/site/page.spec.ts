@@ -407,6 +407,29 @@ test.describe("when the reader reaches the drive section", () => {
   });
 });
 
+test.describe("when the reader reaches the groups section", () => {
+  test.beforeEach(async ({ page }) => {
+    await page.goto("/");
+  });
+
+  test("it should come after drive and before new", async ({ page }) => {
+    const order = await page.evaluate(() => [...document.querySelectorAll("main > section")].map((s) => s.id));
+    expect(order.slice(order.indexOf("drive"), order.indexOf("drive") + 3)).toEqual(["drive", "groups", "new"]);
+  });
+
+  test("it should be in the HUD's links", async ({ page }) => {
+    await expect(page.locator('header a[href="#groups"]')).toHaveCount(1);
+  });
+
+  for (const id of ["team/team-line", "tidy/walk"]) {
+    test.describe(`and it is the ${id} clip`, () => {
+      test("it should show it", async ({ page }) => {
+        await expect(page.locator(`#groups [data-clip="${id}"]`)).toHaveCount(1);
+      });
+    });
+  }
+});
+
 test.describe("when the reader reaches the install section", () => {
   test("it should tell an upgrader to restart the daemon with botropolis setup", async ({ page }) => {
     await page.goto("/");

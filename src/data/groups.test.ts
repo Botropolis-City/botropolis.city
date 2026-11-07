@@ -1,0 +1,47 @@
+import { existsSync, readFileSync } from "node:fs";
+import { join, resolve } from "node:path";
+import { describe, expect, it } from "vitest";
+import { media } from "./catalog.ts";
+import { facts, rows } from "./groups.ts";
+
+const botropolis = resolve(process.env.BOTROPOLIS_DIR ?? "../botropolis");
+const live = existsSync(join(botropolis, "CHANGELOG.md"));
+const liveIt = live ? it : it.skip;
+const liveName = (name: string) => (live ? name : `${name} (skipped: no botropolis checkout at ${botropolis})`);
+
+const ids = ["what", "how", "neighbourhood", "kerb", "line", "form", "board", "move", "drop", "close", "teammate", "one", "point", "tidy", "quiet"];
+const filmed = [...media.stills, ...media.clips].map((m) => m.id);
+
+// Item 360: groups shipped across 0.3.2 to 0.5.0 and the site never named
+// them, so the section says what each release made of them, in its words.
+describe("when the groups section is read", () => {
+  for (const id of ids) {
+    describe(`and it is the ${id} fact`, () => {
+      const fact = facts.find((f) => f.id === id);
+
+      it("it should have it", () => {
+        expect(fact).toBeDefined();
+      });
+
+      it("its line should contain its quote", () => {
+        expect(fact?.line).toContain(fact?.quote);
+      });
+
+      liveIt(liveName(`its quote should be in the app's ${fact?.source}`), () => {
+        expect(readFileSync(join(botropolis, fact?.source ?? ""), "utf8")).toContain(fact?.quote);
+      });
+    });
+  }
+
+  for (const id of ["metropolis/overview", "team/team-line", "tidy/walk"]) {
+    describe(`and it is the ${id} media`, () => {
+      it("it should be shown", () => {
+        expect(rows.map((r) => r.media)).toContain(id);
+      });
+
+      it("it should be in the film", () => {
+        expect(filmed).toContain(id);
+      });
+    });
+  }
+});
