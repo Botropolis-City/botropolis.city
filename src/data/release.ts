@@ -32,7 +32,6 @@ export const versions = {
 export const release = {
   measured: "0.3.0",
   against: "0.2.2",
-  continues: "0.3.x",
   headline: {
     text: "Up to four times faster to draw, on a tenth of 0.2.2's memory",
     ratios: [

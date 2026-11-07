@@ -331,6 +331,20 @@ test.describe("when the reader reaches the release's section", () => {
     });
   }
 
+  test.describe("and it is the missed budgets", () => {
+    test("it should date them to the release that measured them", async ({ page }) => {
+      await expect(section(page)).toContainText(`${release.measured} did not meet`);
+    });
+
+    test("it should not say a later release continues on them", async ({ page }) => {
+      await expect(section(page)).not.toContainText("continues on them");
+    });
+
+    test("it should not call them still missed", async ({ page }) => {
+      await expect(section(page)).not.toContainText(/still missed/i);
+    });
+  });
+
   for (const m of release.misses) {
     test.describe(`and it is the missed budget "${m.text}"`, () => {
       test("it should say so", async ({ page }) => {
@@ -429,6 +443,26 @@ test.describe("when the reader reaches the groups section", () => {
     });
   }
 });
+
+for (const id of ["drive", "groups"]) {
+  test.describe(`when the reader reaches the ${id} section's flipped row`, () => {
+    test("it should put its picture right of its text", async ({ page }) => {
+      await page.goto("/");
+      const row = page.locator(`#${id} .flip`).first();
+      const picture = await row.locator(".window").first().boundingBox();
+      const text = await row.locator(".text").boundingBox();
+      expect((picture?.x ?? 0) > (text?.x ?? 0)).toBe(true);
+    });
+
+    test("it should give its picture the wider column", async ({ page }) => {
+      await page.goto("/");
+      const row = page.locator(`#${id} .flip`).first();
+      const picture = await row.locator(".window").first().boundingBox();
+      const text = await row.locator(".text").boundingBox();
+      expect((picture?.width ?? 0) > (text?.width ?? 0)).toBe(true);
+    });
+  });
+}
 
 test.describe("when the reader reaches the install section", () => {
   test("it should tell an upgrader to restart the daemon with botropolis setup", async ({ page }) => {

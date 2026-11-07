@@ -75,7 +75,10 @@ const shown = await Promise.all(
   .row + .row {
     margin-top: 72px;
   }
-  .flip > :first-child {
+  .flip {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.7fr);
+  }
+  .flip > :global(:first-child) {
     order: 2;
   }
   video {
@@ -109,7 +112,7 @@ const shown = await Promise.all(
       grid-template-columns: minmax(0, 1fr);
       gap: 24px;
     }
-    .flip > :first-child {
+    .flip > :global(:first-child) {
       order: 0;
     }
   }

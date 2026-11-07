@@ -20,13 +20,6 @@ const kinds = "pkg/city/kinds.go";
 // the changelog entry that shipped it.
 export const facts: Fact[] = [
   {
-    id: "what",
-    title: "a group",
-    line: "A group of sessions working on one thing is drawn as a line through its projects.",
-    quote: "A group of sessions working on one thing is drawn as a line through its projects",
-    source: kinds,
-  },
-  {
     id: "how",
     title: "how one forms",
     line: "The city finds groups in what sessions share, such as files, a branch or a team. Timing still counts alongside other evidence, but it never links one session to the next down a stream of runs.",
@@ -71,15 +64,15 @@ export const facts: Fact[] = [
   {
     id: "teammate",
     title: "a team",
-    line: "Now a teammate follows its lead: into the lead's group, out of it, or into none, and a team on its own is one group. A team moves as a convoy.",
-    quote: "a teammate follows its lead: into the lead's group, out of it, or into none, and a team on its own is one group",
+    line: "A teammate follows its lead: into the lead's group, out of it, or into none, and a team on its own is one group. A team moves as a convoy.",
+    quote: "teammate follows its lead: into the lead's group, out of it, or into none, and a team on its own is one group",
     source: changelog,
   },
   {
     id: "one",
     title: "a group of one",
-    line: "Now every group with a session on the map is on the board, in the picker and on its member's card, with a badge and no line.",
-    quote: "every group with a session on the map is on the board, in the picker and on its member's card, with a badge and no line",
+    line: "Every group with a session on the map is on the board, in the picker and on its member's card, with a badge and no line.",
+    quote: "group with a session on the map is on the board, in the picker and on its member's card, with a badge and no line",
     source: changelog,
   },
   {
@@ -106,8 +99,8 @@ export const facts: Fact[] = [
   {
     id: "close",
     title: "close group",
-    line: "Packs every session in this group into the depot and takes the group off the board. Unpack any of them to bring it back.",
-    quote: "Packs every session in this group into the depot and takes the group off the board. Unpack any of them to bring it back.",
+    line: "Packs every session in a group into the depot and takes the group off the board. Unpack any of them to bring it back.",
+    quote: "into the depot and takes the group off the board. Unpack any of them to bring it back.",
     source: "pkg/city/actiontext.go",
   },
   {
@@ -128,7 +121,7 @@ export const facts: Fact[] = [
 
 // rows are the section's three pictures, each with the facts it shows.
 export const rows: Row[] = [
-  { title: "Sessions on one thing sit together", media: "metropolis/overview", kind: "still", facts: ["what", "how", "neighbourhood", "kerb", "line", "form", "point"] },
+  { title: "Sessions on one thing sit together", media: "metropolis/overview", kind: "still", facts: ["how", "neighbourhood", "kerb", "line", "form", "point"] },
   { title: "A team is one group", media: "team/team-line", kind: "clip", facts: ["teammate", "one"] },
   { title: "Keep them tidy", media: "tidy/walk", kind: "clip", facts: ["board", "move", "drop", "close", "tidy", "quiet"] },
 ];

@@ -9,12 +9,30 @@ const live = existsSync(join(botropolis, "CHANGELOG.md"));
 const liveIt = live ? it : it.skip;
 const liveName = (name: string) => (live ? name : `${name} (skipped: no botropolis checkout at ${botropolis})`);
 
-const ids = ["what", "how", "neighbourhood", "kerb", "line", "form", "board", "move", "drop", "close", "teammate", "one", "point", "tidy", "quiet"];
+const ids = ["how", "neighbourhood", "kerb", "line", "form", "board", "move", "drop", "close", "teammate", "one", "point", "tidy", "quiet"];
 const filmed = [...media.stills, ...media.clips].map((m) => m.id);
 
 // Item 360: groups shipped across 0.3.2 to 0.5.0 and the site never named
 // them, so the section says what each release made of them, in its words.
 describe("when the groups section is read", () => {
+  it("it should not quote the station-era definition of a group", () => {
+    expect(facts.map((f) => f.id)).not.toContain("what");
+  });
+
+  for (const id of ["teammate", "one"]) {
+    describe(`and it is the ${id} fact`, () => {
+      it("it should not open on the changelog's \"Now\"", () => {
+        expect(facts.find((f) => f.id === id)?.line.startsWith("Now")).toBe(false);
+      });
+    });
+  }
+
+  describe("and it is the close fact", () => {
+    it("it should speak of a group, not this one", () => {
+      expect(facts.find((f) => f.id === "close")?.line).toContain("Packs every session in a group");
+    });
+  });
+
   for (const id of ids) {
     describe(`and it is the ${id} fact`, () => {
       const fact = facts.find((f) => f.id === id);
