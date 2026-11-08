@@ -6,11 +6,16 @@ export interface Fact {
   source: string;
 }
 
-export interface Row {
-  title: string;
+export interface Form {
+  value: string;
   media: string;
-  kind: "still" | "clip";
+}
+
+export interface Card {
   facts: string[];
+  media?: string;
+  poster?: string;
+  forms?: Form[];
 }
 
 const changelog = "CHANGELOG.md";
@@ -126,9 +131,25 @@ export const facts: Fact[] = [
   },
 ];
 
-// rows are the section's three pictures, each with the facts it shows.
-export const rows: Row[] = [
-  { title: "Sessions on one thing sit together", media: "metropolis/overview", kind: "still", facts: ["what", "how", "neighbourhood", "kerb", "line", "form", "point"] },
-  { title: "A team is one group", media: "team/team-line", kind: "clip", facts: ["teammate", "one"] },
-  { title: "Keep them tidy", media: "tidy/walk", kind: "clip", facts: ["board", "move", "drop", "close", "tidy", "quiet"] },
+// cards are the section's facts, each with the film's picture of it, when
+// it has one; the line card shows group_line_form's three forms instead.
+export const cards: Card[] = [
+  { facts: ["what"] },
+  { facts: ["how"], media: "metropolis/overview" },
+  { facts: ["neighbourhood", "kerb"], media: "groups/kerb" },
+  {
+    facts: ["line", "form"],
+    forms: [
+      { value: "districts", media: "groups/line-districts" },
+      { value: "neighbourhoods", media: "groups/line-neighbourhoods" },
+      { value: "sessions", media: "groups/line-sessions" },
+    ],
+  },
+  { facts: ["point"], media: "groups/lit" },
+  { facts: ["teammate"], media: "team/team-line" },
+  { facts: ["one"] },
+  { facts: ["board"], media: "controls/board-rename", poster: "controls/board" },
+  { facts: ["move", "drop"] },
+  { facts: ["close"], media: "groups/close-group" },
+  { facts: ["tidy", "quiet"], media: "tidy/walk" },
 ];

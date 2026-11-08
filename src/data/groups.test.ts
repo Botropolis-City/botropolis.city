@@ -2,7 +2,7 @@ import { existsSync, readFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { describe, expect, it } from "vitest";
 import { media } from "./catalog.ts";
-import { facts, rows } from "./groups.ts";
+import { cards, facts } from "./groups.ts";
 
 const botropolis = resolve(process.env.BOTROPOLIS_DIR ?? "../botropolis");
 const live = existsSync(join(botropolis, "CHANGELOG.md"));
@@ -59,15 +59,73 @@ describe("when the groups section is read", () => {
     });
   }
 
-  for (const id of ["metropolis/overview", "team/team-line", "tidy/walk"]) {
-    describe(`and it is the ${id} media`, () => {
-      it("it should be shown", () => {
-        expect(rows.map((r) => r.media)).toContain(id);
-      });
+  const cardOf = (fact: string) => cards.find((c) => c.facts.includes(fact));
+  const shows: [string, string | undefined][] = [
+    ["what", undefined],
+    ["how", "metropolis/overview"],
+    ["kerb", "groups/kerb"],
+    ["point", "groups/lit"],
+    ["teammate", "team/team-line"],
+    ["one", undefined],
+    ["board", "controls/board-rename"],
+    ["move", undefined],
+    ["drop", undefined],
+    ["close", "groups/close-group"],
+    ["tidy", "tidy/walk"],
+  ];
 
-      it("it should be in the film", () => {
-        expect(filmed).toContain(id);
+  describe("and its cards are read", () => {
+    it("it should give every fact a card", () => {
+      expect(facts.filter((f) => !cardOf(f.id)).map((f) => f.id)).toEqual([]);
+    });
+
+    for (const [fact, media] of shows) {
+      describe(`and it is the ${fact} card`, () => {
+        it(`it should show ${media ?? "nothing"}`, () => {
+          expect(cardOf(fact)?.media).toBe(media);
+        });
+
+        if (media) {
+          it("its media should be in the film", () => {
+            expect(filmed).toContain(media);
+          });
+        }
+      });
+    }
+
+    describe("and it is the board card", () => {
+      it("its poster should be the board still", () => {
+        expect(cardOf("board")?.poster).toBe("controls/board");
       });
     });
-  }
+
+    describe("and it is the line card", () => {
+      const forms = cardOf("line")?.forms ?? [];
+
+      liveIt(liveName("it should offer group_line_form's values in the app's order, the default first"), () => {
+        const docs = readFileSync(join(botropolis, "pkg/config/docs.go"), "utf8");
+        const names = forms.map((f) => f.value);
+        expect(docs).toContain(`KeyGroupLineForm:  "${names.slice(0, -1).join(", ")} or ${names.at(-1)}:`);
+      });
+
+      for (const form of forms) {
+        describe(`and it is the ${form.value} form`, () => {
+          const s = media.stills.find((x) => x.id === form.media);
+
+          it("its still should have a detail", () => {
+            expect(s?.detail).toBeDefined();
+          });
+
+          it("its detail should hold the group's districts", () => {
+            const box = s?.detail?.box;
+            const outside = (s?.detail?.holds ?? ["(none)"]).filter((n) => {
+              const a = s?.anchors?.[n];
+              return !a || !box || a.x < box.x || a.x > box.x + box.width || a.y < box.y || a.y > box.y + box.height;
+            });
+            expect(outside).toEqual([]);
+          });
+        });
+      }
+    });
+  });
 });

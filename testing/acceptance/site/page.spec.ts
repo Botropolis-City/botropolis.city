@@ -3,6 +3,7 @@ import { expect, test, type Page } from "@playwright/test";
 import media from "../../../src/data/media.json" with { type: "json" };
 import { media as driveMedia, menus } from "../../../src/data/drive.ts";
 import { hotspots } from "../../../src/data/glance.ts";
+import { cards } from "../../../src/data/groups.ts";
 import { distros, shells } from "../../../src/data/install.ts";
 import { latest, news } from "../../../src/data/current.ts";
 import { release } from "../../../src/data/release.ts";
@@ -447,16 +448,47 @@ test.describe("when the reader reaches the groups section", () => {
     await expect(page.locator('header a[href="#groups"]')).toHaveCount(1);
   });
 
-  for (const id of ["team/team-line", "tidy/walk"]) {
-    test.describe(`and it is the ${id} clip`, () => {
+  for (const card of cards.filter((c) => c.media)) {
+    test.describe(`and it is the ${card.media} card`, () => {
       test("it should show it", async ({ page }) => {
-        await expect(page.locator(`#groups [data-clip="${id}"]`)).toHaveCount(1);
+        await expect(page.locator(`#groups [data-media="${card.media}"]`)).toHaveCount(1);
       });
     });
   }
+
+  test("it should play none of its clips by itself", async ({ page }) => {
+    await expect(page.locator("#groups video[autoplay]")).toHaveCount(0);
+  });
+
+  test.describe("and it is the line card", () => {
+    const forms = cards.find((c) => c.forms)?.forms ?? [];
+
+    for (const form of forms) {
+      test.describe(`and the reader picks ${form.value}`, () => {
+        test("it should show that form's detail", async ({ page }) => {
+          await page.locator(`#groups [data-form-pick="${form.value}"]`).click();
+          await expect(page.locator(`#groups [data-form="${form.value}"]`)).toBeVisible();
+        });
+
+        test("it should link the whole city to its full still", async ({ page }) => {
+          await page.locator(`#groups [data-form-pick="${form.value}"]`).click();
+          await expect(page.locator(`#groups [data-form="${form.value}"] a[data-whole]`)).toHaveAttribute("href", /\.(webp|avif|png)$/);
+        });
+      });
+    }
+  });
+
+  test.describe("and the viewport is 390 wide", () => {
+    test.use({ viewport: { width: 390, height: 900 } });
+
+    test("it should stack the cards in one column", async ({ page }) => {
+      const lefts = await page.locator("#groups .card").evaluateAll((els) => [...new Set(els.map((el) => Math.round(el.getBoundingClientRect().left)))]);
+      expect(lefts).toHaveLength(1);
+    });
+  });
 });
 
-for (const id of ["drive", "groups"]) {
+for (const id of ["drive"]) {
   test.describe(`when the reader reaches the ${id} section's flipped row`, () => {
     test("it should put its picture right of its text", async ({ page }) => {
       await page.goto("/");

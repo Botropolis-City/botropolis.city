@@ -1,19 +1,23 @@
 ---
 import { getImage, Picture } from "astro:assets";
-import { clip, image, still } from "../data/catalog.ts";
-import { facts, rows } from "../data/groups.ts";
+import { image, media } from "../data/catalog.ts";
+import { cards, facts } from "../data/groups.ts";
 import AppWindow from "./AppWindow.astro";
+import Shot from "./Shot.astro";
 
 const shown = await Promise.all(
-  rows.map(async (r) => {
-    const items = r.facts.map((id) => facts.find((f) => f.id === id)!);
-    if (r.kind === "still") {
-      const s = still(r.media);
-      return { ...r, items, scenario: r.media.split("/")[0], still: s };
-    }
-    const c = clip(r.media);
-    const poster = await getImage({ src: image(c.poster), width: 1280, format: "webp" });
-    return { ...r, items, scenario: r.media.split("/")[0], clip: c, posterUrl: poster.src };
+  cards.map(async (c) => {
+    const items = c.facts.map((id) => facts.find((f) => f.id === id)!);
+    const forms = c.forms
+      ? await Promise.all(
+          c.forms.map(async (f) => {
+            const s = media.stills.find((x) => x.id === f.media)!;
+            const whole = await getImage({ src: image(s.image), width: 1920, format: "webp" });
+            return { ...f, still: s, whole: whole.src };
+          }),
+        )
+      : undefined;
+    return { ...c, items, forms };
   }),
 );
 ---
@@ -26,70 +30,121 @@ const shown = await Promise.all(
       A group is the sessions working on one thing, however many projects it crosses. The city finds them, and you can make, rename, move and close them from the map.
     </p>
 
-    {
-      shown.map((r, i) => (
-        <div class:list={["row", i % 2 === 1 && "flip"]}>
-          <AppWindow title={`botropolis — ${r.scenario}`}>
-            {"still" in r ? (
-              <Picture
-                src={image(r.still.image)}
-                formats={["avif"]}
-                fallbackFormat="webp"
-                widths={[640, 960, 1280, 1920]}
-                sizes="(max-width: 960px) 100vw, 760px"
-                alt={r.still.description}
-                loading="lazy"
-              />
-            ) : (
-              <video data-clip={r.media} muted playsinline controls loop preload="none" poster={r.posterUrl} width={r.clip.width} height={r.clip.height} aria-label={r.clip.description}>
-                {r.clip.sources.map((s) => (
-                  <source src={s.url} type={s.type} />
-                ))}
-              </video>
+    <div class="cards">
+      {
+        shown.map((c) => (
+          <article class:list={["card", c.forms && "wide", !c.media && !c.forms && "plain"]}>
+            {c.media && (
+              <AppWindow title={`botropolis — ${c.media.split("/")[0]}`}>
+                <Shot id={c.media} poster={c.poster} sizes="(max-width: 960px) 100vw, 600px" />
+              </AppWindow>
             )}
-          </AppWindow>
-          <div class="text">
-            <h3>{r.title}</h3>
+            {c.forms && (
+              <div class="forms" data-forms>
+                <div class="picks" role="group" aria-label="group_line_form">
+                  {c.forms.map((f, i) => (
+                    <button type="button" data-form-pick={f.value} aria-pressed={i === 0 ? "true" : "false"}>
+                      {f.value}
+                      {i === 0 && <span class="default">default</span>}
+                    </button>
+                  ))}
+                </div>
+                {c.forms.map((f, i) => (
+                  <figure data-form={f.value} hidden={i !== 0}>
+                    <AppWindow title={`botropolis — group_line_form = ${f.value}`}>
+                      <Picture
+                        src={image(f.still.detail!.image)}
+                        formats={["avif"]}
+                        fallbackFormat="webp"
+                        widths={[450, 900]}
+                        sizes="(max-width: 960px) 100vw, 900px"
+                        alt={f.still.description}
+                        loading="lazy"
+                      />
+                    </AppWindow>
+                    <figcaption>
+                      {f.still.title}. <a data-whole href={f.whole}>See the whole city</a>
+                    </figcaption>
+                  </figure>
+                ))}
+              </div>
+            )}
             <dl>
-              {r.items.map((f) => (
+              {c.items.map((f) => (
                 <>
                   <dt>{f.title}</dt>
                   <dd>{f.line}</dd>
                 </>
               ))}
             </dl>
-          </div>
-        </div>
-      ))
-    }
+          </article>
+        ))
+      }
+    </div>
   </div>
 </section>
 
+<script>
+  for (const box of document.querySelectorAll<HTMLElement>("[data-forms]")) {
+    const picks = [...box.querySelectorAll<HTMLButtonElement>("[data-form-pick]")];
+    const panels = [...box.querySelectorAll<HTMLElement>("[data-form]")];
+    for (const pick of picks) {
+      pick.addEventListener("click", () => {
+        for (const p of picks) p.setAttribute("aria-pressed", String(p === pick));
+        for (const panel of panels) panel.hidden = panel.dataset.form !== pick.dataset.formPick;
+      });
+    }
+  }
+</script>
+
 <style>
-  .row {
+  .cards {
     display: grid;
-    grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr);
-    gap: 40px;
-    align-items: center;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 48px 40px;
+    align-items: start;
   }
-  .row + .row {
-    margin-top: 72px;
+  .wide {
+    grid-column: 1 / -1;
   }
-  .flip {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1.7fr);
+  .card > :global(.window),
+  .forms {
+    margin-bottom: 16px;
   }
-  .flip > :global(:first-child) {
-    order: 2;
+  .plain {
+    align-self: center;
   }
-  video {
-    display: block;
-    width: 100%;
-    height: auto;
+  .picks {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 12px;
   }
-  h3 {
-    margin: 0 0 12px;
-    font-size: 1.3rem;
-    letter-spacing: -0.02em;
+  .picks button {
+    padding: 6px 12px;
+    border: 1px solid var(--hairline);
+    border-radius: 4px;
+    background: none;
+    color: var(--dim);
+    font: 500 13px/1 var(--mono);
+    cursor: pointer;
+  }
+  .picks button[aria-pressed="true"] {
+    border-color: var(--accent);
+    color: var(--text);
+  }
+  .default {
+    margin-left: 6px;
+    color: var(--dim);
+    font-size: 11px;
+  }
+  figure {
+    margin: 0;
+  }
+  figcaption {
+    margin-top: 10px;
+    color: var(--dim);
+    font-size: 15px;
   }
   dl {
     margin: 0;
@@ -108,12 +163,8 @@ const shown = await Promise.all(
     font-size: 15px;
   }
   @media (max-width: 960px) {
-    .row {
+    .cards {
       grid-template-columns: minmax(0, 1fr);
-      gap: 24px;
-    }
-    .flip > :global(:first-child) {
-      order: 0;
     }
   }
 </style>
