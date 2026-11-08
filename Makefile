@@ -51,7 +51,7 @@ site-deploy :: site-build
 
 media-import :: node_modules
 	$(LOG) "Importing media from ${DEMO_DIR}"
-	@BOTROPOLIS_DIR=${BOTROPOLIS_DIR} DEMO_DIR=${DEMO_DIR} MEDIA_BASE=${MEDIA_HOST} node tools/import-media.ts
+	@BOTROPOLIS_DIR=${BOTROPOLIS_DIR} DEMO_DIR=${DEMO_DIR} MEDIA_BASE=${MEDIA_HOST} MERGE=${MERGE} APP_COMMIT=${APP_COMMIT} FILM_COMMIT=${FILM_COMMIT} CATALOG_COMMIT=${CATALOG_COMMIT} node tools/import-media.ts
 
 media-upload :: node_modules
 	$(LOG) "Uploading clips in .media/ to R2 bucket ${MEDIA_BUCKET}"

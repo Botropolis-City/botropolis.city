@@ -5,7 +5,8 @@ import { join, resolve } from "node:path";
 import sharp from "sharp";
 import { parse } from "yaml";
 import { heroMedia, socialCard } from "../src/data/hero.ts";
-import { catalog, imageName, type Manifest } from "./media.ts";
+import { details } from "./details.ts";
+import { catalog, detail, imageName, merge, type Catalog, type Manifest } from "./media.ts";
 import { lenses, viewFrames, viewStills, type Scenario } from "./views.ts";
 
 const usage = `Usage: node tools/import-media.ts [--help]
@@ -32,10 +33,22 @@ the clip never shows.
 It ends by listing every stand-in still in use: what the page shows in place of
 something the film did not make.
 
+A still named in tools/details.ts also gets a cropped WebP, <image>-detail,
+and the import refuses a box that does not hold the anchors it names.
+
+With MERGE=1 the film is partial: its entries replace or join those already in
+src/data/media.json, which keeps every other entry, image, clip and the views.
+It refuses a film of another version, adds only the clips it names to .media/,
+and removes only the images no entry uses any more.
+
 Environment:
   BOTROPOLIS_DIR  the botropolis checkout (default: ../botropolis)
   DEMO_DIR        the filmed media (default: $BOTROPOLIS_DIR/dist/demo)
   MEDIA_BASE      where uploaded clips are served (default: https://media.botropolis.city)
+  APP_COMMIT      the botropolis commit whose city the film draws; required with MERGE
+  FILM_COMMIT     the commit of the demo tool and scenarios, when it is not APP_COMMIT
+  CATALOG_COMMIT  with MERGE, the app commit of entries media.json does not yet credit
+  MERGE           1 to merge a partial film
 `;
 
 if (process.argv.includes("--help") || process.argv.includes("-h")) {
@@ -57,7 +70,40 @@ for (const m of manifest.media) {
   hashes.set(m.file, createHash("sha256").update(await readFile(join(demo, m.file))).digest("hex").slice(0, 16));
 }
 
-const result = catalog(manifest, (file) => hashes.get(file)!, base);
+const appCommit = process.env.APP_COMMIT;
+const filmCommit = process.env.FILM_COMMIT;
+const merging = process.env.MERGE === "1";
+if (merging && !appCommit) throw new Error("MERGE needs APP_COMMIT: the botropolis commit whose city the film draws");
+const made = appCommit ? { commit: appCommit, ...(filmCommit && filmCommit !== appCommit ? { film: filmCommit } : {}) } : undefined;
+const filmed = catalog(manifest, (file) => hashes.get(file)!, base, made);
+filmed.stills = filmed.stills.map((s) => (details[s.id] ? detail(s, details[s.id]) : s));
+
+if (merging) {
+  const existing = JSON.parse(await readFile("src/data/media.json", "utf8")) as Catalog & { views: unknown };
+  const { catalog: merged, stale } = merge(existing, filmed, process.env.CATALOG_COMMIT);
+  await mkdir(images, { recursive: true });
+  for (const s of filmed.stills) {
+    const file = manifest.media.find((m) => m.kind === "image" && `${m.scenario}/${m.shot}` === s.id)!.file;
+    await sharp(join(demo, file)).webp({ quality: 92 }).toFile(join(images, `${s.image}.webp`));
+    if (s.detail) {
+      const { x, y, width, height } = s.detail.box;
+      await sharp(join(demo, file)).extract({ left: x, top: y, width, height }).webp({ quality: 92 }).toFile(join(images, `${s.detail.image}.webp`));
+    }
+  }
+  for (const c of filmed.clips) {
+    await sharp(join(demo, c.posterFile)).webp({ quality: 92 }).toFile(join(images, `${c.poster}.webp`));
+    for (const crop of Object.values(c.crops ?? {})) await sharp(join(demo, crop.posterFile)).webp({ quality: 92 }).toFile(join(images, `${crop.poster}.webp`));
+  }
+  for (const image of stale) await rm(join(images, `${image}.webp`), { force: true });
+  await mkdir(clipsOut, { recursive: true });
+  const added = filmed.clips.flatMap((c) => [...c.sources, ...Object.values(c.crops ?? {}).flatMap((crop) => crop.sources)]);
+  for (const s of added) await copyFile(join(demo, s.file), join(clipsOut, s.name));
+  await writeFile("src/data/media.json", JSON.stringify({ ...merged, views: existing.views }, null, 2) + "\n");
+  console.log(`merged ${filmed.stills.length} stills and ${filmed.clips.length} clips (${added.length} clip files) into version ${merged.version}; removed ${stale.length} stale images`);
+  process.exit(0);
+}
+
+const result = filmed;
 
 const pictures = new Set<string>([
   ...manifest.media.filter((m) => m.kind === "image").map((m) => m.file),
@@ -73,6 +119,11 @@ await rm(images, { recursive: true, force: true });
 await mkdir(images, { recursive: true });
 for (const file of pictures) {
   await sharp(join(demo, file)).webp({ quality: 92 }).toFile(join(images, `${imageName(file)}.webp`));
+}
+for (const s of result.stills.filter((s) => s.detail)) {
+  const file = manifest.media.find((m) => m.kind === "image" && `${m.scenario}/${m.shot}` === s.id)!.file;
+  const { x, y, width, height } = s.detail!.box;
+  await sharp(join(demo, file)).extract({ left: x, top: y, width, height }).webp({ quality: 92 }).toFile(join(images, `${s.detail!.image}.webp`));
 }
 
 const city = lenses(await readFile(join(botropolis, "pkg/city/lens.go"), "utf8"), await readFile(join(botropolis, "pkg/city/view.go"), "utf8"));

@@ -1,6 +1,6 @@
 {
   "version": "0.5.0",
-  "generated": "2026-11-07T14:09:37.360551095Z",
+  "generated": "2026-11-08T00:47:09.539702858Z",
   "stills": [
     {
       "id": "buildings/types",
@@ -48,6 +48,10 @@
           "x": 942.8837209302326,
           "y": 406.69767441860466
         }
+      },
+      "filmed": {
+        "commit": "b5d2d46e",
+        "generated": "2026-11-07T14:09:37.360551095Z"
       }
     },
     {
@@ -88,6 +92,10 @@
           "x": 942.8837209302326,
           "y": 406.69767441860466
         }
+      },
+      "filmed": {
+        "commit": "b5d2d46e",
+        "generated": "2026-11-07T14:09:37.360551095Z"
       }
     },
     {
@@ -128,6 +136,10 @@
           "x": 938.6046511627906,
           "y": 228.37209302325576
         }
+      },
+      "filmed": {
+        "commit": "b5d2d46e",
+        "generated": "2026-11-07T14:09:37.360551095Z"
       }
     },
     {
@@ -193,6 +205,10 @@
           "x": 1021.3333333333335,
           "y": 426.6666666666667
         }
+      },
+      "filmed": {
+        "commit": "b5d2d46e",
+        "generated": "2026-11-07T14:09:37.360551095Z"
       }
     },
     {
@@ -258,6 +274,10 @@
           "x": 1019.4567057291666,
           "y": 422.91341145833326
         }
+      },
+      "filmed": {
+        "commit": "b5d2d46e",
+        "generated": "2026-11-07T14:09:37.360551095Z"
       }
     },
     {
@@ -323,6 +343,10 @@
           "x": 1019.4567057291666,
           "y": 422.91341145833326
         }
+      },
+      "filmed": {
+        "commit": "b5d2d46e",
+        "generated": "2026-11-07T14:09:37.360551095Z"
       }
     },
     {
@@ -388,6 +412,10 @@
           "x": 1019.4567057291666,
           "y": 422.91341145833326
         }
+      },
+      "filmed": {
+        "commit": "b5d2d46e",
+        "generated": "2026-11-07T14:09:37.360551095Z"
       }
     },
     {
@@ -453,6 +481,10 @@
           "x": 1019.4567057291666,
           "y": 422.91341145833326
         }
+      },
+      "filmed": {
+        "commit": "b5d2d46e",
+        "generated": "2026-11-07T14:09:37.360551095Z"
       }
     },
     {
@@ -518,6 +550,10 @@
           "x": 1019.4567057291666,
           "y": 422.91341145833326
         }
+      },
+      "filmed": {
+        "commit": "b5d2d46e",
+        "generated": "2026-11-07T14:09:37.360551095Z"
       }
     },
     {
@@ -583,6 +619,10 @@
           "x": 1019.4567057291666,
           "y": 422.91341145833326
         }
+      },
+      "filmed": {
+        "commit": "b5d2d46e",
+        "generated": "2026-11-07T14:09:37.360551095Z"
       }
     },
     {
@@ -648,6 +688,10 @@
           "x": 1019.4567057291666,
           "y": 422.91341145833326
         }
+      },
+      "filmed": {
+        "commit": "b5d2d46e",
+        "generated": "2026-11-07T14:09:37.360551095Z"
       }
     },
     {
@@ -713,6 +757,10 @@
           "x": 1019.4567057291666,
           "y": 422.91341145833326
         }
+      },
+      "filmed": {
+        "commit": "b5d2d46e",
+        "generated": "2026-11-07T14:09:37.360551095Z"
       }
     },
     {
@@ -778,6 +826,10 @@
           "x": 1021.3333333333335,
           "y": 426.6666666666667
         }
+      },
+      "filmed": {
+        "commit": "b5d2d46e",
+        "generated": "2026-11-07T14:09:37.360551095Z"
       }
     },
     {
@@ -842,6 +894,10 @@
           "x": 1036.6666666666665,
           "y": 253.33333333333331
         }
+      },
+      "filmed": {
+        "commit": "b5d2d46e",
+        "generated": "2026-11-07T14:09:37.360551095Z"
       }
     },
     {
@@ -906,6 +962,10 @@
           "x": 1021.3333333333335,
           "y": 426.6666666666667
         }
+      },
+      "filmed": {
+        "commit": "b5d2d46e",
+        "generated": "2026-11-07T14:09:37.360551095Z"
       }
     },
     {
@@ -916,6 +976,11 @@
       "description": "Twelve districts in the early evening, a team camp, trains for every model, and the day's finished sessions resting on their lots.",
       "width": 1920,
       "height": 1080,
+      "filmed": {
+        "commit": "b5d2d46e",
+        "film": "c8cb3e8",
+        "generated": "2026-11-08T00:47:09.539702858Z"
+      },
       "image": "metropolis-overview",
       "anchors": {
         "clinic": {
@@ -978,6 +1043,10 @@
           "x": 981.6470588235295,
           "y": 628.7058823529411
         },
+        "hall": {
+          "x": 1035.764705882353,
+          "y": 623.2941176470588
+        },
         "library": {
           "x": 905.8823529411766,
           "y": 623.2941176470588
@@ -1004,6 +1073,11 @@
       "description": "A dozen districts, interface hidden.",
       "width": 1920,
       "height": 1080,
+      "filmed": {
+        "commit": "b5d2d46e",
+        "film": "c8cb3e8",
+        "generated": "2026-11-08T00:47:09.539702858Z"
+      },
       "image": "metropolis-hero",
       "anchors": {
         "clinic": {
@@ -1066,6 +1140,10 @@
           "x": 987.0588235294116,
           "y": 505.8823529411764
         },
+        "hall": {
+          "x": 1054.705882352941,
+          "y": 499.1176470588235
+        },
         "library": {
           "x": 892.3529411764705,
           "y": 499.1176470588235
@@ -1092,6 +1170,11 @@
       "description": "The metropolis framed for a link preview, interface hidden.",
       "width": 1200,
       "height": 630,
+      "filmed": {
+        "commit": "b5d2d46e",
+        "film": "c8cb3e8",
+        "generated": "2026-11-08T00:47:09.539702858Z"
+      },
       "image": "metropolis-card",
       "anchors": {
         "clinic": {
@@ -1154,6 +1237,10 @@
           "x": 616.1764705882352,
           "y": 282.6470588235294
         },
+        "hall": {
+          "x": 656.6176470588235,
+          "y": 278.6029411764706
+        },
         "library": {
           "x": 559.5588235294117,
           "y": 278.6029411764706
@@ -1180,6 +1267,11 @@
       "description": "The same city with the scenery dropped, for reading at a glance.",
       "width": 1920,
       "height": 1080,
+      "filmed": {
+        "commit": "b5d2d46e",
+        "film": "c8cb3e8",
+        "generated": "2026-11-08T00:47:09.539702858Z"
+      },
       "image": "metropolis-plain",
       "anchors": {
         "clinic": {
@@ -1242,6 +1334,10 @@
           "x": 981.6470588235295,
           "y": 628.7058823529411
         },
+        "hall": {
+          "x": 1035.764705882353,
+          "y": 623.2941176470588
+        },
         "library": {
           "x": 905.8823529411766,
           "y": 623.2941176470588
@@ -1268,6 +1364,11 @@
       "description": "The sidebar lists every session by district and state.",
       "width": 1920,
       "height": 1080,
+      "filmed": {
+        "commit": "b5d2d46e",
+        "film": "c8cb3e8",
+        "generated": "2026-11-08T00:47:09.539702858Z"
+      },
       "image": "metropolis-sidebar",
       "anchors": {
         "clinic": {
@@ -1329,6 +1430,10 @@
         "fountain": {
           "x": 1125.6470588235295,
           "y": 628.7058823529411
+        },
+        "hall": {
+          "x": 1179.764705882353,
+          "y": 623.2941176470588
         },
         "library": {
           "x": 1049.8823529411766,
@@ -1394,6 +1499,10 @@
           "x": 910.9333333333333,
           "y": 402.1333333333333
         }
+      },
+      "filmed": {
+        "commit": "b5d2d46e",
+        "generated": "2026-11-07T14:09:37.360551095Z"
       }
     },
     {
@@ -1442,6 +1551,10 @@
           "x": 910.9333333333333,
           "y": 402.1333333333333
         }
+      },
+      "filmed": {
+        "commit": "b5d2d46e",
+        "generated": "2026-11-07T14:09:37.360551095Z"
       }
     },
     {
@@ -1490,6 +1603,10 @@
           "x": 910.9333333333333,
           "y": 402.1333333333333
         }
+      },
+      "filmed": {
+        "commit": "b5d2d46e",
+        "generated": "2026-11-07T14:09:37.360551095Z"
       }
     },
     {
@@ -1538,6 +1655,10 @@
           "x": 910.9333333333333,
           "y": 402.1333333333333
         }
+      },
+      "filmed": {
+        "commit": "b5d2d46e",
+        "generated": "2026-11-07T14:09:37.360551095Z"
       }
     },
     {
@@ -1586,6 +1707,10 @@
           "x": 910.9333333333333,
           "y": 402.1333333333333
         }
+      },
+      "filmed": {
+        "commit": "b5d2d46e",
+        "generated": "2026-11-07T14:09:37.360551095Z"
       }
     },
     {
@@ -1634,6 +1759,10 @@
           "x": 942.8837209302326,
           "y": 406.69767441860466
         }
+      },
+      "filmed": {
+        "commit": "b5d2d46e",
+        "generated": "2026-11-07T14:09:37.360551095Z"
       }
     },
     {
@@ -1742,6 +1871,10 @@
           "x": 991.0985915492959,
           "y": 386.92957746478874
         }
+      },
+      "filmed": {
+        "commit": "b5d2d46e",
+        "generated": "2026-11-07T14:09:37.360551095Z"
       }
     },
     {
@@ -1806,6 +1939,10 @@
           "x": 1687.0000000000002,
           "y": 179.50000000000006
         }
+      },
+      "filmed": {
+        "commit": "b5d2d46e",
+        "generated": "2026-11-07T14:09:37.360551095Z"
       }
     },
     {
@@ -1914,6 +2051,10 @@
           "x": 991.0985915492959,
           "y": 386.92957746478874
         }
+      },
+      "filmed": {
+        "commit": "b5d2d46e",
+        "generated": "2026-11-07T14:09:37.360551095Z"
       }
     },
     {
@@ -1954,6 +2095,10 @@
           "x": 942.8837209302326,
           "y": 406.69767441860466
         }
+      },
+      "filmed": {
+        "commit": "b5d2d46e",
+        "generated": "2026-11-07T14:09:37.360551095Z"
       }
     },
     {
@@ -2002,6 +2147,10 @@
           "x": 976.3555555555555,
           "y": 434.84444444444443
         }
+      },
+      "filmed": {
+        "commit": "b5d2d46e",
+        "generated": "2026-11-07T14:09:37.360551095Z"
       }
     },
     {
@@ -2058,6 +2207,10 @@
           "x": 1018.8800000000001,
           "y": 421.76
         }
+      },
+      "filmed": {
+        "commit": "b5d2d46e",
+        "generated": "2026-11-07T14:09:37.360551095Z"
       }
     },
     {
@@ -2114,6 +2267,10 @@
           "x": 1254.4,
           "y": 493.86666666666673
         }
+      },
+      "filmed": {
+        "commit": "b5d2d46e",
+        "generated": "2026-11-07T14:09:37.360551095Z"
       }
     },
     {
@@ -2170,6 +2327,10 @@
           "x": 1018.8800000000001,
           "y": 421.76
         }
+      },
+      "filmed": {
+        "commit": "b5d2d46e",
+        "generated": "2026-11-07T14:09:37.360551095Z"
       }
     },
     {
@@ -2226,6 +2387,462 @@
           "x": 1033.6,
           "y": 279.20000000000005
         }
+      },
+      "filmed": {
+        "commit": "b5d2d46e",
+        "generated": "2026-11-07T14:09:37.360551095Z"
+      }
+    },
+    {
+      "id": "controls/clinic",
+      "scenario": "controls",
+      "shot": "clinic",
+      "title": "The clinic",
+      "description": "The clinic lists who needs you, then who is in trouble; 1 to 9 jumps to a row.",
+      "width": 1920,
+      "height": 1080,
+      "filmed": {
+        "commit": "b5d2d46e",
+        "film": "c8cb3e8",
+        "generated": "2026-11-08T00:47:09.539702858Z"
+      },
+      "image": "controls-clinic",
+      "anchors": {
+        "clinic": {
+          "x": 970.8235294117648,
+          "y": 655.7647058823529
+        },
+        "depot": {
+          "x": 429.64705882352945,
+          "y": 655.7647058823529
+        },
+        "district:beacon": {
+          "x": 949.1764705882354,
+          "y": 504.235294117647
+        },
+        "district:copperleaf": {
+          "x": 1079.058823529412,
+          "y": 569.1764705882352
+        },
+        "district:driftwood": {
+          "x": 1219.764705882353,
+          "y": 639.5294117647059
+        },
+        "district:ferrylight": {
+          "x": 840.9411764705883,
+          "y": 558.3529411764705
+        },
+        "district:kiln": {
+          "x": 1111.5294117647059,
+          "y": 693.6470588235294
+        },
+        "district:lanternfish": {
+          "x": 732.7058823529412,
+          "y": 612.470588235294
+        },
+        "district:millrace": {
+          "x": 862.5882352941177,
+          "y": 677.4117647058823
+        },
+        "district:orchard": {
+          "x": 1003.2941176470589,
+          "y": 747.7647058823529
+        },
+        "district:quillmark": {
+          "x": 938.3529411764706,
+          "y": 412.235294117647
+        },
+        "district:saltmarsh": {
+          "x": 1035.764705882353,
+          "y": 460.9411764705882
+        },
+        "district:thistledown": {
+          "x": 1165.6470588235295,
+          "y": 525.8823529411764
+        },
+        "district:tidepool": {
+          "x": 1306.3529411764707,
+          "y": 596.235294117647
+        },
+        "fountain": {
+          "x": 981.6470588235295,
+          "y": 628.7058823529411
+        },
+        "hall": {
+          "x": 1035.764705882353,
+          "y": 623.2941176470588
+        },
+        "library": {
+          "x": 905.8823529411766,
+          "y": 623.2941176470588
+        },
+        "plant": {
+          "x": 970.8235294117648,
+          "y": 590.8235294117646
+        },
+        "tower:tracker": {
+          "x": 981.6470588235295,
+          "y": 368.9411764705882
+        },
+        "tower:weather": {
+          "x": 1024.9411764705883,
+          "y": 390.58823529411757
+        }
+      }
+    },
+    {
+      "id": "controls/board",
+      "scenario": "controls",
+      "shot": "board",
+      "title": "City Hall's groups board",
+      "description": "City Hall's board lists every group; F2 renames the chosen group, Delete Delete closes it, and t walks a tidy-up.",
+      "width": 1920,
+      "height": 1080,
+      "filmed": {
+        "commit": "b5d2d46e",
+        "film": "c8cb3e8",
+        "generated": "2026-11-08T00:47:09.539702858Z"
+      },
+      "image": "controls-board",
+      "anchors": {
+        "clinic": {
+          "x": 970.8235294117648,
+          "y": 655.7647058823529
+        },
+        "depot": {
+          "x": 429.64705882352945,
+          "y": 655.7647058823529
+        },
+        "district:beacon": {
+          "x": 949.1764705882354,
+          "y": 504.235294117647
+        },
+        "district:copperleaf": {
+          "x": 1079.058823529412,
+          "y": 569.1764705882352
+        },
+        "district:driftwood": {
+          "x": 1219.764705882353,
+          "y": 639.5294117647059
+        },
+        "district:ferrylight": {
+          "x": 840.9411764705883,
+          "y": 558.3529411764705
+        },
+        "district:kiln": {
+          "x": 1111.5294117647059,
+          "y": 693.6470588235294
+        },
+        "district:lanternfish": {
+          "x": 732.7058823529412,
+          "y": 612.470588235294
+        },
+        "district:millrace": {
+          "x": 862.5882352941177,
+          "y": 677.4117647058823
+        },
+        "district:orchard": {
+          "x": 1003.2941176470589,
+          "y": 747.7647058823529
+        },
+        "district:quillmark": {
+          "x": 938.3529411764706,
+          "y": 412.235294117647
+        },
+        "district:saltmarsh": {
+          "x": 1035.764705882353,
+          "y": 460.9411764705882
+        },
+        "district:thistledown": {
+          "x": 1165.6470588235295,
+          "y": 525.8823529411764
+        },
+        "district:tidepool": {
+          "x": 1306.3529411764707,
+          "y": 596.235294117647
+        },
+        "fountain": {
+          "x": 981.6470588235295,
+          "y": 628.7058823529411
+        },
+        "hall": {
+          "x": 1035.764705882353,
+          "y": 623.2941176470588
+        },
+        "library": {
+          "x": 905.8823529411766,
+          "y": 623.2941176470588
+        },
+        "plant": {
+          "x": 970.8235294117648,
+          "y": 590.8235294117646
+        },
+        "tower:tracker": {
+          "x": 981.6470588235295,
+          "y": 368.9411764705882
+        },
+        "tower:weather": {
+          "x": 1024.9411764705883,
+          "y": 390.58823529411757
+        }
+      }
+    },
+    {
+      "id": "groups/line-districts",
+      "scenario": "groups",
+      "shot": "line-districts",
+      "title": "A group's line, between its districts",
+      "description": "The default form of group_line_form draws a group's line between its districts.",
+      "width": 1920,
+      "height": 1080,
+      "filmed": {
+        "commit": "b5d2d46e",
+        "film": "c8cb3e8",
+        "generated": "2026-11-08T00:47:09.539702858Z"
+      },
+      "image": "groups-line-districts",
+      "anchors": {
+        "clinic": {
+          "x": 960,
+          "y": 623.1141304347826
+        },
+        "depot": {
+          "x": 143.25,
+          "y": 561.2391304347826
+        },
+        "district:beacon": {
+          "x": 885.75,
+          "y": 264.2391304347826
+        },
+        "district:driftwood": {
+          "x": 1207.5,
+          "y": 425.1141304347826
+        },
+        "district:kiln": {
+          "x": 1504.5,
+          "y": 573.6141304347826
+        },
+        "district:lanternfish": {
+          "x": 638.25,
+          "y": 387.9891304347826
+        },
+        "district:saltmarsh": {
+          "x": 1257,
+          "y": 697.3641304347826
+        },
+        "district:tidepool": {
+          "x": 390.75,
+          "y": 511.7391304347826
+        },
+        "fountain": {
+          "x": 984.75,
+          "y": 561.2391304347826
+        },
+        "hall": {
+          "x": 1108.5,
+          "y": 548.8641304347826
+        },
+        "library": {
+          "x": 811.5,
+          "y": 548.8641304347826
+        },
+        "plant": {
+          "x": 960,
+          "y": 474.6141304347826
+        },
+        "tower:tracker": {
+          "x": 935.25,
+          "y": 140.48913043478262
+        },
+        "tower:weather": {
+          "x": 1034.25,
+          "y": 189.98913043478262
+        }
+      },
+      "detail": {
+        "box": {
+          "x": 560,
+          "y": 300,
+          "width": 900,
+          "height": 520
+        },
+        "holds": [
+          "district:driftwood",
+          "district:saltmarsh"
+        ],
+        "image": "groups-line-districts-detail"
+      }
+    },
+    {
+      "id": "groups/line-neighbourhoods",
+      "scenario": "groups",
+      "shot": "line-neighbourhoods",
+      "title": "A group's line, round its neighbourhoods",
+      "description": "group_line_form's neighbourhoods form draws outlines round a group's buildings in each district, with links between them.",
+      "width": 1920,
+      "height": 1080,
+      "filmed": {
+        "commit": "b5d2d46e",
+        "film": "c8cb3e8",
+        "generated": "2026-11-08T00:47:09.539702858Z"
+      },
+      "image": "groups-line-neighbourhoods",
+      "anchors": {
+        "clinic": {
+          "x": 960,
+          "y": 623.1141304347826
+        },
+        "depot": {
+          "x": 143.25,
+          "y": 561.2391304347826
+        },
+        "district:beacon": {
+          "x": 885.75,
+          "y": 264.2391304347826
+        },
+        "district:driftwood": {
+          "x": 1207.5,
+          "y": 425.1141304347826
+        },
+        "district:kiln": {
+          "x": 1504.5,
+          "y": 573.6141304347826
+        },
+        "district:lanternfish": {
+          "x": 638.25,
+          "y": 387.9891304347826
+        },
+        "district:saltmarsh": {
+          "x": 1257,
+          "y": 697.3641304347826
+        },
+        "district:tidepool": {
+          "x": 390.75,
+          "y": 511.7391304347826
+        },
+        "fountain": {
+          "x": 984.75,
+          "y": 561.2391304347826
+        },
+        "hall": {
+          "x": 1108.5,
+          "y": 548.8641304347826
+        },
+        "library": {
+          "x": 811.5,
+          "y": 548.8641304347826
+        },
+        "plant": {
+          "x": 960,
+          "y": 474.6141304347826
+        },
+        "tower:tracker": {
+          "x": 935.25,
+          "y": 140.48913043478262
+        },
+        "tower:weather": {
+          "x": 1034.25,
+          "y": 189.98913043478262
+        }
+      },
+      "detail": {
+        "box": {
+          "x": 560,
+          "y": 300,
+          "width": 900,
+          "height": 520
+        },
+        "holds": [
+          "district:driftwood",
+          "district:saltmarsh"
+        ],
+        "image": "groups-line-neighbourhoods-detail"
+      }
+    },
+    {
+      "id": "groups/line-sessions",
+      "scenario": "groups",
+      "shot": "line-sessions",
+      "title": "A group's line, building to building",
+      "description": "group_line_form's sessions form draws a group's line from building to building.",
+      "width": 1920,
+      "height": 1080,
+      "filmed": {
+        "commit": "b5d2d46e",
+        "film": "c8cb3e8",
+        "generated": "2026-11-08T00:47:09.539702858Z"
+      },
+      "image": "groups-line-sessions",
+      "anchors": {
+        "clinic": {
+          "x": 960,
+          "y": 623.1141304347826
+        },
+        "depot": {
+          "x": 143.25,
+          "y": 561.2391304347826
+        },
+        "district:beacon": {
+          "x": 885.75,
+          "y": 264.2391304347826
+        },
+        "district:driftwood": {
+          "x": 1207.5,
+          "y": 425.1141304347826
+        },
+        "district:kiln": {
+          "x": 1504.5,
+          "y": 573.6141304347826
+        },
+        "district:lanternfish": {
+          "x": 638.25,
+          "y": 387.9891304347826
+        },
+        "district:saltmarsh": {
+          "x": 1257,
+          "y": 697.3641304347826
+        },
+        "district:tidepool": {
+          "x": 390.75,
+          "y": 511.7391304347826
+        },
+        "fountain": {
+          "x": 984.75,
+          "y": 561.2391304347826
+        },
+        "hall": {
+          "x": 1108.5,
+          "y": 548.8641304347826
+        },
+        "library": {
+          "x": 811.5,
+          "y": 548.8641304347826
+        },
+        "plant": {
+          "x": 960,
+          "y": 474.6141304347826
+        },
+        "tower:tracker": {
+          "x": 935.25,
+          "y": 140.48913043478262
+        },
+        "tower:weather": {
+          "x": 1034.25,
+          "y": 189.98913043478262
+        }
+      },
+      "detail": {
+        "box": {
+          "x": 560,
+          "y": 300,
+          "width": 900,
+          "height": 520
+        },
+        "holds": [
+          "district:driftwood",
+          "district:saltmarsh"
+        ],
+        "image": "groups-line-sessions-detail"
       }
     }
   ],
@@ -2254,7 +2871,11 @@
           "file": "buildings/residential.mp4",
           "name": "18b18ddeeac83a4c.mp4"
         }
-      ]
+      ],
+      "filmed": {
+        "commit": "b5d2d46e",
+        "generated": "2026-11-07T14:09:37.360551095Z"
+      }
     },
     {
       "id": "buildings/shopping",
@@ -2280,7 +2901,11 @@
           "file": "buildings/shopping.mp4",
           "name": "1e08519c2b491de8.mp4"
         }
-      ]
+      ],
+      "filmed": {
+        "commit": "b5d2d46e",
+        "generated": "2026-11-07T14:09:37.360551095Z"
+      }
     },
     {
       "id": "buildings/office",
@@ -2306,7 +2931,11 @@
           "file": "buildings/office.mp4",
           "name": "bf909a6f6fbfe7ea.mp4"
         }
-      ]
+      ],
+      "filmed": {
+        "commit": "b5d2d46e",
+        "generated": "2026-11-07T14:09:37.360551095Z"
+      }
     },
     {
       "id": "buildings/industrial",
@@ -2332,7 +2961,11 @@
           "file": "buildings/industrial.mp4",
           "name": "55f028582864aa6f.mp4"
         }
-      ]
+      ],
+      "filmed": {
+        "commit": "b5d2d46e",
+        "generated": "2026-11-07T14:09:37.360551095Z"
+      }
     },
     {
       "id": "hamlet/drift",
@@ -2358,7 +2991,11 @@
           "file": "hamlet/drift.mp4",
           "name": "576e0a22fbd4619b.mp4"
         }
-      ]
+      ],
+      "filmed": {
+        "commit": "b5d2d46e",
+        "generated": "2026-11-07T14:09:37.360551095Z"
+      }
     },
     {
       "id": "layers/views",
@@ -2384,7 +3021,11 @@
           "file": "layers/views.mp4",
           "name": "294b6e58342964e9.mp4"
         }
-      ]
+      ],
+      "filmed": {
+        "commit": "b5d2d46e",
+        "generated": "2026-11-07T14:09:37.360551095Z"
+      }
     },
     {
       "id": "metropolis/loop",
@@ -2394,21 +3035,26 @@
       "description": "A slow drift over the districts and back, interface hidden, that plays on without a seam.",
       "width": 1920,
       "height": 1080,
+      "filmed": {
+        "commit": "b5d2d46e",
+        "film": "c8cb3e8",
+        "generated": "2026-11-08T00:47:09.539702858Z"
+      },
       "seconds": 15,
       "poster": "metropolis-loop",
       "posterFile": "metropolis/loop.png",
       "sources": [
         {
           "type": "video/webm",
-          "url": "https://media.botropolis.city/dbcfcdfd5959d5a5.webm",
+          "url": "https://media.botropolis.city/b85dc91946d7b91b.webm",
           "file": "metropolis/loop.webm",
-          "name": "dbcfcdfd5959d5a5.webm"
+          "name": "b85dc91946d7b91b.webm"
         },
         {
           "type": "video/mp4",
-          "url": "https://media.botropolis.city/c2bce2ab37e3dfaf.mp4",
+          "url": "https://media.botropolis.city/f0c340bec969f4f0.mp4",
           "file": "metropolis/loop.mp4",
-          "name": "c2bce2ab37e3dfaf.mp4"
+          "name": "f0c340bec969f4f0.mp4"
         }
       ],
       "crops": {
@@ -2420,15 +3066,15 @@
           "sources": [
             {
               "type": "video/webm",
-              "url": "https://media.botropolis.city/e2a484cae759d036.webm",
+              "url": "https://media.botropolis.city/1963f34e8728b27e.webm",
               "file": "metropolis/loop-4x5.webm",
-              "name": "e2a484cae759d036.webm"
+              "name": "1963f34e8728b27e.webm"
             },
             {
               "type": "video/mp4",
-              "url": "https://media.botropolis.city/398f0ee546c708f1.mp4",
+              "url": "https://media.botropolis.city/f80cde780d20a70f.mp4",
               "file": "metropolis/loop-4x5.mp4",
-              "name": "398f0ee546c708f1.mp4"
+              "name": "f80cde780d20a70f.mp4"
             }
           ]
         }
@@ -2442,21 +3088,26 @@
       "description": "Zoom into the team camp and open a card, glide across the districts, turn, and pull back out.",
       "width": 1920,
       "height": 1080,
+      "filmed": {
+        "commit": "b5d2d46e",
+        "film": "c8cb3e8",
+        "generated": "2026-11-08T00:47:09.539702858Z"
+      },
       "seconds": 22,
       "poster": "metropolis-flyover",
       "posterFile": "metropolis/flyover.png",
       "sources": [
         {
           "type": "video/webm",
-          "url": "https://media.botropolis.city/2b270a7a93223015.webm",
+          "url": "https://media.botropolis.city/26bd7f89ac1d2215.webm",
           "file": "metropolis/flyover.webm",
-          "name": "2b270a7a93223015.webm"
+          "name": "26bd7f89ac1d2215.webm"
         },
         {
           "type": "video/mp4",
-          "url": "https://media.botropolis.city/f29ad8b2af0c067e.mp4",
+          "url": "https://media.botropolis.city/d2791a542b4029fc.mp4",
           "file": "metropolis/flyover.mp4",
-          "name": "f29ad8b2af0c067e.mp4"
+          "name": "d2791a542b4029fc.mp4"
         }
       ]
     },
@@ -2484,7 +3135,11 @@
           "file": "stalls/queue.mp4",
           "name": "2aded5a144ffa114.mp4"
         }
-      ]
+      ],
+      "filmed": {
+        "commit": "b5d2d46e",
+        "generated": "2026-11-07T14:09:37.360551095Z"
+      }
     },
     {
       "id": "team/team-vans",
@@ -2510,7 +3165,11 @@
           "file": "team/team-vans.mp4",
           "name": "45cc250b20fb1d72.mp4"
         }
-      ]
+      ],
+      "filmed": {
+        "commit": "b5d2d46e",
+        "generated": "2026-11-07T14:09:37.360551095Z"
+      }
     },
     {
       "id": "team/team-line",
@@ -2536,7 +3195,11 @@
           "file": "team/team-line.mp4",
           "name": "1e1bd8d760647e0a.mp4"
         }
-      ]
+      ],
+      "filmed": {
+        "commit": "b5d2d46e",
+        "generated": "2026-11-07T14:09:37.360551095Z"
+      }
     },
     {
       "id": "tidy/close-group",
@@ -2556,7 +3219,11 @@
           "file": "tidy/close-group.mp4",
           "name": "9881df3e2516e4a8.mp4"
         }
-      ]
+      ],
+      "filmed": {
+        "commit": "b5d2d46e",
+        "generated": "2026-11-07T14:09:37.360551095Z"
+      }
     },
     {
       "id": "tidy/walk",
@@ -2576,7 +3243,11 @@
           "file": "tidy/walk.mp4",
           "name": "c1da03f8c1851d9b.mp4"
         }
-      ]
+      ],
+      "filmed": {
+        "commit": "b5d2d46e",
+        "generated": "2026-11-07T14:09:37.360551095Z"
+      }
     },
     {
       "id": "timelapse/day",
@@ -2602,7 +3273,11 @@
           "file": "timelapse/day.mp4",
           "name": "d8d4c9e2e7336f99.mp4"
         }
-      ]
+      ],
+      "filmed": {
+        "commit": "b5d2d46e",
+        "generated": "2026-11-07T14:09:37.360551095Z"
+      }
     },
     {
       "id": "workday/morning",
@@ -2628,7 +3303,11 @@
           "file": "workday/morning.mp4",
           "name": "5dda3cb978ca086e.mp4"
         }
-      ]
+      ],
+      "filmed": {
+        "commit": "b5d2d46e",
+        "generated": "2026-11-07T14:09:37.360551095Z"
+      }
     },
     {
       "id": "workshop/tour",
@@ -2653,6 +3332,289 @@
           "url": "https://media.botropolis.city/72c0c3ba4369c280.mp4",
           "file": "workshop/tour.mp4",
           "name": "72c0c3ba4369c280.mp4"
+        }
+      ],
+      "filmed": {
+        "commit": "b5d2d46e",
+        "generated": "2026-11-07T14:09:37.360551095Z"
+      }
+    },
+    {
+      "id": "controls/hall",
+      "scenario": "controls",
+      "shot": "hall",
+      "title": "City Hall and its card",
+      "description": "City Hall stands on the plaza once Claude Code has computed your statistics; pointing at it shows a card that says how many sessions and messages, your busiest hour and each model's share.",
+      "width": 1920,
+      "height": 1080,
+      "filmed": {
+        "commit": "b5d2d46e",
+        "film": "c8cb3e8",
+        "generated": "2026-11-08T00:47:09.539702858Z"
+      },
+      "seconds": 5,
+      "poster": "controls-hall",
+      "posterFile": "controls/hall.png",
+      "sources": [
+        {
+          "type": "video/webm",
+          "url": "https://media.botropolis.city/a5bdac7d2d011a8c.webm",
+          "file": "controls/hall.webm",
+          "name": "a5bdac7d2d011a8c.webm"
+        },
+        {
+          "type": "video/mp4",
+          "url": "https://media.botropolis.city/1b8862e8ad4b3475.mp4",
+          "file": "controls/hall.mp4",
+          "name": "1b8862e8ad4b3475.mp4"
+        }
+      ]
+    },
+    {
+      "id": "controls/board-rename",
+      "scenario": "controls",
+      "shot": "board-rename",
+      "title": "Renaming a group on City Hall's board",
+      "description": "F2 on City Hall's board renames the chosen group, and the line takes the new name at once.",
+      "width": 1920,
+      "height": 1080,
+      "filmed": {
+        "commit": "b5d2d46e",
+        "film": "c8cb3e8",
+        "generated": "2026-11-08T00:47:09.539702858Z"
+      },
+      "seconds": 12,
+      "poster": "controls-board-rename",
+      "posterFile": "controls/board-rename.png",
+      "sources": [
+        {
+          "type": "video/webm",
+          "url": "https://media.botropolis.city/649ad9574cafb5fa.webm",
+          "file": "controls/board-rename.webm",
+          "name": "649ad9574cafb5fa.webm"
+        },
+        {
+          "type": "video/mp4",
+          "url": "https://media.botropolis.city/f5b1bd08d2809b24.mp4",
+          "file": "controls/board-rename.mp4",
+          "name": "f5b1bd08d2809b24.mp4"
+        }
+      ]
+    },
+    {
+      "id": "controls/menu",
+      "scenario": "controls",
+      "shot": "menu",
+      "title": "The action menu, from its button",
+      "description": "The action menu hangs just under the button it opened from, with a notch pointing at it; the button stays pressed with its chevron turned up, and the column it opened lights.",
+      "width": 1920,
+      "height": 1080,
+      "filmed": {
+        "commit": "b5d2d46e",
+        "film": "c8cb3e8",
+        "generated": "2026-11-08T00:47:09.539702858Z"
+      },
+      "seconds": 8,
+      "poster": "controls-menu",
+      "posterFile": "controls/menu.png",
+      "sources": [
+        {
+          "type": "video/webm",
+          "url": "https://media.botropolis.city/c338fe8ea69ab68e.webm",
+          "file": "controls/menu.webm",
+          "name": "c338fe8ea69ab68e.webm"
+        },
+        {
+          "type": "video/mp4",
+          "url": "https://media.botropolis.city/249617266b04f5ea.mp4",
+          "file": "controls/menu.mp4",
+          "name": "249617266b04f5ea.mp4"
+        }
+      ]
+    },
+    {
+      "id": "controls/menu-space",
+      "scenario": "controls",
+      "shot": "menu-space",
+      "title": "The action menu, from space",
+      "description": "Space opens the action menu under the Session button.",
+      "width": 1920,
+      "height": 1080,
+      "filmed": {
+        "commit": "b5d2d46e",
+        "film": "c8cb3e8",
+        "generated": "2026-11-08T00:47:09.539702858Z"
+      },
+      "seconds": 5,
+      "poster": "controls-menu-space",
+      "posterFile": "controls/menu-space.png",
+      "sources": [
+        {
+          "type": "video/webm",
+          "url": "https://media.botropolis.city/8ac84fc6fd7c4cfe.webm",
+          "file": "controls/menu-space.webm",
+          "name": "8ac84fc6fd7c4cfe.webm"
+        },
+        {
+          "type": "video/mp4",
+          "url": "https://media.botropolis.city/11da99648f38b625.mp4",
+          "file": "controls/menu-space.mp4",
+          "name": "11da99648f38b625.mp4"
+        }
+      ]
+    },
+    {
+      "id": "controls/menu-rightclick",
+      "scenario": "controls",
+      "shot": "menu-rightclick",
+      "title": "The action menu, by right-click",
+      "description": "A right-click still opens the action menu at the pointer.",
+      "width": 1920,
+      "height": 1080,
+      "filmed": {
+        "commit": "b5d2d46e",
+        "film": "c8cb3e8",
+        "generated": "2026-11-08T00:47:09.539702858Z"
+      },
+      "seconds": 5,
+      "poster": "controls-menu-rightclick",
+      "posterFile": "controls/menu-rightclick.png",
+      "sources": [
+        {
+          "type": "video/webm",
+          "url": "https://media.botropolis.city/a527b32915607c60.webm",
+          "file": "controls/menu-rightclick.webm",
+          "name": "a527b32915607c60.webm"
+        },
+        {
+          "type": "video/mp4",
+          "url": "https://media.botropolis.city/a510c669c95f46dd.mp4",
+          "file": "controls/menu-rightclick.mp4",
+          "name": "a510c669c95f46dd.mp4"
+        }
+      ]
+    },
+    {
+      "id": "controls/keys",
+      "scenario": "controls",
+      "shot": "keys",
+      "title": "Hold e to see every key",
+      "description": "While e is held, every control on screen that a key also does wears that key, drawn as a key cap.",
+      "width": 1920,
+      "height": 1080,
+      "filmed": {
+        "commit": "b5d2d46e",
+        "film": "c8cb3e8",
+        "generated": "2026-11-08T00:47:09.539702858Z"
+      },
+      "seconds": 7,
+      "poster": "controls-keys",
+      "posterFile": "controls/keys.png",
+      "sources": [
+        {
+          "type": "video/webm",
+          "url": "https://media.botropolis.city/2fdc4fd14800c2e8.webm",
+          "file": "controls/keys.webm",
+          "name": "2fdc4fd14800c2e8.webm"
+        },
+        {
+          "type": "video/mp4",
+          "url": "https://media.botropolis.city/aaf198b0a7c1776d.mp4",
+          "file": "controls/keys.mp4",
+          "name": "aaf198b0a7c1776d.mp4"
+        }
+      ]
+    },
+    {
+      "id": "groups/kerb",
+      "scenario": "groups",
+      "shot": "kerb",
+      "title": "A group, inside its kerb",
+      "description": "A group's sessions sit together on neighbouring lots, and a low light kerb runs round the neighbourhood, so a group is found without reading a badge.",
+      "width": 1920,
+      "height": 1080,
+      "filmed": {
+        "commit": "b5d2d46e",
+        "film": "c8cb3e8",
+        "generated": "2026-11-08T00:47:09.539702858Z"
+      },
+      "seconds": 5,
+      "poster": "groups-kerb",
+      "posterFile": "groups/kerb.png",
+      "sources": [
+        {
+          "type": "video/webm",
+          "url": "https://media.botropolis.city/50be71556574dd74.webm",
+          "file": "groups/kerb.webm",
+          "name": "50be71556574dd74.webm"
+        },
+        {
+          "type": "video/mp4",
+          "url": "https://media.botropolis.city/feb99a5846983654.mp4",
+          "file": "groups/kerb.mp4",
+          "name": "feb99a5846983654.mp4"
+        }
+      ]
+    },
+    {
+      "id": "groups/lit",
+      "scenario": "groups",
+      "shot": "lit",
+      "title": "Pointing at a session lights its group",
+      "description": "Pointing at a session in a group lights the whole group, and the rest of the city goes dark grey.",
+      "width": 1920,
+      "height": 1080,
+      "filmed": {
+        "commit": "b5d2d46e",
+        "film": "c8cb3e8",
+        "generated": "2026-11-08T00:47:09.539702858Z"
+      },
+      "seconds": 8,
+      "poster": "groups-lit",
+      "posterFile": "groups/lit.png",
+      "sources": [
+        {
+          "type": "video/webm",
+          "url": "https://media.botropolis.city/f83c4c154a72d02a.webm",
+          "file": "groups/lit.webm",
+          "name": "f83c4c154a72d02a.webm"
+        },
+        {
+          "type": "video/mp4",
+          "url": "https://media.botropolis.city/df1f92087e3ca95c.mp4",
+          "file": "groups/lit.mp4",
+          "name": "df1f92087e3ca95c.mp4"
+        }
+      ]
+    },
+    {
+      "id": "groups/close-group",
+      "scenario": "groups",
+      "shot": "close-group",
+      "title": "Closing a group from City Hall's board",
+      "description": "Close group on City Hall's board asks in a dialog, then packs the group's sessions into the depot as a convoy.",
+      "width": 1920,
+      "height": 1080,
+      "filmed": {
+        "commit": "b5d2d46e",
+        "film": "c8cb3e8",
+        "generated": "2026-11-08T00:47:09.539702858Z"
+      },
+      "seconds": 18,
+      "poster": "groups-close-group",
+      "posterFile": "groups/close-group.png",
+      "sources": [
+        {
+          "type": "video/webm",
+          "url": "https://media.botropolis.city/820ab91e0d822c92.webm",
+          "file": "groups/close-group.webm",
+          "name": "820ab91e0d822c92.webm"
+        },
+        {
+          "type": "video/mp4",
+          "url": "https://media.botropolis.city/45b4c2dab13f9a35.mp4",
+          "file": "groups/close-group.mp4",
+          "name": "45b4c2dab13f9a35.mp4"
         }
       ]
     }
