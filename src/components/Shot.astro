@@ -1,0 +1,38 @@
+---
+import { getImage, Picture } from "astro:assets";
+import { image, media } from "../data/catalog.ts";
+
+interface Props {
+  id: string;
+  poster?: string;
+  sizes?: string;
+}
+
+const { id, poster: posterOverride, sizes = "(max-width: 960px) 100vw, 620px" } = Astro.props;
+const s = media.stills.find((x) => x.id === id);
+const c = media.clips.find((x) => x.id === id);
+if (!s && !c) throw new Error(`no still or clip ${id}`);
+const posterStill = posterOverride ? media.stills.find((x) => x.id === posterOverride) : undefined;
+if (posterOverride && !posterStill) throw new Error(`no still ${posterOverride} for ${id}'s poster`);
+const poster = c ? await getImage({ src: image(posterStill?.image ?? c.poster), width: 1280, format: "webp" }) : undefined;
+---
+
+{
+  s ? (
+    <Picture data-media={id} src={image(s.image)} formats={["avif"]} fallbackFormat="webp" widths={[640, 960, 1280, 1920]} sizes={sizes} alt={s.description} loading="lazy" />
+  ) : (
+    <video data-media={id} muted playsinline controls loop preload="none" poster={poster!.src} width={c!.width} height={c!.height} aria-label={c!.description}>
+      {c!.sources.map((src) => (
+        <source src={src.url} type={src.type} />
+      ))}
+    </video>
+  )
+}
+
+<style>
+  video {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+</style>

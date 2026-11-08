@@ -1,7 +1,7 @@
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test, type Page } from "@playwright/test";
 import media from "../../../src/data/media.json" with { type: "json" };
-import { menus } from "../../../src/data/drive.ts";
+import { media as driveMedia, menus } from "../../../src/data/drive.ts";
 import { hotspots } from "../../../src/data/glance.ts";
 import { distros, shells } from "../../../src/data/install.ts";
 import { latest, news } from "../../../src/data/current.ts";
@@ -415,6 +415,18 @@ test.describe("when the reader reaches the drive section", () => {
       });
     });
   }
+
+  for (const { id } of driveMedia) {
+    test.describe(`and it is the ${id} media`, () => {
+      test("it should show it", async ({ page }) => {
+        await expect(page.locator(`#drive [data-media="${id}"]`)).toHaveCount(1);
+      });
+    });
+  }
+
+  test("it should play none of its clips by itself", async ({ page }) => {
+    await expect(page.locator("#drive video[autoplay]")).toHaveCount(0);
+  });
 
   test("it should not list the card's old row of buttons", async ({ page }) => {
     await expect(page.locator("#drive").getByRole("list", { name: "Card actions" })).toHaveCount(0);

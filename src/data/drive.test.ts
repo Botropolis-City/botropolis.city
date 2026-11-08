@@ -1,7 +1,8 @@
 import { existsSync, readFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { describe, expect, it } from "vitest";
-import { keys, menus } from "./drive.ts";
+import { media as catalog } from "./catalog.ts";
+import { keys, media as shown, menus } from "./drive.ts";
 
 const botropolis = resolve(process.env.BOTROPOLIS_DIR ?? "../botropolis");
 const live = existsSync(join(botropolis, "pkg/config/bindings.go"));
@@ -58,6 +59,22 @@ describe("when the keys are read", () => {
 
       liveIt(liveName("its quote should be in the app's CHANGELOG.md"), () => {
         expect(changelog).toContain(k.quote);
+      });
+    });
+  }
+});
+
+describe("when the drive section's media are read", () => {
+  const filmed = [...catalog.stills, ...catalog.clips].map((m) => m.id);
+
+  for (const id of ["controls/menu", "controls/menu-rightclick", "controls/keys", "controls/clinic"]) {
+    describe(`and it is ${id}`, () => {
+      it("it should be shown", () => {
+        expect(shown.map((m) => m.id)).toContain(id);
+      });
+
+      it("it should be in the film", () => {
+        expect(filmed).toContain(id);
       });
     });
   }

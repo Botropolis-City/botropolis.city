@@ -127,3 +127,6 @@ export const keys: Key[] = [
     bare: true,
   },
 ];
+
+// media are the film's shots of the controls, shown after the keys.
+export const media: { id: string }[] = [{ id: "controls/menu" }, { id: "controls/menu-rightclick" }, { id: "controls/keys" }, { id: "controls/clinic" }];

@@ -1,7 +1,9 @@
 ---
 import { Picture } from "astro:assets";
 import { image, still } from "../data/catalog.ts";
-import { keys, menus } from "../data/drive.ts";
+import { keys, media as shots, menus } from "../data/drive.ts";
+import { media as film } from "../data/catalog.ts";
+import Shot from "./Shot.astro";
 import AppWindow from "./AppWindow.astro";
 import Keycap from "./Keycap.astro";
 
@@ -63,6 +65,19 @@ const power = still("workshop/power");
       </ul>
     </div>
 
+    <div class="shots">
+      {
+        shots.map(({ id }) => (
+          <figure>
+            <AppWindow title={`botropolis — ${id.split("/")[0]}`}>
+              <Shot id={id} sizes="(max-width: 960px) 100vw, 580px" />
+            </AppWindow>
+            <figcaption>{[...film.stills, ...film.clips].find((m) => m.id === id)?.title}</figcaption>
+          </figure>
+        ))
+      }
+    </div>
+
     <div class="row flip">
       <AppWindow title="botropolis — power plant">
         <Picture src={image(power.image)} formats={["avif"]} fallbackFormat="webp" widths={[640, 960, 1280, 1920]} sizes="(max-width: 960px) 100vw, 760px" alt={power.description} loading="lazy" />
@@ -87,6 +102,21 @@ const power = still("workshop/power");
     align-items: center;
   }
   .row + .row,
+  .shots {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 32px 40px;
+    margin-top: 48px;
+  }
+  figure {
+    margin: 0;
+  }
+  figcaption {
+    margin-top: 10px;
+    color: var(--dim);
+    font-size: 15px;
+  }
+  .shots + .row,
   .keys + .row {
     margin-top: 72px;
   }
@@ -163,6 +193,9 @@ const power = still("workshop/power");
     font: 500 13px/1 var(--font);
   }
   @media (max-width: 960px) {
+    .shots {
+      grid-template-columns: minmax(0, 1fr);
+    }
     .row {
       grid-template-columns: minmax(0, 1fr);
       gap: 24px;
