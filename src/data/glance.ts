@@ -48,7 +48,7 @@ export function place(specs: Spec[], anchors?: Record<string, Anchor>): Hotspot[
   });
 }
 
-const heroAnchors = (media as Catalog).stills.find((s) => s.id === "metropolis/hero")?.anchors;
+const heroAnchors = (media as unknown as Catalog).stills.find((s) => s.id === "metropolis/hero")?.anchors;
 
 const kinds = "pkg/city/kinds.go";
 const spot = (s: Spec) => s;

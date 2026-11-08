@@ -9,7 +9,7 @@ export interface View {
   image: string;
 }
 
-export const media = data as Catalog & { views: { title: string; frames: View[] } };
+export const media = data as unknown as Catalog & { views: { title: string; frames: View[] } };
 
 const files = import.meta.glob<{ default: ImageMetadata }>("../assets/media/*.webp", { eager: true });
 
