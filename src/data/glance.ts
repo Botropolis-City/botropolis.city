@@ -60,7 +60,17 @@ export const hotspots: Hotspot[] = place([
   spot({ title: "radio towers", line: "Each radio tower is an MCP server.", source: kinds, on: "object", px: 988, py: 105, tone: "var(--dim)", anchor: { name: "tower:tracker", dx: 1, dy: -56 } }),
   spot({ title: "library", line: "The library holds the skills sessions have used, and how often.", source: kinds, on: "object", px: 885, py: 450, tone: "var(--plant)", anchor: { name: "library", dx: -7, dy: -29 } }),
   spot({ title: "power plant", line: "The power plant is the city's spend: tokens and cost across every session.", source: kinds, on: "object", px: 970, py: 405, tone: "var(--plant)", anchor: { name: "plant", dx: -4, dy: -34 } }),
-  spot({ title: "plaza", line: "The plaza holds the civic buildings: the power plant, city hall, the library and the clinic.", source: kinds, on: "plaza", px: 1025, py: 520, tone: "var(--plant)" }),
+  spot({ title: "plaza", line: "The plaza holds the civic buildings: the power plant, city hall, the library and the clinic.", source: kinds, on: "plaza", px: 1030, py: 522, tone: "var(--plant)" }),
+  spot({
+    title: "city hall",
+    line: "City hall holds the board of groups: each piece of work, whose move it is, and what is next.",
+    source: kinds,
+    on: "object",
+    px: 1058,
+    py: 445,
+    tone: "var(--plant)",
+    anchor: { name: "hall", dx: 3, dy: -54 },
+  }),
   spot({
     title: "clinic",
     line: "The clinic counts the sessions waiting on you and the ones in trouble: one whose last reply was an error from the API, one that stopped mid-turn in the last day, or one whose last three tool calls or more failed. Click it, or press a, for the list.",

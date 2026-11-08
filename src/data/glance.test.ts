@@ -72,7 +72,7 @@ describe("when the hotspots are read", () => {
     expect(titles).not.toContain("fountain");
   });
 
-  for (const object of ["library", "power plant", "working", "resting", "unattended", "road", "trains", "clinic", "group"]) {
+  for (const object of ["library", "power plant", "working", "resting", "unattended", "road", "trains", "clinic", "group", "city hall"]) {
     describe(`and it is the ${object}`, () => {
       it("it should have one", () => {
         expect(titles).toContain(object);
